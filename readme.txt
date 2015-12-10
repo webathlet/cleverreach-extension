@@ -4,7 +4,7 @@ Contributors: hofmannsven
 Tags: cleverreach, email, newsletter, sign-up, opt-in, form, ajax
 
 Requires at least: 4.0
-Tested up to: 4.3
+Tested up to: 4.4
 Stable tag: 0.3.0
 
 License: GPLv3
