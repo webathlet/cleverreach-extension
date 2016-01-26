@@ -36,6 +36,7 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 
 = Looking ahead =
 * Unsubscribe form
+* Support for multiple forms
 * Support for WordPress Widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
 * [Contact Form 7](http://contactform7.com/) integration
