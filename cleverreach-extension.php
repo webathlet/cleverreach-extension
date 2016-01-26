@@ -13,9 +13,9 @@
  * Description: Simple interface for CleverReach newsletter software using the official CleverReach SOAP API.
  * Version:     0.3.0
  * Author:      CODE64
- * Author URI:  http://code64.de/
+ * Author URI:  https://code64.de
  * License:     GPLv3
- * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: cleverreachextension
  * Domain Path: /languages
  */

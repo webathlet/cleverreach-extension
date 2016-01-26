@@ -6,7 +6,7 @@
 
 The [CleverReach Extension for WordPress](https://wordpress.org/plugins/cleverreach-extension/) provides an easy way to embed your CleverReach sign-up form anywhere on your website.
 
-It's a simple interface for [CleverReach](http://www.cleverreach.com/) newsletter software using the [official CleverReach SOAP API](http://api.cleverreach.com/soap/doc/5.0/).
+It's a simple interface for [CleverReach](https://www.cleverreach.com/) newsletter software using the [official CleverReach SOAP API](https://api.cleverreach.com/soap/doc/5.0/).
 
 ### Features
 * Easily embed your CleverReach sign-up form anywhere on your website
@@ -17,7 +17,7 @@ It's a simple interface for [CleverReach](http://www.cleverreach.com/) newslette
 Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for available filters and further information.
 
 ### Integrations
-* [Visual Composer](http://vc.wpbakery.com/)
+* [Visual Composer](https://vc.wpbakery.com/)
 
 ### Languages
 * English
@@ -84,7 +84,7 @@ This allows things like smooth form submission via Ajax and custom error handlin
 
 #### Is it secure?
 No customer data is stored within your WordPress database. 
-We heavily rely on the security of CleverReach which is [tested and verified](http://www.cleverreach.com/security) according to German standards.
+We heavily rely on the security of CleverReach which is [tested and verified](https://www.cleverreach.com/security) according to German standards.
 
 #### Having problems with the PHP SOAP Extension?
 Check the [PHP SOAP wiki page](https://github.com/hofmannsven/cleverreach-extension/wiki/PHP-SOAP-Extension) for further information.
