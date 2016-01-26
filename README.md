@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/hofmannsven/cleverreach-extension/master/LICENSE.md)
 [![Code Climate](https://codeclimate.com/github/hofmannsven/cleverreach-extension/badges/gpa.svg)](https://codeclimate.com/github/hofmannsven/cleverreach-extension)
 
-The CleverReach Extension for [WordPress](https://wordpress.org/) provides an easy way to embed your CleverReach sign-up form anywhere on your website.
+The [CleverReach Extension for WordPress](https://wordpress.org/plugins/cleverreach-extension/) provides an easy way to embed your CleverReach sign-up form anywhere on your website.
 
 It's a simple interface for [CleverReach](http://www.cleverreach.com/) newsletter software using the [official CleverReach SOAP API](http://api.cleverreach.com/soap/doc/5.0/).
 
