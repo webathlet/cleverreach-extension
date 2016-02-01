@@ -81,7 +81,7 @@ class Cre_Admin {
 
 		wp_register_style(
 			$this->plugin_name . '_admin',
-			plugin_dir_url( __FILE__ ) . 'css/cleverreach-extension-admin.css',
+			plugin_dir_url( __FILE__ ) . 'css/cleverreach-extension-admin.min.css',
 			array(),
 			$this->plugin_version,
 			'all'
@@ -107,7 +107,7 @@ class Cre_Admin {
 
 		wp_register_script(
 			$this->plugin_name . '_admin',
-			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-admin.js',
+			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-admin.min.js',
 			array( 'jquery' ),
 			$this->plugin_version,
 			true

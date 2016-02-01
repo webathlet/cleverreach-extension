@@ -68,7 +68,7 @@ class Cre_Public {
 
 		wp_register_script(
 			$this->plugin_name,
-			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public.js',
+			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public.min.js',
 			array( 'jquery' ),
 			$this->plugin_version,
 			true
