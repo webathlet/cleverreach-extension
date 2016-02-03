@@ -125,8 +125,8 @@ class Cre_Admin {
 				'list_selector'      => sanitize_html_class( 'cre-admin-select-list' ),
 				'form_selector'      => sanitize_html_class( 'cre-admin-select-form' ),
 				'source_selector'    => sanitize_html_class( 'cre-admin-input-source' ),
-				'list_empty'         => esc_html__( 'Please select a list', 'cleverreachextension' ),
-				'form_empty'         => esc_html__( 'Please select a form', 'cleverreachextension' ),
+				'list_empty'         => esc_html__( 'Please select a list', 'cleverreach-extension' ),
+				'form_empty'         => esc_html__( 'Please select a form', 'cleverreach-extension' ),
 				'shortcode_selector' => sanitize_html_class( 'cre-admin-shortcode' )
 			)
 		);
@@ -197,7 +197,7 @@ class Cre_Admin {
 
 		return array_merge(
 			array(
-				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . esc_html__( 'Settings', 'cleverreachextension' ) . '</a>'
+				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . esc_html__( 'Settings', 'cleverreach-extension' ) . '</a>'
 			),
 			$links
 		);
@@ -288,14 +288,14 @@ class Cre_Admin {
 
 		add_settings_section(
 			'cleverreach_extension_setting',
-			esc_html__( 'Settings', 'cleverreachextension' ),
+			esc_html__( 'Settings', 'cleverreach-extension' ),
 			array( $this, 'render_section_info' ),
 			$this->plugin_slug
 		);
 
 		add_settings_field(
 			'api_key',
-			esc_html__( 'API Key', 'cleverreachextension' ),
+			esc_html__( 'API Key', 'cleverreach-extension' ),
 			array( $this, 'render_api_key_field' ),
 			$this->plugin_slug,
 			'cleverreach_extension_setting'
@@ -303,7 +303,7 @@ class Cre_Admin {
 
 		add_settings_field(
 			'list_id',
-			esc_html__( 'List', 'cleverreachextension' ),
+			esc_html__( 'List', 'cleverreach-extension' ),
 			array( $this, 'render_list_field' ),
 			$this->plugin_slug,
 			'cleverreach_extension_setting'
@@ -311,7 +311,7 @@ class Cre_Admin {
 
 		add_settings_field(
 			'form_id',
-			esc_html__( 'Form', 'cleverreachextension' ),
+			esc_html__( 'Form', 'cleverreach-extension' ),
 			array( $this, 'render_form_field' ),
 			$this->plugin_slug,
 			'cleverreach_extension_setting'
@@ -319,7 +319,7 @@ class Cre_Admin {
 
 		add_settings_field(
 			'source',
-			esc_html__( 'Source', 'cleverreachextension' ),
+			esc_html__( 'Source', 'cleverreach-extension' ),
 			array( $this, 'render_source_field' ),
 			$this->plugin_slug,
 			'cleverreach_extension_setting'
@@ -378,7 +378,7 @@ class Cre_Admin {
 
 		echo '</div>'; // end of .input-container
 
-		echo '<p class="description">' . esc_html__( 'CleverReach API Keys can be created within Account » Extras » API', 'cleverreachextension' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'CleverReach API Keys can be created within Account » Extras » API', 'cleverreach-extension' ) . '</p>';
 
 	}
 
@@ -400,7 +400,7 @@ class Cre_Admin {
 				$this->list_id,
 				$group->get_list(),
 				'list_id',
-				esc_html__( 'Please select a list', 'cleverreachextension' )
+				esc_html__( 'Please select a list', 'cleverreach-extension' )
 			);
 
 		}
@@ -429,7 +429,7 @@ class Cre_Admin {
 				$this->form_id,
 				$form->get_list( $this->list_id ),
 				'form_id',
-				esc_html__( 'Please select a form', 'cleverreachextension' )
+				esc_html__( 'Please select a form', 'cleverreach-extension' )
 			);
 
 		}
@@ -453,7 +453,7 @@ class Cre_Admin {
 			isset( $source ) ? esc_attr( $source ) : ''
 		);
 
-		echo '<p class="description">' . esc_html__( '(optional)', 'cleverreachextension' ) . '</p>';
+		echo '<p class="description">' . esc_html__( '(optional)', 'cleverreach-extension' ) . '</p>';
 
 	}
 
@@ -464,7 +464,7 @@ class Cre_Admin {
 	 */
 	public function render_section_info() {
 
-		echo '<p>' . esc_html__( 'Use the fields below to connect WordPress and CleverReach.', 'cleverreachextension' ) . '</p>';
+		echo '<p>' . esc_html__( 'Use the fields below to connect WordPress and CleverReach.', 'cleverreach-extension' ) . '</p>';
 
 	}
 
@@ -485,9 +485,9 @@ class Cre_Admin {
 		if ( ! $helper->has_option( 'api_key' ) ) {
 
 			$result .= '<p>';
-			$result .= esc_html__( 'Still need a CleverReach account?', 'cleverreachextension' ) . ' ';
+			$result .= esc_html__( 'Still need a CleverReach account?', 'cleverreach-extension' ) . ' ';
 			$result .= '<a href="' . esc_url( 'http://www.cleverreach.com/frontend/account.php?rk=85097mbwkysub"' ) . '">';
-			$result .= esc_html__( 'Sign up for free!', 'cleverreachextension' );
+			$result .= esc_html__( 'Sign up for free!', 'cleverreach-extension' );
 			$result .= '</a>';
 			$result .= '</p>';
 
@@ -510,11 +510,11 @@ class Cre_Admin {
 	 */
 	public function render_shortcode_preview() {
 
-		$result = '<h3>' . esc_html__( 'Your Shortcode', 'cleverreachextension' ) . '</h3>';
+		$result = '<h3>' . esc_html__( 'Your Shortcode', 'cleverreach-extension' ) . '</h3>';
 
 		$result .= '<p>';
-		$result .= esc_html__( 'You can use the shortcode below everywhere on your page.', 'cleverreachextension' ) . '<br />';
-		$result .= esc_html__( 'Check the wiki on how to customize your form.', 'cleverreachextension' );
+		$result .= esc_html__( 'You can use the shortcode below everywhere on your page.', 'cleverreach-extension' ) . '<br />';
+		$result .= esc_html__( 'Check the wiki on how to customize your form.', 'cleverreach-extension' );
 		$result .= '</p>';
 
 		$result .= '<p>';

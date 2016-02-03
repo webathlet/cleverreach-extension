@@ -80,9 +80,9 @@ class Cre_Public {
 			array(
 				'ajaxurl'            => esc_url( apply_filters( 'cleverreach_extension_ajaxurl', admin_url( 'admin-ajax.php' ) ) ),
 				'nonce'              => wp_create_nonce( $this->plugin_name . '_ajax_interaction_nonce' ),
-				'loading'            => sanitize_text_field( apply_filters( 'cleverreach_extension_loading_msg', esc_html__( 'Saving...', 'cleverreachextension' ) ) ),
-				'success'            => sanitize_text_field( apply_filters( 'cleverreach_extension_success_msg', esc_html__( 'Please check your email to confirm your subscription.', 'cleverreachextension' ) ) ),
-				'error'              => sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg', esc_html__( 'Sorry, there was a problem saving your data. Please try later or contact the administrator.', 'cleverreachextension' ) ) ),
+				'loading'            => sanitize_text_field( apply_filters( 'cleverreach_extension_loading_msg', esc_html__( 'Saving...', 'cleverreach-extension' ) ) ),
+				'success'            => sanitize_text_field( apply_filters( 'cleverreach_extension_success_msg', esc_html__( 'Please check your email to confirm your subscription.', 'cleverreach-extension' ) ) ),
+				'error'              => sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg', esc_html__( 'Sorry, there was a problem saving your data. Please try later or contact the administrator.', 'cleverreach-extension' ) ) ),
 				'selector'           => esc_attr( '.' ), // Selector supports only classes, yet.
 				'container_selector' => sanitize_html_class( apply_filters( 'cleverreach_extension_container_selector', 'cr_form-container' ) ),
 				// TODO: Also apply filter on container class within models
@@ -175,9 +175,9 @@ class Cre_Public {
 				$result['type'] = 'error';
 
 				if ( 'duplicate data' == $receiver_added ) {
-					$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_duplicate', esc_html__( 'It seems like you\'re already subscribed to our list.', 'cleverreachextension' ) ) );
+					$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_duplicate', esc_html__( 'It seems like you\'re already subscribed to our list.', 'cleverreach-extension' ) ) );
 				} else {
-					$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_common', esc_html__( 'Sorry, there seems to be a problem with your data.', 'cleverreachextension' ) ) );
+					$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_common', esc_html__( 'Sorry, there seems to be a problem with your data.', 'cleverreach-extension' ) ) );
 				}
 
 			} // end of is_object() && 'SUCCESS'
@@ -185,7 +185,7 @@ class Cre_Public {
 		else :
 
 			$result['type']   = 'error';
-			$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_invalid_email', esc_html__( 'Sorry, there seems to be a problem with your email address.', 'cleverreachextension' ) ) );
+			$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_invalid_email', esc_html__( 'Sorry, there seems to be a problem with your email address.', 'cleverreach-extension' ) ) );
 
 		endif; // end of is_email()
 

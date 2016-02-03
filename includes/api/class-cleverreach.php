@@ -73,7 +73,7 @@ class Cleverreach {
 		$result = $this->client->$method( $this->api_key, $param );
 
 		if ( 'SUCCESS' != $result->status ) {
-			throw new \Exception( esc_html__( 'Your API key is invalid.', 'cleverreachextension' ) );
+			throw new \Exception( esc_html__( 'Your API key is invalid.', 'cleverreach-extension' ) );
 		}
 
 		return $result;

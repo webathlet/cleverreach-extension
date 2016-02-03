@@ -27,16 +27,16 @@ if ( $client->has_valid_api_key() && $helper->has_option( 'list_id' ) ) {
 	}
 
 	// Append `Custom` at the very end of the list.
-	$values[ esc_html__( 'Custom', 'cleverreachextension' ) ] = 'custom';
+	$values[ esc_html__( 'Custom', 'cleverreach-extension' ) ] = 'custom';
 }
 
 vc_map(
 	array(
-		'name'              => esc_html__( 'CleverReach Form', 'cleverreachextension' ),
+		'name'              => esc_html__( 'CleverReach Form', 'cleverreach-extension' ),
 		'base'              => 'cleverreach_extension',
 		'class'             => 'cleverreach_extension',
 		'icon'              => '',
-		'category'          => esc_html__( 'CleverReach', 'cleverreachextension' ),
+		'category'          => esc_html__( 'CleverReach', 'cleverreach-extension' ),
 		'admin_enqueue_js'  => array(),
 		'admin_enqueue_css' => array(),
 		'params'            => array(
@@ -44,11 +44,11 @@ vc_map(
 				'type'        => 'dropdown',
 				'holder'      => 'div',
 				'class'       => 'cre_form_id',
-				'heading'     => esc_html__( 'Form', 'cleverreachextension' ),
+				'heading'     => esc_html__( 'Form', 'cleverreach-extension' ),
 				'param_name'  => 'form_id',
 				'value'       => $values,
 				'std'         => $helper->get_option( 'form_id' ), // Use default value from options.
-				'description' => esc_html__( 'Check the wiki on how to customize your form.', 'cleverreachextension' ),
+				'description' => esc_html__( 'Check the wiki on how to customize your form.', 'cleverreach-extension' ),
 			),
 		)
 	)

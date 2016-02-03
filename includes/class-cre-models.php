@@ -53,7 +53,7 @@ class Cre_Models {
 
 		// Parse form according to shortcode attributes.
 		if ( 'custom' === $atts['form_id'] ) {
-			$html .= apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreachextension' ) );
+			$html .= apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );
 		} else {
 			$result = $form->get_embedded_code( $atts['form_id'] );
 			$html .= $result->data;

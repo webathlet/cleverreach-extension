@@ -16,7 +16,7 @@
  * Author URI:  https://code64.de
  * License:     GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain: cleverreachextension
+ * Text Domain: cleverreach-extension
  * Domain Path: /languages
  */
 
@@ -42,8 +42,8 @@ function cleverreachextension_check_requirements() {
 
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		wp_die(
-			sprintf( esc_html__( 'CleverReach Extension plugin requires PHP %s or greater.', 'cleverreachextension' ), $required_php_version ),
-			esc_html__( 'Plugin Activation Error', 'cleverreachextension' ),
+			sprintf( esc_html__( 'CleverReach Extension plugin requires PHP %s or greater.', 'cleverreach-extension' ), $required_php_version ),
+			esc_html__( 'Plugin Activation Error', 'cleverreach-extension' ),
 			array( 'back_link' => true )
 		);
 
@@ -51,8 +51,8 @@ function cleverreachextension_check_requirements() {
 
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		wp_die(
-			sprintf( esc_html__( 'CleverReach Extension plugin requires PHP %s extension.', 'cleverreachextension' ), strtoupper( $required_php_extension ) ),
-			esc_html__( 'Plugin Activation Error', 'cleverreachextension' ),
+			sprintf( esc_html__( 'CleverReach Extension plugin requires PHP %s extension.', 'cleverreach-extension' ), strtoupper( $required_php_extension ) ),
+			esc_html__( 'Plugin Activation Error', 'cleverreach-extension' ),
 			array( 'back_link' => true )
 		);
 
@@ -80,7 +80,7 @@ add_action( 'plugins_loaded', 'run_cleverreachextension', 0 );
 function run_cleverreachextension() {
 
 	// Define plugin meta.
-	$plugin_name     = esc_html__( 'CleverReach Extension', 'cleverreachextension' );
+	$plugin_name     = esc_html__( 'CleverReach Extension', 'cleverreach-extension' );
 	$plugin_slug     = 'cleverreach-extension';
 	$plugin_settings = 'cleverreach_extension';
 	$plugin_basename = plugin_basename( __FILE__ );
