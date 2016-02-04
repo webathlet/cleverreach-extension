@@ -1,21 +1,26 @@
 {
   "name": "hofmannsven/cleverreach-extension",
   "description": "Simple interface for CleverReach newsletter software using the official CleverReach SOAP API.",
-  "keywords": [
-    "wordpress", "cleverreach"
-  ],
   "homepage": "https://github.com/hofmannsven/cleverreach-extension",
   "license": "GPLv3",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "wordpress",
+    "cleverreach"
+  ],
   "authors": [
     {
       "name": "Sven Hofmann",
       "email": "info@hofmannsven.com",
-      "homepage": "https://hofmannsven.com"
+      "homepage": "https://hofmannsven.com",
+      "role": "Developer"
     }
   ],
-  "type": "wordpress-plugin",
   "support": {
-    "issues": "https://github.com/hofmannsven/cleverreach-extension/issues"
+    "email": "info@hofmannsven.com",
+    "issues": "https://github.com/hofmannsven/cleverreach-extension/issues",
+    "wiki": "https://github.com/hofmannsven/cleverreach-extension/wiki",
+    "source": "https://github.com/hofmannsven/cleverreach-extension"
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "^0.1.2"
