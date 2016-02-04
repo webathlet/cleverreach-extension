@@ -1,5 +1,6 @@
 <?php namespace CleverreachExtension\Tests\Integration;
 
+use CleverreachExtension\Core\Cleverreach_Extension;
 use CleverreachExtension\Viewadmin;
 
 /**
@@ -12,7 +13,9 @@ use CleverreachExtension\Viewadmin;
  */
 class AdminTest extends \PHPUnit_Framework_TestCase {
 
-	/*
+	/**
+	 * @var Viewadmin\Cre_Admin
+	 */
 	private $plugin;
 
 	private $plugin_name = 'CleverReach Extension';
@@ -23,6 +26,7 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 
+		new CleverReach_Extension( 'CleverReach Extension', 'cleverreach-extension', 'cleverreach-extension', 'cleverreach-extension/cleverreach-extension.php', '0.3.0' );
 		$this->plugin = new Viewadmin\Cre_Admin( $this->plugin_name, $this->plugin_slug, $this->plugin_version );
 
 	}
@@ -32,7 +36,6 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 		$this->plugin = NULL;
 
 	}
-	*/
 
 	/**
 	 * Test if admin styles are enqueued.
@@ -41,8 +44,6 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 	 * @group admin
 	 */
 	function testAdminStylesEnqueue() {
-
-		$this->markTestSkipped( 'Must be revisited.' ); // @TODO
 
 		$settings_page = 'settings_page_' . $this->plugin_slug;
 		$this->plugin->admin_enqueue_styles( $settings_page );
@@ -57,8 +58,6 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 	 * @group admin
 	 */
 	function testAdminScriptsEnqueue() {
-
-		$this->markTestSkipped( 'Must be revisited.' ); // @TODO
 
 		$settings_page = 'settings_page_' . $this->plugin_slug;
 		$this->plugin->admin_enqueue_scripts( $settings_page );

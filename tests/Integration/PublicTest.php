@@ -1,5 +1,6 @@
 <?php namespace CleverreachExtension\Tests\Integration;
 
+use CleverreachExtension\Core\Cleverreach_Extension;
 use CleverreachExtension\Viewpublic;
 
 /**
@@ -12,7 +13,9 @@ use CleverreachExtension\Viewpublic;
  */
 class PublicTest extends \PHPUnit_Framework_TestCase {
 
-	/*
+	/**
+	 * @var Viewpublic\Cre_Public
+	 */
 	private $plugin;
 
 	private $plugin_name = 'CleverReach Extension';
@@ -23,6 +26,7 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 
+		new CleverReach_Extension( 'CleverReach Extension', 'cleverreach-extension', 'cleverreach-extension', 'cleverreach-extension/cleverreach-extension.php', '0.3.0' );
 		$this->plugin = new Viewpublic\Cre_Public( $this->plugin_name, $this->plugin_slug, $this->plugin_version );
 
 	}
@@ -32,7 +36,6 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 		$this->plugin = NULL;
 
 	}
-	*/
 
 	/**
 	 * Test if frontend scripts are enqueued.
@@ -41,8 +44,6 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 	 * @group public
 	 */
 	function testScriptsEnqueue() {
-
-		$this->markTestSkipped( 'Must be revisited.' ); // @TODO
 
 		$this->plugin->enqueue_scripts();
 		$this->assertTrue( wp_script_is( $this->plugin_name ) );

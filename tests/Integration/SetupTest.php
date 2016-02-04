@@ -24,18 +24,4 @@ class SetupTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-	/**
-	 * Test if plugin is active.
-	 *
-	 * @since 0.3.0
-	 * @group setup
-	 */
-	function testPluginActive() {
-
-		$this->markTestSkipped( 'Must be revisited.' ); // @TODO
-
-		$this->assertTrue( is_plugin_active( 'cleverreach-extension/cleverreach-extension.php' ) );
-
-	}
-
 }
