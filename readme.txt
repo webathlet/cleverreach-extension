@@ -73,7 +73,7 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 == Support ==
 
-If you find an issue, please [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
+Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
 
 == Frequently Asked Questions ==
@@ -107,8 +107,8 @@ Follow [CleverReach Extension on Github](https://github.com/hofmannsven/cleverre
 == Changelog ==
 
 = 0.3.0 =
-* [PHPUnit](https://phpunit.de/) integration
 * Add support for [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
+* Integration tests
 
 = 0.2.0 =
 * Reworked admin interaction

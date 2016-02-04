@@ -70,7 +70,7 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 ## Support
 
-If you find an issue, please [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
+Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
 
 *** 

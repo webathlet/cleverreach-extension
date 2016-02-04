@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+	bootstrap="./tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+>
+	<php>
+		<const name="CleverreachExtension\Tests\DB_NAME" value="PLACEHOLDER"/>
+		<const name="CleverreachExtension\Tests\DB_USER" value="PLACEHOLDER"/>
+		<const name="CleverreachExtension\Tests\DB_PASSWORD" value="PLACEHOLDER"/>
+		<const name="CleverreachExtension\Tests\DB_HOST" value="localhost"/>
+		<const name="CleverreachExtension\Tests\DB_CHARSET" value="utf8"/>
+		<const name="CleverreachExtension\Tests\DB_COLLATE" value=""/>
+		<const name="CleverreachExtension\Tests\DB_TABLE_PREFIX" value="wp_"/>
+	</php>
+	<testsuites>
+		<testsuite name="Integration">
+			<directory suffix="Test.php" phpVersion="5.6.0" phpVersionOperator=">=">./tests/Integration</directory>
+		</testsuite>
+	</testsuites>
+	<logging>
+		<log type="coverage-clover" target="build/logs/clover.xml"/>
+	</logging>
+	<filter>
+		<whitelist>
+			<directory>./</directory>
+			<exclude>
+				<directory>./assets</directory>
+				<directory>./languages</directory>
+				<directory>./tests</directory>
+				<directory>./vendor</directory>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>

@@ -21,7 +21,11 @@ Icon
 *.idea
 
 # Composer
-vendor/
+/vendor
 
-# Code Climate
-build/
+# PHPUnit
+phpunit.xml
+
+# Test Coverage
+/build
+/tests/coverage
