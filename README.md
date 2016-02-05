@@ -17,6 +17,7 @@ It's a simple interface for [CleverReach](https://www.cleverreach.com/) newslett
 Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for available filters and further information.
 
 ### Integrations
+* [Contact Form 7](https://github.com/hofmannsven/cleverreach-extension/wiki/Contact-Form-7)
 * [Visual Composer](https://vc.wpbakery.com/)
 
 ### Languages
@@ -30,7 +31,6 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 * Support for multiple forms
 * Support for WordPress Widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
-* [Contact Form 7](http://contactform7.com/) integration
 
 
 *** 

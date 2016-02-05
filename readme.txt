@@ -26,6 +26,7 @@ The CleverReach Extension for WordPress provides an easy way to embed your [Clev
 Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for available filters and further information.
 
 = Integrations =
+* [Contact Form 7](https://github.com/hofmannsven/cleverreach-extension/wiki/Contact-Form-7)
 * [Visual Composer](https://vc.wpbakery.com/)
 
 = Languages =
@@ -39,7 +40,6 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 * Support for multiple forms
 * Support for WordPress Widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
-* [Contact Form 7](http://contactform7.com/) integration
 
 
 == Installation ==
@@ -109,6 +109,7 @@ Follow [CleverReach Extension on Github](https://github.com/hofmannsven/cleverre
 = 0.3.0 =
 * Add support for [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
 * Integration tests
+* Contact Form 7 plugin integration
 
 = 0.2.0 =
 * Reworked admin interaction
