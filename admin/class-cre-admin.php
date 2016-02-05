@@ -1,6 +1,4 @@
-<?php
-
-namespace CleverreachExtension\Viewadmin;
+<?php namespace CleverreachExtension\Viewadmin;
 
 use CleverreachExtension\Core;
 use CleverreachExtension\Core\Api;

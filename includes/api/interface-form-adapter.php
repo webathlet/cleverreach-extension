@@ -1,6 +1,4 @@
-<?php
-
-namespace CleverreachExtension\Core\Api;
+<?php namespace CleverreachExtension\Core\Api;
 
 /**
  * Form interface according to CleverReach Api.

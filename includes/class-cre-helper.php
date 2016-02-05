@@ -1,6 +1,4 @@
-<?php
-
-namespace CleverreachExtension\Core;
+<?php namespace CleverreachExtension\Core;
 
 /**
  * Helper for plugin settings and interactions.

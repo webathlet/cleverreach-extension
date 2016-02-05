@@ -1,6 +1,4 @@
-<?php
-
-namespace CleverreachExtension\Viewpublic;
+<?php namespace CleverreachExtension\Viewpublic;
 
 use CleverreachExtension\Core\Api;
 use CleverreachExtension\Core\Cre_Helper;

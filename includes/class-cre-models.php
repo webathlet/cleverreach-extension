@@ -1,6 +1,4 @@
-<?php
-
-namespace CleverreachExtension\Core;
+<?php namespace CleverreachExtension\Core;
 
 use CleverreachExtension\Core\Api;
 

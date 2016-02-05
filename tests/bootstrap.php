@@ -1,6 +1,5 @@
 <?php namespace CleverreachExtension\Tests;
 
-use CleverreachExtension\Core\Cleverreach_Extension;
 use WpTestsStarter\WpTestsStarter;
 
 /**
@@ -42,6 +41,6 @@ $starter->setTablePrefix( DB_TABLE_PREFIX );
 $starter->bootstrap();
 
 /**
- * Manually load plugin core file.
+ * Require plugin file manually.
  */
 require_once $baseDir . '/includes/class-cleverreach-extension.php';
