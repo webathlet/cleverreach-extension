@@ -26,7 +26,7 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 
-		new CleverReach_Extension( 'CleverReach Extension', 'cleverreach-extension', 'cleverreach-extension', 'cleverreach-extension/cleverreach-extension.php', '0.3.0' );
+		new CleverReach_Extension();
 		$this->plugin = new Viewpublic\Cre_Public( $this->plugin_name, $this->plugin_slug, $this->plugin_version );
 
 	}

@@ -67,27 +67,18 @@ function cleverreachextension_check_requirements() {
  */
 // register_deactivation_hook( __FILE__, 'cleverreachextension_cleanup' );
 
-if ( ! class_exists( 'Cleverreach_Extension' ) ) {
-	require plugin_dir_path( __FILE__ ) . 'includes/class-cleverreach-extension.php';
-}
-
 /**
  * Run plugin if everything is ready.
  *
- * @since 0.1.0
+ * @since 0.3.0
  */
-add_action( 'plugins_loaded', 'run_cleverreachextension', 0 );
-function run_cleverreachextension() {
+add_action( 'plugins_loaded', 'cleverreachextension_run' );
+function cleverreachextension_run() {
 
-	// Define plugin meta.
-	$plugin_name     = esc_html__( 'CleverReach Extension', 'cleverreach-extension' );
-	$plugin_slug     = 'cleverreach-extension';
-	$plugin_settings = 'cleverreach_extension';
-	$plugin_basename = plugin_basename( __FILE__ );
-	$plugin_version  = '0.3.0';
+	$plugin_dir_path = plugin_dir_path( __FILE__ );
+	require_once $plugin_dir_path . 'includes/class-cleverreach-extension.php';
 
-	// Finally we're ready to run the plugin.
-	$plugin = new \CleverreachExtension\Core\CleverReach_Extension( $plugin_name, $plugin_slug, $plugin_settings, $plugin_basename, $plugin_version );
+	$plugin = new \CleverreachExtension\Core\CleverReach_Extension();
 	$plugin->run();
 
 }

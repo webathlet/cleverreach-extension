@@ -25,67 +25,58 @@ class Cleverreach_Extension {
 	protected $loader;
 
 	/**
-	 * The unique identifier of this plugin.
+	 * Unique identifier of this plugin.
 	 *
-	 * @since  0.1.0
+	 * @since  0.3.0
 	 * @access protected
 	 * @var    string $plugin_name The string used to uniquely identify this plugin.
 	 */
-	protected $plugin_name;
+	protected $plugin_name = 'CleverReach Extension';
 
 	/**
-	 * The unique identifier slug of this plugin.
+	 * Unique identifier slug of this plugin.
 	 *
-	 * @since  0.1.0
+	 * @since  0.3.0
 	 * @access protected
 	 * @var    string $plugin_slug The string used to uniquely identify this plugin.
 	 */
-	protected $plugin_slug;
-
-	/**
-	 * The unique identifier settings field of this plugin.
-	 *
-	 * @since  0.2.0
-	 * @access protected
-	 * @var    string $plugin_settings The string used to uniquely identify this plugin in the database.
-	 */
-	protected $plugin_settings;
+	protected $plugin_slug = 'cleverreach-extension';
 
 	/**
 	 * Path to the main plugin file, relative to the plugins directory.
 	 *
-	 * @since  0.1.0
+	 * @since  0.3.0
 	 * @access protected
 	 * @var    string $plugin_basename Path without the leading and trailing slashes.
 	 */
-	protected $plugin_basename;
+	protected $plugin_basename = 'cleverreach-extension/cleverreach-extension.php';
 
 	/**
-	 * The current version of the plugin.
+	 * Current version of the plugin.
 	 *
-	 * @since  0.1.0
+	 * @since  0.3.0
 	 * @access protected
 	 * @var    string $plugin_version The current version of the plugin.
 	 */
-	protected $plugin_version;
+	protected $plugin_version = '0.3.0';
 
 	/**
-	 * Define the core functionality of the plugin.
+	 * Main path to the the plugin directory.
 	 *
-	 * @since 0.1.0
-	 * @param string $plugin_name     The name of this plugin.
-	 * @param string $plugin_slug     The slug of this plugin.
-	 * @param string $plugin_settings The settings name of this plugin.
-	 * @param string $plugin_basename The basename of this plugin.
-	 * @param string $plugin_version  The current version of this plugin.
+	 * @since  0.3.0
+	 * @access protected
+	 * @var    string $plugin_dir_path Main path to the the plugin directory.
 	 */
-	public function __construct( $plugin_name, $plugin_slug, $plugin_settings, $plugin_basename, $plugin_version ) {
+	protected $plugin_dir_path;
 
-		$this->plugin_name     = $plugin_name;
-		$this->plugin_slug     = $plugin_slug;
-		$this->plugin_settings = $plugin_settings;
-		$this->plugin_basename = $plugin_basename;
-		$this->plugin_version  = $plugin_version;
+	/**
+	 * Cleverreach_Extension constructor.
+	 *
+	 * @since 0.3.0
+	 */
+	public function __construct() {
+
+		$this->plugin_dir_path = plugin_dir_path( dirname( __FILE__ ) );
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -115,17 +106,13 @@ class Cleverreach_Extension {
 	/**
 	 * Require a single plugin-specific file.
 	 *
-	 * @since  0.2.0
+	 * @since  0.3.0
 	 * @access private
 	 * @param  string $path
 	 */
 	private function require_plugin_file( $path = '' ) {
 
-		// Create the base path just once.
-		static $base = false;
-
-		! $base && $base = plugin_dir_path( dirname( __FILE__ ) );
-		$file = $base . $path . '.php';
+		$file = $this->plugin_dir_path . $path . '.php';
 
 		// Check for `$path` and `file_exists()`, even if it costs some extra performance.
 		if ( $path && file_exists( $file ) ) {
