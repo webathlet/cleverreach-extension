@@ -27,9 +27,8 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 * Russian
 
 ### Looking ahead
-* Unsubscribe form
 * Support for multiple forms
-* Support for WordPress Widgets
+* Support for WordPress widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
 
 
@@ -72,7 +71,7 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
-If you found a security issue, please contact me directly via email.
+If you've found a security issue, please contact me directly via email.
 My GPG fingerprint/key is available on [keybase](https://keybase.io/hofmannsven).
 
 

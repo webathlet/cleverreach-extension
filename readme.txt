@@ -36,9 +36,8 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 * Russian
 
 = Looking ahead =
-* Unsubscribe form
 * Support for multiple forms
-* Support for WordPress Widgets
+* Support for WordPress widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
 
 
@@ -75,7 +74,7 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
-If you found a security issue, please contact me directly via email.
+If you've found a security issue, please contact me directly via email.
 My GPG fingerprint/key is available on [keybase](https://keybase.io/hofmannsven).
 
 
@@ -96,10 +95,10 @@ Check the [PHP SOAP wiki page](https://github.com/hofmannsven/cleverreach-extens
 Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for further information.
 
 = I'm having issues getting the plugin to work what should I do? =
-See [CleverReach Extension on Github](https://github.com/hofmannsven/cleverreach-extension) for a detailed rundown of common issues.
+See [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverreach-extension) for a detailed rundown of common issues.
 
 = Where can I get more information and support for this plugin? =
-Follow [CleverReach Extension on Github](https://github.com/hofmannsven/cleverreach-extension)
+Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverreach-extension)
 
 
 == Screenshots ==
@@ -110,9 +109,10 @@ Follow [CleverReach Extension on Github](https://github.com/hofmannsven/cleverre
 == Changelog ==
 
 = 0.3.0 =
-* Add support for [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
-* Integration tests
+* Support for [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
+* [Integration test suite](https://github.com/hofmannsven/cleverreach-extension/blob/master/tests/README.md)
 * Contact Form 7 plugin integration
+* Code cleanup and even better documentation
 
 = 0.2.0 =
 * Reworked admin interaction
