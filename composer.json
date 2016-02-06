@@ -22,6 +22,13 @@
     "wiki": "https://github.com/hofmannsven/cleverreach-extension/wiki",
     "source": "https://github.com/hofmannsven/cleverreach-extension"
   },
+  "autoload-dev": {
+    "classmap": [
+      "admin",
+      "includes",
+      "public"
+    ]
+  },
   "require-dev": {
     "inpsyde/wordpress-dev": "~4.4",
     "inpsyde/wp-tests-starter": "~1.0",

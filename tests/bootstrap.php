@@ -39,8 +39,3 @@ $starter->defineDbCollate( DB_COLLATE );
 $starter->setTablePrefix( DB_TABLE_PREFIX );
 
 $starter->bootstrap();
-
-/**
- * Require plugin file manually.
- */
-require_once $baseDir . '/includes/class-cleverreach-extension.php';

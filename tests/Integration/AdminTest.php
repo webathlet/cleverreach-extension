@@ -1,6 +1,5 @@
 <?php namespace CleverreachExtension\Tests\Integration;
 
-use CleverreachExtension\Core\Cleverreach_Extension;
 use CleverreachExtension\Viewadmin;
 
 /**
@@ -26,7 +25,6 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 
-		new Cleverreach_Extension();
 		$this->plugin = new Viewadmin\Cre_Admin( $this->plugin_name, $this->plugin_slug, $this->plugin_version );
 
 	}

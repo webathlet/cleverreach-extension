@@ -1,6 +1,5 @@
 <?php namespace CleverreachExtension\Tests\Integration;
 
-use CleverreachExtension\Core\Cleverreach_Extension;
 use CleverreachExtension\Viewpublic;
 
 /**
@@ -26,7 +25,6 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 
-		new CleverReach_Extension();
 		$this->plugin = new Viewpublic\Cre_Public( $this->plugin_name, $this->plugin_slug, $this->plugin_version );
 
 	}
