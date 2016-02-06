@@ -50,13 +50,13 @@ Using the latest version of WordPress and PHP is highly recommended.
 1. Install and activate: `wp plugin install cleverreach-extension --activate`
 
 ### Using Composer
-1. Install: `composer create-project hofmannsven/cleverreach-extension --stability=dev`
+1. Install: `composer require hofmannsven/cleverreach-extension:dev-master`
 2. Activate the plugin on the plugin dashboard
 
 ### Using WordPress
-1. Navigate to the 'Add New' in the plugins dashboard
-2. Search for 'CleverReach Extension'
-3. Click 'Install Now'
+1. Navigate to the plugins dashboard and select _Add New_
+2. Search for _CleverReach Extension_
+3. Click _Install Now_
 4. Activate the plugin on the plugin dashboard
 
 ### Using SFTP
