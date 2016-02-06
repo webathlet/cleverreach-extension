@@ -72,6 +72,9 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
+If you found a security issue, please contact me directly via email.
+My GPG fingerprint/key is available on [keybase](https://keybase.io/hofmannsven).
+
 
 *** 
 
