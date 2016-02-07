@@ -168,7 +168,7 @@ class Cleverreach_Extension {
 		$plugin_i18n = new Cre_i18n();
 		$plugin_i18n->set_domain( 'cleverreach-extension' );
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain', 15 );
 
 	}
 
