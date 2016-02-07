@@ -464,6 +464,15 @@ class Cre_Admin {
 
 		echo '<p>' . esc_html__( 'Use the fields below to connect WordPress and CleverReach.', 'cleverreach-extension' ) . '</p>';
 
+		// Check if `$client` is available.
+		$client = new Api\Cleverreach();
+		if ( $client->has_error() ) {
+			echo '<p class="error">';
+			echo '<strong>' . esc_html__( 'Error:', 'cleverreach-extension' ) . '</strong> ';
+			esc_html_e( 'Could not load data from CleverReach.', 'cleverreach-extension' );
+			echo '<p>';
+		}
+
 	}
 
 	/**
