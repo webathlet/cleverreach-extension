@@ -47,7 +47,7 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 Using the latest version of WordPress and PHP is highly recommended.
 
 * WordPress 4.0 or newer
-* PHP 5.3.0 or newer
+* PHP 5.3.0 or newer (also tested with PHP 7)
 * PHP SOAP extension
 * CleverReach API key
 
