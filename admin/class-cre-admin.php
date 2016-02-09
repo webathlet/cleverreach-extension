@@ -105,7 +105,7 @@ class Cre_Admin {
 
 		wp_register_script(
 			$this->plugin_name . '_admin',
-			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-admin.min.js',
+			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-admin.js',
 			array( 'jquery' ),
 			$this->plugin_version,
 			true
@@ -125,7 +125,8 @@ class Cre_Admin {
 				'source_selector'    => sanitize_html_class( 'cre-admin-input-source' ),
 				'list_empty'         => esc_html__( 'Please select a list', 'cleverreach-extension' ),
 				'form_empty'         => esc_html__( 'Please select a form', 'cleverreach-extension' ),
-				'shortcode_selector' => sanitize_html_class( 'cre-admin-shortcode' )
+				'list_id_selector' => sanitize_html_class( 'cre-admin-list-id' ),
+				'form_id_selector' => sanitize_html_class( 'cre-admin-form-id' )
 			)
 		);
 
@@ -169,9 +170,13 @@ class Cre_Admin {
 				$result['form_options'] = $helper->parse_list( $form->get_list( $helper->get_option( 'list_id' ) ), 'form_id' );
 			}
 
-			// Add shortcode value to result.
+			// Add list and form IDs to result.
+			if ( $client->has_valid_api_key() && $helper->has_option( 'list_id' ) ) {
+				$result['list_id'] = $helper->get_option( 'list_id' );
+			}
+
 			if ( $client->has_valid_api_key() && $helper->has_option( 'form_id' ) ) {
-				$result['shortcode_id'] = $helper->get_option( 'form_id' );
+				$result['form_id'] = $helper->get_option( 'form_id' );
 			}
 
 			// Finally return JSON result.
@@ -256,13 +261,17 @@ class Cre_Admin {
 		echo wp_kses(
 			$this->render_shortcode_preview(),
 			array(
-				'h3'   => array(),
-				'p'    => array(),
-				'span' => array(
+				'h3'     => array(),
+				'p'      => array(),
+				'strong' => array(),
+				'a'      => array(
+					'href' => array()
+				),
+				'span'   => array(
 					'class' => array()
 				),
-				'br'   => array(),
-				'code' => array()
+				'br'     => array(),
+				'code'   => array()
 			)
 		);
 
@@ -511,7 +520,7 @@ class Cre_Admin {
 	/**
 	 * Render shortcode preview section.
 	 *
-	 * @since 0.1.0
+	 * @since 0.3.0
 	 *
 	 * @return string
 	 */
@@ -520,13 +529,30 @@ class Cre_Admin {
 		$result = '<h3>' . esc_html__( 'Your Shortcode', 'cleverreach-extension' ) . '</h3>';
 
 		$result .= '<p>';
-		$result .= esc_html__( 'You can use the shortcode below everywhere on your page.', 'cleverreach-extension' ) . '<br />';
-		$result .= esc_html__( 'Check the wiki on how to customize your form.', 'cleverreach-extension' );
+		$result .= esc_html__( 'You can use the shortcodes below everywhere on your site.', 'cleverreach-extension' ) . '<br />';
+		$result .= sprintf(
+			esc_html__( 'Check the %swiki%s on how to customize your form.', 'cleverreach-extension' ),
+			'<a href="' . esc_url( 'https://github.com/hofmannsven/cleverreach-extension/wiki' ) . '">',
+			'</a>'
+		);
 		$result .= '</p>';
 
 		$result .= '<p>';
-		$shortcode_id = $this->form_id ? $this->form_id : '';
-		$result .= '<code>[cleverreach_extension form_id="<span class="cre-admin-shortcode">' . $shortcode_id . '</span>"]</code>';
+		$result .= '<strong>' . esc_html__( 'Default shortcode:', 'cleverreach-extension' ) . '</strong> ';
+		$result .= '<code>[cleverreach_extension]</code>';
+		$result .= '</p>';
+
+		$result .= '<p>';
+		$result .= esc_html__( 'Need to support multiple forms on your site?', 'cleverreach-extension' ) . '<br />';
+		$result .= esc_html__( 'Add additional parameters to the shortcode as shown below.', 'cleverreach-extension' );
+		$result .= '</p>';
+
+		$result .= '<p>';
+		$result .= '<strong>' . esc_html__( 'Multi-form shortcode:', 'cleverreach-extension' ) . '</strong> ';
+		$list_id = $this->list_id ? $this->list_id : '';
+		$form_id = $this->form_id ? $this->form_id : '';
+		$source = $this->source ? $this->source : '';
+		$result .= '<code>[cleverreach_extension list_id="<span class="cre-admin-list-id">' . $list_id . '</span>" form_id="<span class="cre-admin-form-id">' . $form_id . '</span>" source="<span class="cre-admin-source">' . $source . '</span>"]</code>';
 		$result .= '</p>';
 
 		return $result;

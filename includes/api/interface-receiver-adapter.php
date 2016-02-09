@@ -10,6 +10,6 @@
  */
 interface Receiver_Adapter {
 
-	public function add( $user );
+	public function add( $user, $list_id );
 
 }

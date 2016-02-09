@@ -66,7 +66,7 @@ class Cre_Public {
 
 		wp_register_script(
 			$this->plugin_name,
-			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public.min.js',
+			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public.js',
 			array( 'jquery' ),
 			$this->plugin_version,
 			true
@@ -142,14 +142,16 @@ class Cre_Public {
 			}
 
 			// Populate `$user` (array) according to CleverReach API defaults.
-			$user           = array(
+			$user = array(
 				'email'      => sanitize_email( $post['email'] ),
 				'registered' => time(),
 				// 'activated' => time(), // Force double opt-in.
 				'source'     => esc_html( $source ),
 				'attributes' => $post_attr
 			);
-			$receiver_added = $receiver->add( $user );
+
+			$list_id = sanitize_key( absint( trim( $_POST['list'] ) ) );
+			$receiver_added = $receiver->add( $user, $list_id );
 
 			// Test returned data.
 			if ( is_object( $receiver_added ) && 'SUCCESS' == $receiver_added->status ) {

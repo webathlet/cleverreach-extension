@@ -21,16 +21,17 @@ class Cleverreach_Receiver_Adapter implements Receiver_Adapter {
 	/**
 	 * Adds a new single receiver.
 	 *
-	 * @since 0.1.0
+	 * @since 0.3.0
 	 *
 	 * @param $user
+	 * @param $list_id
 	 *
 	 * @return string
 	 */
-	public function add( $user ) {
+	public function add( $user, $list_id ) {
 
 		try {
-			$result = $this->cleverreach->api_post( 'receiverAdd', $user );
+			$result = $this->cleverreach->api_post_to_list( 'receiverAdd', $user, $list_id );
 		} catch ( \Exception $e ) {
 			$result = $e->getMessage();
 		}

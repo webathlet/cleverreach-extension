@@ -44,7 +44,8 @@
 			cre_admin_form_selector = cre_admin_selector + cre_admin.form_selector,
 			cre_admin_source_selector = cre_admin_selector + cre_admin.source_selector,
 			cre_admin_response_selector = cre_admin_selector + cre_admin.response_selector,
-			cre_admin_shortcode_selector = cre_admin_selector + cre_admin.shortcode_selector;
+			cre_admin_list_id_selector = cre_admin_selector + cre_admin.list_id_selector,
+			cre_admin_form_id_selector = cre_admin_selector + cre_admin.form_id_selector;
 
 		$(cre_admin_container_selector + ' form').on('input propertychange change submit', function () {
 
@@ -88,10 +89,16 @@
 						$(this).parseSelectOptions($cr_container, cre_admin_list_selector, response.list_options, cre_admin.list_empty);
 						$(this).parseSelectOptions($cr_container, cre_admin_form_selector, response.form_options, cre_admin.form_empty);
 
-						if (typeof response.shortcode_id !== 'undefined' && response.shortcode_id.length > 0) {
-							$(cre_admin_shortcode_selector).text(response.shortcode_id);
+						if (typeof response.list_id !== 'undefined' && response.list_id.length > 0) {
+							$(cre_admin_list_id_selector).text(response.list_id);
 						} else {
-							$(cre_admin_shortcode_selector).text('');
+							$(cre_admin_list_id_selector).text('');
+						}
+
+						if (typeof response.form_id !== 'undefined' && response.form_id.length > 0) {
+							$(cre_admin_form_id_selector).text(response.form_id);
+						} else {
+							$(cre_admin_form_id_selector).text('');
 						}
 
 					},

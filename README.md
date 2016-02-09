@@ -27,7 +27,6 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 * Russian
 
 ### Looking ahead
-* Support for multiple forms
 * Support for WordPress widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
 

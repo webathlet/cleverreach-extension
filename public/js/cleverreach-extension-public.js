@@ -7,7 +7,7 @@
 
 		$(cre.selector + cre.container_selector + ' form').on('submit', function () {
 
-			var $cr_container = $(cre.selector + cre.container_selector);
+			var $cr_container = $(this).closest(cre.selector + cre.container_selector);
 
 			$.ajax({
 				url: cre.ajaxurl,
@@ -16,6 +16,7 @@
 				data: {
 					action: 'cre_ajax_controller_interaction',
 					nonce: cre.nonce,
+					list: $(this).data('list'),
 					cr_form: $(this).serialize()
 				},
 				beforeSend: function() {

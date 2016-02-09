@@ -132,6 +132,36 @@ class Cleverreach {
 	}
 
 	/**
+	 * Post data to custom list via CleverReach Api.
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param        $method
+	 * @param string $list_id
+	 * @param array  $param
+	 *
+	 * @return mixed
+	 * @throws \Exception
+	 */
+	public function api_post_to_list( $method, $param = array(), $list_id = '' ) {
+
+		if ( empty( $list_id ) ) {
+			$list_id = $this->list_id;
+		} else {
+			$list_id = sanitize_key( absint( trim( $list_id ) ) );
+		}
+
+		$result = $this->client->$method( $this->api_key, $list_id, $param );
+
+		if ( 'SUCCESS' != $result->status ) {
+			throw new \Exception( esc_html__( $result->message ) );
+		}
+
+		return $result;
+
+	}
+
+	/**
 	 * Send mail via CleverReach Api.
 	 *
 	 * @param $method

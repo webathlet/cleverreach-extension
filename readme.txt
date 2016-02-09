@@ -36,7 +36,6 @@ Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for 
 * Russian
 
 = Looking ahead =
-* Support for multiple forms
 * Support for WordPress widgets
 * Support for [CleverReach REST API](https://rest.cleverreach.com/explorer/)
 
@@ -109,6 +108,7 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 == Changelog ==
 
 = 0.3.0 =
+* Support for multiple forms
 * Support for [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
 * [Integration test suite](https://github.com/hofmannsven/cleverreach-extension/blob/master/tests/README.md)
 * Contact Form 7 plugin integration
