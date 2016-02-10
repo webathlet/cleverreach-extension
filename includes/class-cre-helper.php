@@ -21,11 +21,11 @@ class Cre_Helper {
 	 */
 	public function get_option( $option ) {
 
+		$option = '';
 		$option_group = get_option( 'cleverreach_extension' );
+
 		if ( isset( $option_group[ $option ] ) ) {
 			$option = $option_group[ $option ];
-		} else {
-			$option = '';
 		}
 
 		return $option;
@@ -66,17 +66,28 @@ class Cre_Helper {
 	 *
 	 * @return array
 	 */
-	public function parse_list( $list, $option ) {
+	public function parse_list( $list, $option, $custom = false ) {
 
 		$options = array();
 		$list_id = $this->get_option( $option );
 
+		// Render default options.
 		foreach ( $list->data as $list_item ) {
 			$selected  = ( $list_id == $list_item->id ) ? true : false;
 			$options[] = array(
 				'id'       => esc_attr( $list_item->id ),
 				'name'     => esc_attr( $list_item->name ),
-				'selected' => $selected,
+				'selected' => $selected
+			);
+		}
+
+		// Support custom option.
+		if ( $custom ) {
+			$selected  = ( 'custom' === $list_id ) ? true : false;
+			$options[] = array(
+				'id'       => 'custom',
+				'name'     => esc_html__( 'Custom form', 'cleverreach-extension' ),
+				'selected' => $selected
 			);
 		}
 
@@ -87,20 +98,21 @@ class Cre_Helper {
 	/**
 	 * Parse list with meta data as html options to use within `select`.
 	 *
-	 * @since  0.2.0
+	 * @since  0.3.0
 	 *
-	 * @param $id
-	 * @param $list
-	 * @param $option
-	 * @param $empty String
+	 * @param        $id
+	 * @param        $list
+	 * @param        $option
+	 * @param String $empty
+	 * @param bool   $custom
 	 *
 	 * @return string
 	 */
-	public function parse_list_html( $id, $list, $option, $empty ) {
+	public function parse_list_html( $id, $list, $option, $empty, $custom = false ) {
 
 		$html = '<option value="">' . $empty . '</option>';
 
-		$options = $this->parse_list( $list, $option );
+		$options = $this->parse_list( $list, $option, $custom );
 		foreach ( $options as $option ) {
 			$selected = ( $id == $option['id'] ) ? 'selected ' : '';
 			$html .= '<option ' . esc_attr( $selected ) . 'value="' . esc_attr( $option['id'] ) . '" />' . esc_attr( $option['name'] ) . '</option>';

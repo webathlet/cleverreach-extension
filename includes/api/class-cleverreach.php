@@ -76,7 +76,7 @@ class Cleverreach {
 					$status = true;
 				}
 			} catch ( \Exception $e ) {
-				// error_log( $e->getMessage() );
+				error_log( $e->getMessage() );
 			}
 
 		}
@@ -174,7 +174,8 @@ class Cleverreach {
 	 */
 	public function api_send_mail( $method, $form_id, $email, $data ) {
 
-		$form_id = sanitize_key( absint( trim( apply_filters( 'cleverreach_extension_form_id', $form_id ) ) ) );
+		// @TODO: sanitize input and apply_filters()
+		// $form_id = sanitize_key( absint( trim( apply_filters( 'cleverreach_extension_form_id', $form_id ) ) ) );
 		$result = $this->client->$method( $this->api_key, $form_id, $email, $data );
 
 		if ( 'SUCCESS' != $result->status ) {

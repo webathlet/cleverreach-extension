@@ -167,7 +167,7 @@ class Cre_Admin {
 			// Add form options to result.
 			if ( $client->has_valid_api_key() && $helper->has_option( 'list_id' ) ) {
 				$form = new Api\Cleverreach_Form_Adapter( $client );
-				$result['form_options'] = $helper->parse_list( $form->get_list( $helper->get_option( 'list_id' ) ), 'form_id' );
+				$result['form_options'] = $helper->parse_list( $form->get_list( $helper->get_option( 'list_id' ) ), 'form_id', true );
 			}
 
 			// Add list and form IDs to result.
@@ -181,6 +181,7 @@ class Cre_Admin {
 
 			// Finally return JSON result.
 			$result = json_encode( $result );
+			error_log($result);
 			echo $result;
 			die();
 		}
@@ -356,7 +357,16 @@ class Cre_Admin {
 		}
 
 		if ( isset( $input['form_id'] ) ) {
-			$new_input['form_id'] = sanitize_key( absint( trim( $input['form_id'] ) ) );
+			
+			// $new_input['form_id'] = sanitize_key( absint( trim( $input['form_id'] ) ) );
+			// $new_input['form_id'] = $input['form_id'];
+
+			if ( 'custom' === $input['form_id'] ) {
+				$new_input['form_id'] = 'custom';
+			} else {
+				$new_input['form_id'] = sanitize_key( absint( trim( $input['form_id'] ) ) );
+			}
+
 		}
 
 		if ( isset( $input['source'] ) ) {
@@ -436,7 +446,8 @@ class Cre_Admin {
 				$this->form_id,
 				$form->get_list( $this->list_id ),
 				'form_id',
-				esc_html__( 'Please select a form', 'cleverreach-extension' )
+				esc_html__( 'Please select a form', 'cleverreach-extension' ),
+				true
 			);
 
 		}
