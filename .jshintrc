@@ -1,0 +1,12 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "undef": true,
+  "quotmark": "single",
+  "browser": true,
+  "globals": {
+    "jQuery": true,
+    "cre": true,
+    "cre_admin": true
+  }
+}

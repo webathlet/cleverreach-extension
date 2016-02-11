@@ -1,40 +1,37 @@
-/* global cre_admin:false */
+(
+	function( $ ) {
+		'use strict';
 
-(function ($) {
-	'use strict';
+		$.fn.parseSelectOptions = function( $container, $selector, $response, $empty ) {
 
-	$.fn.parseSelectOptions = function ($container, $selector, $response, $empty) {
+			if ( typeof $response !== 'undefined' && $response.length > 0 ) {
 
-		if (typeof $response !== 'undefined' && $response.length > 0) {
+				// Reset and append empty option.
+				$container.find( $selector ).empty().append( '<option value="">' + $empty + '</option>' );
 
-			// Reset and append empty option.
-			$container.find($selector).empty().append('<option value="">' + $empty + '</option>');
+				// Parse options from response.
+				$.each( $response, function( i, obj ) {
+					var $current = $container.find( $selector );
+					$current.append( $( '<option>', {
+						value: obj.id,
+						text : obj.name
+					} ) );
 
-			// Parse options from response.
-			$.each($response, function (i, obj) {
-				var $current = $container.find($selector);
-				$current.append($('<option>', {
-					value: obj.id,
-					text : obj.name
-				}));
+					// Select selected option and update shortcode.
+					if ( obj.selected ) {
+						$current.find( 'option[value="' + obj.id + '"]' ).prop( 'selected', true );
+					}
 
-				// Select selected option and update shortcode.
-				if (obj.selected) {
-					$current.find('option[value="' + obj.id + '"]').prop('selected', true);
-				}
+				} );
 
-			});
+			} else {
 
-		} else {
+				// Reset
+				$container.find( $selector ).empty();
 
-			// Reset
-			$container.find($selector).empty();
+			}
 
-		}
-
-	};
-
-	$(document).ready(function () {
+		};
 
 		var cre_admin_timeout;
 		var cre_admin_selector = cre_admin.selector,
@@ -48,20 +45,20 @@
 			cre_admin_update_form_id_selector = cre_admin_selector + cre_admin.update_form_id_selector,
 			cre_admin_update_source_selector = cre_admin_selector + cre_admin.update_source_selector;
 
-		$(cre_admin_container_selector + ' form').on('input propertychange change submit', function () {
+		$( cre_admin_container_selector + ' form' ).on( 'input propertychange change submit', function() {
 
-			clearTimeout(cre_admin_timeout);
-			cre_admin_timeout = setTimeout(function () {
+			clearTimeout( cre_admin_timeout );
+			cre_admin_timeout = setTimeout( function() {
 
-				var $cr_container = $(cre_admin_container_selector),
+				var $cr_container = $( cre_admin_container_selector ),
 					cre_admin_form_data = {
-						api_key: $cr_container.find(cre_admin_key_selector).val(),
-						list_id: $cr_container.find(cre_admin_list_selector).val(),
-						form_id: $cr_container.find(cre_admin_form_selector).val(),
-						source : $cr_container.find(cre_admin_source_selector).val()
+						api_key: $cr_container.find( cre_admin_key_selector ).val(),
+						list_id: $cr_container.find( cre_admin_list_selector ).val(),
+						form_id: $cr_container.find( cre_admin_form_selector ).val(),
+						source : $cr_container.find( cre_admin_source_selector ).val()
 					};
 
-				$.ajax({
+				$.ajax( {
 					url       : cre_admin.ajaxurl,
 					type      : 'POST',
 					dataType  : 'JSON',
@@ -70,61 +67,60 @@
 						nonce        : cre_admin.nonce,
 						cr_admin_form: cre_admin_form_data // User input
 					},
-					beforeSend: function () {
+					beforeSend: function() {
 
-						$cr_container.find(cre_admin_response_selector).removeClass('confirmed invalid'); // Cleanup status
-						$cr_container.find(cre_admin_response_selector).addClass('updating animate'); // Loading
+						$cr_container.find( cre_admin_response_selector ).removeClass( 'confirmed invalid' ); // Cleanup status
+						$cr_container.find( cre_admin_response_selector ).addClass( 'updating animate' ); // Loading
 
 					},
-					success   : function (response) {
+					success   : function( response ) {
 
-						$cr_container.find(cre_admin_response_selector).removeClass('updating animate'); // Cleanup loading
+						$cr_container.find( cre_admin_response_selector ).removeClass( 'updating animate' ); // Cleanup loading
 
-						if (response.status === 'success') {
-							$cr_container.find(cre_admin_response_selector).addClass('confirmed'); // Confirmed
+						if ( response.status === 'success' ) {
+							$cr_container.find( cre_admin_response_selector ).addClass( 'confirmed' ); // Confirmed
 						} else {
-							$cr_container.find(cre_admin_response_selector).addClass('invalid'); // Invalid
+							$cr_container.find( cre_admin_response_selector ).addClass( 'invalid' ); // Invalid
 						}
 
 						// Parse response options.
-						$(this).parseSelectOptions($cr_container, cre_admin_list_selector, response.list_options, cre_admin.list_empty);
-						$(this).parseSelectOptions($cr_container, cre_admin_form_selector, response.form_options, cre_admin.form_empty);
+						$( this ).parseSelectOptions( $cr_container, cre_admin_list_selector, response.list_options, cre_admin.list_empty );
+						$( this ).parseSelectOptions( $cr_container, cre_admin_form_selector, response.form_options, cre_admin.form_empty );
 
-						if (typeof response.list_id !== 'undefined' && response.list_id.length > 0) {
-							$(cre_admin_update_list_id_selector).text(response.list_id);
+						if ( typeof response.list_id !== 'undefined' && response.list_id.length > 0 ) {
+							$( cre_admin_update_list_id_selector ).text( response.list_id );
 						} else {
-							$(cre_admin_update_list_id_selector).text('');
+							$( cre_admin_update_list_id_selector ).text( '' );
 						}
 
-						if (typeof response.form_id !== 'undefined' && response.form_id.length > 0) {
-							$(cre_admin_update_form_id_selector).text(response.form_id);
+						if ( typeof response.form_id !== 'undefined' && response.form_id.length > 0 ) {
+							$( cre_admin_update_form_id_selector ).text( response.form_id );
 						} else {
-							$(cre_admin_update_form_id_selector).text('');
+							$( cre_admin_update_form_id_selector ).text( '' );
 						}
 
-						if (typeof response.source !== 'undefined' && response.source.length > 0) {
-							$(cre_admin_update_source_selector).text(response.source);
+						if ( typeof response.source !== 'undefined' && response.source.length > 0 ) {
+							$( cre_admin_update_source_selector ).text( response.source );
 						} else {
-							$(cre_admin_update_source_selector).text('');
+							$( cre_admin_update_source_selector ).text( '' );
 						}
 
 					},
-					error     : function () {
+					error     : function() {
 
-						$cr_container.find(cre_admin_response_selector).removeClass('updating animate'); // Cleanup loading
-						$cr_container.find(cre_admin_list_selector).empty(); // Reset
-						$cr_container.find(cre_admin_form_selector).empty(); // Reset
-						$cr_container.find(cre_admin_response_selector).addClass('invalid'); // Invalid
+						$cr_container.find( cre_admin_response_selector ).removeClass( 'updating animate' ); // Cleanup loading
+						$cr_container.find( cre_admin_list_selector ).empty(); // Reset
+						$cr_container.find( cre_admin_form_selector ).empty(); // Reset
+						$cr_container.find( cre_admin_response_selector ).addClass( 'invalid' ); // Invalid
 
 					}
-				});
+				} );
 
-			}, 1000); // Save one second after the last change.
+			}, 1000 ); // Save one second after the last change.
 
 			return false;
 
-		});
+		} );
 
-	});
-
-})(jQuery);
+	}
+)( jQuery );
