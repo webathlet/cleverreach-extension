@@ -11,25 +11,42 @@
 class Cre_Helper {
 
 	/**
+	 * Get plugin option from the database.
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param string $name
+	 * @param null   $default
+	 *
+	 * @return array
+	 */
+	public function get_option_group( $name = 'cleverreach_extension', $default = null ) {
+
+		$option = get_option( $name, $default );
+
+		return $option;
+
+	}
+
+	/**
 	 * Get option value from database.
 	 *
 	 * @since 0.2.0
 	 *
-	 * @param $option
+	 * @param $value
 	 *
 	 * @return string
 	 */
-	public function get_option( $option ) {
+	public function get_option( $value ) {
 
-		$option_group = get_option( 'cleverreach_extension' );
+		$result = '';
+		$option_group = $this->get_option_group();
 
-		if ( isset( $option_group[ $option ] ) ) {
-			$option = $option_group[ $option ];
-		} else {
-			$option = '';
+		if ( isset( $option_group[ $value ] ) ) {
+			$result = $option_group[ $value ];
 		}
 
-		return $option;
+		return $result;
 
 	}
 
