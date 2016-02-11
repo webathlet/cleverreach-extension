@@ -39,6 +39,7 @@ class Cleverreach {
 
 		} catch ( \Exception $e ) {
 
+			error_log( $e->getMessage() );
 			$this->error = true;
 
 		}
@@ -68,6 +69,7 @@ class Cleverreach {
 
 		$status = false;
 
+		error_log('Key: '.$this->api_key);
 		if ( $this->api_key ) {
 
 			try {

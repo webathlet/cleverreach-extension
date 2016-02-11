@@ -125,8 +125,9 @@ class Cre_Admin {
 				'source_selector'    => sanitize_html_class( 'cre-admin-input-source' ),
 				'list_empty'         => esc_html__( 'Please select a list', 'cleverreach-extension' ),
 				'form_empty'         => esc_html__( 'Please select a form', 'cleverreach-extension' ),
-				'list_id_selector' => sanitize_html_class( 'cre-admin-list-id' ),
-				'form_id_selector' => sanitize_html_class( 'cre-admin-form-id' )
+				'update_list_id_selector' => sanitize_html_class( 'cre-admin-ajax-list-id' ),
+				'update_form_id_selector' => sanitize_html_class( 'cre-admin-ajax-form-id' ),
+				'update_source_selector'  => sanitize_html_class( 'cre-admin-ajax-source' )
 			)
 		);
 
@@ -170,18 +171,25 @@ class Cre_Admin {
 				$result['form_options'] = $helper->parse_list( $form->get_list( $helper->get_option( 'list_id' ) ), 'form_id', true );
 			}
 
-			// Add list and form IDs to result.
-			if ( $client->has_valid_api_key() && $helper->has_option( 'list_id' ) ) {
-				$result['list_id'] = $helper->get_option( 'list_id' );
-			}
+			// Add list ID, form ID and source to response.
+			if ( $client->has_valid_api_key() ) {
 
-			if ( $client->has_valid_api_key() && $helper->has_option( 'form_id' ) ) {
-				$result['form_id'] = $helper->get_option( 'form_id' );
+				if ( $helper->has_option( 'list_id' ) ) {
+					$result['list_id'] = $helper->get_option( 'list_id' );
+				}
+
+				if ( $helper->has_option( 'form_id' ) ) {
+					$result['form_id'] = $helper->get_option( 'form_id' );
+				}
+
+				if ( $helper->has_option( 'source' ) ) {
+					$result['source'] = $helper->get_option( 'source' );
+				}
+
 			}
 
 			// Finally return JSON result.
 			$result = json_encode( $result );
-			error_log($result);
 			echo $result;
 			die();
 		}
@@ -357,9 +365,6 @@ class Cre_Admin {
 		}
 
 		if ( isset( $input['form_id'] ) ) {
-			
-			// $new_input['form_id'] = sanitize_key( absint( trim( $input['form_id'] ) ) );
-			// $new_input['form_id'] = $input['form_id'];
 
 			if ( 'custom' === $input['form_id'] ) {
 				$new_input['form_id'] = 'custom';
@@ -563,7 +568,7 @@ class Cre_Admin {
 		$list_id = $this->list_id ? $this->list_id : '';
 		$form_id = $this->form_id ? $this->form_id : '';
 		$source = $this->source ? $this->source : '';
-		$result .= '<code>[cleverreach_extension list_id="<span class="cre-admin-list-id">' . $list_id . '</span>" form_id="<span class="cre-admin-form-id">' . $form_id . '</span>" source="<span class="cre-admin-source">' . $source . '</span>"]</code>';
+		$result .= '<code>[cleverreach_extension list_id="<span class="cre-admin-ajax-list-id">' . $list_id . '</span>" form_id="<span class="cre-admin-ajax-form-id">' . $form_id . '</span>" source="<span class="cre-admin-ajax-source">' . $source . '</span>"]</code>';
 		$result .= '</p>';
 
 		return $result;

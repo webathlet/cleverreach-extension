@@ -21,11 +21,12 @@ class Cre_Helper {
 	 */
 	public function get_option( $option ) {
 
-		$option = '';
 		$option_group = get_option( 'cleverreach_extension' );
 
 		if ( isset( $option_group[ $option ] ) ) {
 			$option = $option_group[ $option ];
+		} else {
+			$option = '';
 		}
 
 		return $option;
@@ -59,8 +60,9 @@ class Cre_Helper {
 	 *
 	 * @since  0.2.0
 	 *
-	 * @param $list
-	 * @param $option
+	 * @param      $list
+	 * @param      $option
+	 * @param bool $custom Add custom list option.
 	 *
 	 * @access protected
 	 *
@@ -104,7 +106,7 @@ class Cre_Helper {
 	 * @param        $list
 	 * @param        $option
 	 * @param String $empty
-	 * @param bool   $custom
+	 * @param bool   $custom Enable custom list option.
 	 *
 	 * @return string
 	 */
