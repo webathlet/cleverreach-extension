@@ -9,10 +9,11 @@ The [CleverReach Extension for WordPress](https://wordpress.org/plugins/cleverre
 It's a simple interface for [CleverReach](https://www.cleverreach.com/) newsletter software using the [official CleverReach SOAP API](https://api.cleverreach.com/soap/doc/5.0/).
 
 ### Features
-* Easily embed your CleverReach sign-up form anywhere on your website
+* Embed your CleverReach sign-up form anywhere on your website
 * Double opt-in according to your CleverReach configuration
 * Smooth form submission using Ajax (no page reload)
-* Optional: Customize your form and error messages via filters 
+* Extremely lightweight plugin with many hooks for developers
+* Optional: Customize your form and error messages via filters
 
 Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for available filters and further information.
 

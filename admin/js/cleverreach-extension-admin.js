@@ -2,35 +2,40 @@
 	function( $ ) {
 		'use strict';
 
-		$.fn.parseSelectOptions = function( $container, $selector, $response, $empty ) {
-
+		// Render select options from response.
+		$.fn.renderSelectOptions = function( $response, $empty ) {
 			if ( typeof $response !== 'undefined' && $response.length > 0 ) {
-
 				// Reset and append empty option.
-				$container.find( $selector ).empty().append( '<option value="">' + $empty + '</option>' );
+				var $select = $( this );
+				$select.empty().append( '<option value="">' + $empty + '</option>' );
 
 				// Parse options from response.
 				$.each( $response, function( i, obj ) {
-					var $current = $container.find( $selector );
-					$current.append( $( '<option>', {
+					$select.append( $( '<option>', {
 						value: obj.id,
 						text : obj.name
 					} ) );
 
-					// Select selected option and update shortcode.
+					// Select selected option.
 					if ( obj.selected ) {
-						$current.find( 'option[value="' + obj.id + '"]' ).prop( 'selected', true );
+						$select.find( 'option[value="' + obj.id + '"]' ).prop( 'selected', true );
 					}
 
 				} );
-
 			} else {
-
 				// Reset
-				$container.find( $selector ).empty();
-
+				$( this ).empty();
 			}
+		};
 
+		// Validate response and update status: confirmed/invalid
+		$.fn.validateResponse = function( $response ) {
+			var $selector = $( this ).parent().find( cre_admin_response_selector );
+			if ( true === $response ) {
+				$selector.addClass( 'confirmed' ); // Confirmed
+			} else {
+				$selector.addClass( 'invalid' ); // Invalid
+			}
 		};
 
 		var cre_admin_timeout;
@@ -40,83 +45,90 @@
 			cre_admin_list_selector = cre_admin_selector + cre_admin.list_selector,
 			cre_admin_form_selector = cre_admin_selector + cre_admin.form_selector,
 			cre_admin_source_selector = cre_admin_selector + cre_admin.source_selector,
-			cre_admin_response_selector = cre_admin_selector + cre_admin.response_selector,
-			cre_admin_update_list_id_selector = cre_admin_selector + cre_admin.update_list_id_selector,
-			cre_admin_update_form_id_selector = cre_admin_selector + cre_admin.update_form_id_selector,
-			cre_admin_update_source_selector = cre_admin_selector + cre_admin.update_source_selector;
+			cre_admin_response_selector = cre_admin_selector + cre_admin.response_selector;
 
+		// Display as few rows as possible.
+		if ( 0 !== $( cre_admin_key_selector ).val().length ) {
+			// Display all rows.
+			$( cre_admin_container_selector + ' form tr' ).each( function() {
+				$( this ).closest( 'tr' ).fadeIn();
+			} );
+		} else {
+			// Display only main rows.
+			$( cre_admin_container_selector + ' form tr input' ).each( function() {
+				$( this ).closest( 'tr' ).fadeIn();
+			} );
+		}
+
+		// Listen for changes.
+		$( cre_admin_key_selector + ',' + cre_admin_list_selector + ',' + cre_admin_form_selector + ',' + cre_admin_source_selector ).on( 'input propertychange change', function() {
+			var $response = $( this ).parent().find( cre_admin_response_selector );
+			$response.removeClass( 'confirmed invalid' ); // Cleanup status
+			$response.addClass( 'updating animate' ); // Loading
+		} );
+
+		// Submit and render response.
 		$( cre_admin_container_selector + ' form' ).on( 'input propertychange change submit', function() {
 
 			clearTimeout( cre_admin_timeout );
 			cre_admin_timeout = setTimeout( function() {
 
-				var $cr_container = $( cre_admin_container_selector ),
-					cre_admin_form_data = {
-						api_key: $cr_container.find( cre_admin_key_selector ).val(),
-						list_id: $cr_container.find( cre_admin_list_selector ).val(),
-						form_id: $cr_container.find( cre_admin_form_selector ).val(),
-						source : $cr_container.find( cre_admin_source_selector ).val()
-					};
+				var cre_admin_form_data = {
+					api_key: $( cre_admin_key_selector ).val(),
+					list_id: $( cre_admin_list_selector ).val(),
+					form_id: $( cre_admin_form_selector ).val(),
+					source : $( cre_admin_source_selector ).val()
+				};
 
 				$.ajax( {
-					url       : cre_admin.ajaxurl,
-					type      : 'POST',
-					dataType  : 'JSON',
-					data      : {
+					url     : cre_admin.ajaxurl,
+					type    : 'POST',
+					dataType: 'JSON',
+					data    : {
 						action       : 'cre_admin_ajax_controller_interaction',
 						nonce        : cre_admin.nonce,
 						cr_admin_form: cre_admin_form_data // User input
 					},
-					beforeSend: function() {
+					success : function( response ) {
 
-						$cr_container.find( cre_admin_response_selector ).removeClass( 'confirmed invalid' ); // Cleanup status
-						$cr_container.find( cre_admin_response_selector ).addClass( 'updating animate' ); // Loading
+						// Cleanup loading.
+						$( cre_admin_response_selector ).removeClass( 'updating animate' );
+
+						// Render response.
+						if ( response.api.status ) {
+							$( cre_admin_list_selector ).closest( 'tr' ).fadeIn();
+						}
+
+						if ( response.list.status ) {
+							$( cre_admin_list_selector + ',' + cre_admin_form_selector ).closest( 'tr' ).fadeIn();
+						}
+
+						// Validate response.
+						$( cre_admin_key_selector ).validateResponse( response.api.status );
+
+						$( cre_admin_list_selector ).validateResponse( response.list.status );
+						$( cre_admin_list_selector ).renderSelectOptions( response.list.options, cre_admin.list_empty );
+						$( cre_admin_list_selector + '-preview' ).text( $( cre_admin_list_selector ).val() );
+
+						$( cre_admin_form_selector ).validateResponse( response.form.status );
+						$( cre_admin_form_selector ).renderSelectOptions( response.form.options, cre_admin.form_empty );
+						$( cre_admin_form_selector + '-preview' ).text( $( cre_admin_form_selector ).val() );
+
+						$( cre_admin_source_selector ).validateResponse( response.source.status );
+						$( cre_admin_source_selector + '-preview' ).text( $( cre_admin_source_selector ).val() );
 
 					},
-					success   : function( response ) {
+					error   : function() {
 
-						$cr_container.find( cre_admin_response_selector ).removeClass( 'updating animate' ); // Cleanup loading
-
-						if ( response.status === 'success' ) {
-							$cr_container.find( cre_admin_response_selector ).addClass( 'confirmed' ); // Confirmed
-						} else {
-							$cr_container.find( cre_admin_response_selector ).addClass( 'invalid' ); // Invalid
-						}
-
-						// Parse response options.
-						$( this ).parseSelectOptions( $cr_container, cre_admin_list_selector, response.list_options, cre_admin.list_empty );
-						$( this ).parseSelectOptions( $cr_container, cre_admin_form_selector, response.form_options, cre_admin.form_empty );
-
-						if ( typeof response.list_id !== 'undefined' && response.list_id.length > 0 ) {
-							$( cre_admin_update_list_id_selector ).text( response.list_id );
-						} else {
-							$( cre_admin_update_list_id_selector ).text( '' );
-						}
-
-						if ( typeof response.form_id !== 'undefined' && response.form_id.length > 0 ) {
-							$( cre_admin_update_form_id_selector ).text( response.form_id );
-						} else {
-							$( cre_admin_update_form_id_selector ).text( '' );
-						}
-
-						if ( typeof response.source !== 'undefined' && response.source.length > 0 ) {
-							$( cre_admin_update_source_selector ).text( response.source );
-						} else {
-							$( cre_admin_update_source_selector ).text( '' );
-						}
-
-					},
-					error     : function() {
-
-						$cr_container.find( cre_admin_response_selector ).removeClass( 'updating animate' ); // Cleanup loading
-						$cr_container.find( cre_admin_list_selector ).empty(); // Reset
-						$cr_container.find( cre_admin_form_selector ).empty(); // Reset
-						$cr_container.find( cre_admin_response_selector ).addClass( 'invalid' ); // Invalid
+						$( cre_admin_response_selector ).removeClass( 'updating animate' ); // Cleanup loading
+						$( cre_admin_list_selector ).empty(); // Reset
+						$( cre_admin_form_selector ).empty(); // Reset
+						$( cre_admin_response_selector ).addClass( 'invalid' ); // Invalid
 
 					}
 				} );
 
-			}, 1000 ); // Save one second after the last change.
+			}, 1000 ); // Auto-save one second after the last change.
 
 			return false;
 

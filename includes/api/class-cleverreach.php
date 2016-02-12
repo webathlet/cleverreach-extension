@@ -69,7 +69,6 @@ class Cleverreach {
 
 		$status = false;
 
-		error_log('Key: '.$this->api_key);
 		if ( $this->api_key ) {
 
 			try {
