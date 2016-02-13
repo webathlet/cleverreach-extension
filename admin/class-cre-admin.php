@@ -148,7 +148,6 @@ class Cre_Admin {
 			// Prepare defaults and existing options.
 			$result  = array();
 			$helper = new Core\Cre_Helper();
-			$predefined_options = $helper->get_option_group();
 
 			// Create or update database entry.
 			update_option( 'cleverreach_extension', $this->sanitize( $_POST['cr_admin_form'] ) );
@@ -156,9 +155,6 @@ class Cre_Admin {
 			// Prepare API and updated options.
 			$client = new Api\Cleverreach();
 			$defined_options = $helper->get_option_group();
-
-			// Return default status.
-			$result = array();
 
 			if ( $client->has_valid_api_key() ) {
 
@@ -182,27 +178,6 @@ class Cre_Admin {
 					)
 				);
 
-				/*
-				if ( $this->has_diff( $defined_options, $predefined_options, 'api_key' ) ) {
-					$result['api']['status'] = ( $client->has_valid_api_key() ) ? true : false;
-					$result['list']['options'] = $helper->parse_list( $group->get_list(), 'list_id' );
-				}
-
-				if ( $this->has_diff( $defined_options, $predefined_options, 'list_id' ) ) {
-					$result['list']['status'] = ( $defined_options['list_id'] ) ? true : false;
-					$result['form']['options'] = $helper->parse_list( $form->get_list( $defined_options['list_id'] ), 'form_id', true );
-				}
-
-				if ( $this->has_diff( $defined_options, $predefined_options, 'form_id' ) ) {
-					$result['form']['status'] = ( $defined_options['form_id'] ) ? true : false;
-					$result['form']['options'] = $helper->parse_list( $form->get_list( $defined_options['list_id'] ), 'form_id', true );
-				}
-
-				if ( $this->has_diff( $defined_options, $predefined_options, 'source' ) ) {
-					$result['source']['status'] = ( $defined_options['source'] ) ? true : false;
-				}
-				*/
-
 			}
 
 			// Finally return result as JSON.
@@ -213,30 +188,6 @@ class Cre_Admin {
 		}
 
 	}
-
-	/**
-	 * Compare option key values.
-	 * Returns `true` if option values have changed.
-	 *
-	 * @param array  $previous
-	 * @param array  $updated
-	 * @param string $key
-	 *
-	 * @return bool
-	 */
-	/*
-	private function has_diff( $previous, $updated, $key ) {
-
-		$result = false;
-
-		if ( $updated[$key] != $previous[$key] ) {
-			$result = true;
-		}
-
-		return $result;
-
-	}
-	*/
 
 	/**
 	 * Add custom action links to plugins page.
