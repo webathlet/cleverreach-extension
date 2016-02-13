@@ -64,9 +64,12 @@ class Cre_Public {
 	 */
 	public function enqueue_scripts() {
 
+		// Check if script debug mode is active.
+		$minified = ( SCRIPT_DEBUG ) ? '' : '.min';
+
 		wp_register_script(
 			$this->plugin_name,
-			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public.js',
+			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public' . $minified . '.js',
 			array( 'jquery' ),
 			$this->plugin_version,
 			true
