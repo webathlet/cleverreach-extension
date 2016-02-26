@@ -4,11 +4,11 @@
 
 		// Render select options from response.
 		$.fn.renderSelectOptions = function( $response, $empty ) {
-			if ( typeof $response !== 'undefined' && $response.length > 0 ) {
-				// Reset and append empty option.
-				var $select = $( this );
-				$select.empty().append( '<option value="">' + $empty + '</option>' );
+			// Reset and append empty option.
+			var $select = $( this );
+			$select.empty().append( '<option value="">' + $empty + '</option>' );
 
+			if ( typeof $response !== 'undefined' && $response.length > 0 ) {
 				// Parse options from response.
 				$.each( $response, function( i, obj ) {
 					$select.append( $( '<option>', {
@@ -22,9 +22,6 @@
 					}
 
 				} );
-			} else {
-				// Reset
-				$( this ).empty();
 			}
 		};
 
@@ -32,8 +29,10 @@
 		$.fn.validateResponse = function( $response ) {
 			var $selector = $( this ).parent().find( cre_admin_response_selector );
 			if ( true === $response ) {
+				$selector.removeClass( 'invalid' ); // Cleanup
 				$selector.addClass( 'confirmed' ); // Confirmed
 			} else {
+				$selector.removeClass( 'confirmed' ); // Cleanup
 				$selector.addClass( 'invalid' ); // Invalid
 			}
 		};
@@ -61,14 +60,19 @@
 		}
 
 		// Listen for changes.
-		$( cre_admin_key_selector + ',' + cre_admin_list_selector + ',' + cre_admin_form_selector + ',' + cre_admin_source_selector ).on( 'input propertychange change', function() {
+		$( cre_admin_key_selector + ',' + cre_admin_list_selector + ',' + cre_admin_form_selector + ',' + cre_admin_source_selector ).on( 'input', function() {
 			var $response = $( this ).parent().find( cre_admin_response_selector );
 			$response.removeClass( 'confirmed invalid' ); // Cleanup status
 			$response.addClass( 'updating animate' ); // Loading
+
+			// Live preview.
+			$( cre_admin_list_selector + '-preview' ).text( $( cre_admin_list_selector ).val() );
+			$( cre_admin_form_selector + '-preview' ).text( $( cre_admin_form_selector ).val() );
+			$( cre_admin_source_selector + '-preview' ).text( $( cre_admin_source_selector ).val() );
 		} );
 
 		// Submit and render response.
-		$( cre_admin_container_selector + ' form' ).on( 'input propertychange change submit', function() {
+		$( cre_admin_container_selector + ' form' ).on( 'input submit', function() {
 
 			clearTimeout( cre_admin_timeout );
 			cre_admin_timeout = setTimeout( function() {
