@@ -5,29 +5,40 @@
  *
  * @since 0.2.0
  *
- * Optimized for Visual Composer v4.6.2
- * @link http://vc.wpbakery.com/
+ * Tested and optimized for Visual Composer v4.10
+ * @link https://vc.wpbakery.com/
  * @docs https://wpbakery.atlassian.net/wiki/display/VC/Visual+Composer+Pagebuilder+for+WordPress
  */
 
 use CleverreachExtension\Core;
 use CleverreachExtension\Core\Api;
 
-$values = array();
+$list_values = array();
+$form_values = array();
+
 $client = new Api\Cleverreach();
 $helper = new Core\Cre_Helper();
+$defined_options = $helper->get_option_group();
 
-if ( $client->has_valid_api_key() && $helper->has_option( 'list_id' ) ) {
+$wiki_url = esc_url( 'https://github.com/hofmannsven/cleverreach-extension/wiki' );
+
+if ( $client->has_valid_api_key() && $defined_options['list_id'] ) {
+
+	$group = new Api\Cleverreach_Group_Adapter( $client );
 	$form = new Api\Cleverreach_Form_Adapter( $client );
-	$forms = $helper->parse_list( $form->get_list( $helper->get_option( 'list_id' ) ), 'form_id' );
 
-	// Prepare dropdown list in terms of Visual Composer.
-	foreach ( $forms as $form ) {
-		$values[ $form['name'] ] = $form['id'];
+	$lists = $helper->parse_list( $group->get_list(), 'list_id' );
+	$forms = $helper->parse_list( $form->get_list( $defined_options['list_id'] ), 'form_id', true );
+
+	// Prepare drop down lists in terms of Visual Composer.
+	foreach ( $lists as $list ) {
+		$list_values[ $list['name'] ] = $list['id'];
 	}
 
-	// Append `Custom` at the very end of the list.
-	$values[ esc_html__( 'Custom', 'cleverreach-extension' ) ] = 'custom';
+	foreach ( $forms as $form ) {
+		$form_values[ $form['name'] ] = $form['id'];
+	}
+
 }
 
 vc_map(
@@ -43,13 +54,31 @@ vc_map(
 			array(
 				'type'        => 'dropdown',
 				'holder'      => 'div',
+				'class'       => 'cre_list_id',
+				'heading'     => esc_html__( 'List', 'cleverreach-extension' ),
+				'param_name'  => 'list_id',
+				'value'       => $list_values,
+				'std'         => $defined_options['list_id'] // Use default value from plugin options.
+			),
+			array(
+				'type'        => 'dropdown',
+				'holder'      => 'div',
 				'class'       => 'cre_form_id',
 				'heading'     => esc_html__( 'Form', 'cleverreach-extension' ),
 				'param_name'  => 'form_id',
-				'value'       => $values,
-				'std'         => $helper->get_option( 'form_id' ), // Use default value from options.
-				'description' => esc_html__( 'Check the wiki on how to customize your form.', 'cleverreach-extension' ),
+				'value'       => $form_values,
+				'std'         => $defined_options['form_id'], // Use default value from plugin options.
+				'description' => sprintf( esc_html__( 'Please check the %swiki%s on how to apply further customization.', 'cleverreach-extension' ), '<a href="' . $wiki_url . '">', '</a>' )
 			),
+			array(
+				'type' => 'textfield',
+				'holder' => 'div',
+				'class' => 'cre_source',
+				'heading' => esc_html__( 'Source', 'cleverreach-extension' ),
+				'param_name' => 'source',
+				'value' => $defined_options['source'], // Use default value from plugin options.
+				'description' => esc_html__( '(optional)', 'cleverreach-extension' )
+			)
 		)
 	)
 );
