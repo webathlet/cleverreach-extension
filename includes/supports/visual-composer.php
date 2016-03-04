@@ -44,12 +44,15 @@ if ( $client->has_valid_api_key() && $defined_options['list_id'] ) {
 vc_map(
 	array(
 		'name'              => esc_html__( 'CleverReach Form', 'cleverreach-extension' ),
+		'description'       => esc_html__( 'Place CleverReach Form', 'cleverreach-extension' ),
 		'base'              => 'cleverreach_extension',
 		'class'             => 'cleverreach_extension',
-		'icon'              => '',
-		'category'          => esc_html__( 'CleverReach', 'cleverreach-extension' ),
+		'icon'              => 'icon-wpb-cleverreach',
+		'category'          => esc_html__( 'Content', 'js_composer' ), // Get category translation from Visual Composer.
 		'admin_enqueue_js'  => array(),
-		'admin_enqueue_css' => array(),
+		'admin_enqueue_css' => array(
+			esc_url( plugins_url( 'admin/css/cleverreach-extension-admin-vc.css', dirname( dirname( __FILE__ ) ) ) )
+		),
 		'params'            => array(
 			array(
 				'type'        => 'dropdown',

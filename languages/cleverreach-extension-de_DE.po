@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CleverReach Extension 0.3.0\n"
 "Report-Msgid-Bugs-To: https://code64.de\n"
-"POT-Creation-Date: 2016-02-26 17:39+0100\n"
-"PO-Revision-Date: 2016-02-26 17:45+0100\n"
+"POT-Creation-Date: 2016-03-04 11:35+0100\n"
+"PO-Revision-Date: 2016-03-04 11:35+0100\n"
 "Last-Translator: Sven Hofmann <info@hofmannsven.com>\n"
 "Language-Team: Sven Hofmann <info@hofmannsven.com>\n"
 "Language: de_DE\n"
@@ -36,15 +36,15 @@ msgstr "Einstellungen"
 msgid "API Key"
 msgstr "API Key"
 
-#: admin/class-cre-admin.php:315
+#: admin/class-cre-admin.php:315 includes/supports/visual-composer.php:59
 msgid "List"
 msgstr "Liste"
 
-#: admin/class-cre-admin.php:323 includes/supports/visual-composer.php:47
+#: admin/class-cre-admin.php:323 includes/supports/visual-composer.php:68
 msgid "Form"
 msgstr "Formular"
 
-#: admin/class-cre-admin.php:331
+#: admin/class-cre-admin.php:331 includes/supports/visual-composer.php:78
 msgid "Source"
 msgstr "Quelle"
 
@@ -52,7 +52,7 @@ msgstr "Quelle"
 msgid "Get your API Key: CleverReach Account » Extras » API"
 msgstr "Hol dir den API Key: CleverReach Account » Extras » API"
 
-#: admin/class-cre-admin.php:500
+#: admin/class-cre-admin.php:500 includes/supports/visual-composer.php:81
 msgid "(optional)"
 msgstr "(optional)"
 
@@ -102,7 +102,7 @@ msgstr ""
 "Füge die zusätzlichen Parameter zum Shortcode hinzu, wenn du mehrere "
 "Formulare auf einer Seite einbindest."
 
-#: admin/class-cre-admin.php:585
+#: admin/class-cre-admin.php:585 includes/supports/visual-composer.php:72
 #, php-format
 msgid "Please check the %swiki%s on how to apply further customization."
 msgstr ""
@@ -135,23 +135,17 @@ msgstr "Eigenes Formular"
 msgid "Please apply your own form within your plugin or theme."
 msgstr "Bitte hinterlege dein eigenes Formular in deinem Plugin oder Theme."
 
-#: includes/supports/visual-composer.php:30
-msgid "Custom"
-msgstr "Individuell"
-
-#: includes/supports/visual-composer.php:35
+#: includes/supports/visual-composer.php:46
 msgid "CleverReach Form"
 msgstr "CleverReach Formular"
 
-#: includes/supports/visual-composer.php:39
-msgid "CleverReach"
-msgstr "CleverReach"
+#: includes/supports/visual-composer.php:47
+msgid "Place CleverReach Form"
+msgstr "CleverReach Formular einbinden"
 
 #: includes/supports/visual-composer.php:51
-msgid "Check the wiki on how to customize your form."
-msgstr ""
-"Schau in das Wiki, um zu erfahren, wie du dein eigenes Formular einbinden "
-"kannst."
+msgid "Content"
+msgstr "Inhalt"
 
 #: public/class-cre-public.php:84
 msgid "Saving..."
@@ -183,6 +177,17 @@ msgstr ""
 #: public/class-cre-public.php:191
 msgid "Sorry, there seems to be a problem with your email address."
 msgstr "Sorry, es gibt scheinbar ein Problem mit deiner E-Mail-Adresse."
+
+#~ msgid "Custom"
+#~ msgstr "Individuell"
+
+#~ msgid "CleverReach"
+#~ msgstr "CleverReach"
+
+#~ msgid "Check the wiki on how to customize your form."
+#~ msgstr ""
+#~ "Schau in das Wiki, um zu erfahren, wie du dein eigenes Formular einbinden "
+#~ "kannst."
 
 #~ msgid "CleverReach API Keys can be created within Account » Extras » API"
 #~ msgstr ""
