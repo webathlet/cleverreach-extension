@@ -1,5 +1,6 @@
 <?php namespace CleverreachExtension\Core;
 
+use CleverreachExtension\Core\Supports\Visual_Composer;
 use CleverreachExtension\Viewpublic;
 use CleverreachExtension\Viewadmin;
 
@@ -148,7 +149,7 @@ class Cleverreach_Extension {
 			)
 		);
 
-		// Check for Visual Composer plugin.
+		// Include if Visual Composer plugin is active.
 		if ( function_exists( 'vc_map' ) ) {
 			$this->require_plugin_file( 'includes/supports/visual-composer' );
 		}
@@ -191,6 +192,12 @@ class Cleverreach_Extension {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 
 		$this->loader->add_action( 'wp_ajax_cre_admin_ajax_controller_interaction', $plugin_admin, 'admin_ajax_controller_interaction' ); // Executes only for users that are logged in.
+
+		// Load if Visual Composer plugin is active.
+		if ( function_exists( 'vc_map' ) ) {
+			$vc = new Visual_Composer();
+			$vc->init();
+		}
 
 	}
 
