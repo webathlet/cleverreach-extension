@@ -68,7 +68,7 @@ class Cre_Public {
 		$minified = ( SCRIPT_DEBUG ) ? '' : '.min';
 
 		wp_register_script(
-			$this->plugin_name,
+			$this->plugin_slug,
 			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-public' . $minified . '.js',
 			array( 'jquery' ),
 			$this->plugin_version,
@@ -76,7 +76,7 @@ class Cre_Public {
 		);
 
 		wp_localize_script(
-			$this->plugin_name,
+			$this->plugin_slug,
 			'cre',
 			array(
 				'ajaxurl'            => esc_url( apply_filters( 'cleverreach_extension_ajaxurl', admin_url( 'admin-ajax.php' ) ) ),
@@ -94,7 +94,7 @@ class Cre_Public {
 			)
 		);
 
-		wp_enqueue_script( $this->plugin_name );
+		wp_enqueue_script( $this->plugin_slug );
 
 	}
 

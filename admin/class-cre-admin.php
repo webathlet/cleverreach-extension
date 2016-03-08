@@ -78,14 +78,14 @@ class Cre_Admin {
 		}
 
 		wp_register_style(
-			$this->plugin_name . '_admin',
+			$this->plugin_slug . '-admin',
 			plugin_dir_url( __FILE__ ) . 'css/cleverreach-extension-admin.css',
 			array(),
 			$this->plugin_version,
 			'all'
 		);
 
-		wp_enqueue_style( $this->plugin_name . '_admin' );
+		wp_enqueue_style( $this->plugin_slug . '-admin' );
 
 	}
 
@@ -104,7 +104,7 @@ class Cre_Admin {
 		}
 
 		wp_register_script(
-			$this->plugin_name . '_admin',
+			$this->plugin_slug . '-admin',
 			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-admin.js',
 			array( 'jquery' ),
 			$this->plugin_version,
@@ -112,7 +112,7 @@ class Cre_Admin {
 		);
 
 		wp_localize_script(
-			$this->plugin_name . '_admin', 'cre_admin',
+			$this->plugin_slug . '-admin', 'cre_admin',
 			array(
 				'ajaxurl'            => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'nonce'              => wp_create_nonce( $this->plugin_name . '_admin_ajax_interaction_nonce' ),
@@ -128,7 +128,7 @@ class Cre_Admin {
 			)
 		);
 
-		wp_enqueue_script( $this->plugin_name . '_admin' );
+		wp_enqueue_script( $this->plugin_slug . '-admin' );
 
 	}
 
