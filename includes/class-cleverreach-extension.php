@@ -1,5 +1,6 @@
 <?php namespace CleverreachExtension\Core;
 
+use CleverreachExtension\Core\Supports\Contact_Form_7;
 use CleverreachExtension\Core\Supports\Visual_Composer;
 use CleverreachExtension\Viewpublic;
 use CleverreachExtension\Viewadmin;
@@ -154,6 +155,11 @@ class Cleverreach_Extension {
 			$this->require_plugin_file( 'includes/supports/visual-composer' );
 		}
 
+		// Include if Contact Form 7 plugin is active.
+		if ( class_exists( 'WPCF7' ) ) {
+			$this->require_plugin_file( 'includes/supports/contact-form-7' );
+		}
+
 		$this->loader = new Cre_Loader();
 
 	}
@@ -197,6 +203,13 @@ class Cleverreach_Extension {
 		if ( function_exists( 'vc_map' ) ) {
 			$vc = new Visual_Composer();
 			$vc->init();
+		}
+
+		// Load if Contact Form 7 plugin is active.
+		if ( class_exists( 'WPCF7' ) ) {
+			$contact_form_7 = new Contact_Form_7();
+			$this->loader->add_action( 'wpcf7_editor_panels', $contact_form_7, 'extend_editor_panels' );
+			$this->loader->add_action( 'wpcf7_default_template', $contact_form_7, 'extend_default_template', 10, 2 );
 		}
 
 	}
