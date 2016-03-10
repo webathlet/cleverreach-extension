@@ -247,7 +247,9 @@ class Cleverreach_Extension {
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since  0.1.0
+	 * @since   0.1.0
+	 *
+	 * @wp-hook plugins_loaded
 	 */
 	public function run() {
 		$this->loader->run();

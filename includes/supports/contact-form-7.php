@@ -27,8 +27,8 @@ class Contact_Form_7 {
 	/**
 	 * Extends default `WPCF7_Editor` panels.
 	 *
-	 * @since 0.3.0
-	 * @param $panels array
+	 * @since   0.3.0
+	 * @param   $panels array
 	 *
 	 * @wp-hook wpcf7_editor_panels
 	 * @return  mixed
@@ -69,9 +69,9 @@ class Contact_Form_7 {
 	/**
 	 * Extends the default `WPCF7_ContactFormTemplate` setup.
 	 *
-	 * @since 0.3.0
-	 * @param $template mixed Default template for Contact Form 7.
-	 * @param $prop     string Current panel holding the template.
+	 * @since   0.3.0
+	 * @param   $template mixed Default template for Contact Form 7.
+	 * @param   $prop     string Current panel holding the template.
 	 *
 	 * @wp-hook wpcf7_default_template
 	 * @return  mixed

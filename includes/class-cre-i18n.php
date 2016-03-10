@@ -22,7 +22,8 @@ class Cre_i18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since  0.1.0
+	 * @wp-hook plugins_loaded
+	 * @since   0.1.0
 	 */
 	public function load_plugin_textdomain() {
 

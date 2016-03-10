@@ -60,7 +60,9 @@ class Cre_Public {
 	/**
 	 * Register the localized public scripts for this plugin.
 	 *
-	 * @since 0.1.0
+	 * @since   0.1.0
+	 *
+	 * @wp-hook wp_enqueue_scripts
 	 */
 	public function enqueue_scripts() {
 
@@ -101,7 +103,10 @@ class Cre_Public {
 	/**
 	 * Parse form submission via ajax and return status response.
 	 *
-	 * @since 0.1.0
+	 * @since   0.1.0
+	 *
+	 * @wp-hook wp_ajax_nopriv_cre_ajax_controller_interaction
+	 * @wp-hook wp_ajax_cre_ajax_controller_interaction
 	 */
 	public function ajax_controller_interaction() {
 

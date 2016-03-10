@@ -66,9 +66,10 @@ class Cre_Admin {
 	/**
 	 * Register the admin styles for this plugin.
 	 *
-	 * @since 0.2.0
+	 * @since   0.2.0
 	 *
-	 * @param $hook
+	 * @wp-hook admin_enqueue_scripts
+	 * @param   $hook
 	 */
 	public function admin_enqueue_styles( $hook ) {
 
@@ -92,9 +93,10 @@ class Cre_Admin {
 	/**
 	 * Register the localized admin scripts for this plugin.
 	 *
-	 * @since 0.2.0
+	 * @since   0.2.0
 	 *
-	 * @param $hook
+	 * @wp-hook admin_enqueue_scripts
+	 * @param   $hook
 	 */
 	public function admin_enqueue_scripts( $hook ) {
 
@@ -135,9 +137,10 @@ class Cre_Admin {
 	/**
 	 * Save data and return API response as JSON.
 	 *
-	 * @since 0.3.0
+	 * @since   0.3.0
 	 *
-	 * @return array Return JSON `$result` with API response.
+	 * @wp-hook wp_ajax_cre_admin_ajax_controller_interaction
+	 * @return  array Return JSON `$result` with API response.
 	 */
 	public function admin_ajax_controller_interaction() {
 
@@ -186,11 +189,12 @@ class Cre_Admin {
 	/**
 	 * Add custom action links to plugins page.
 	 *
-	 * @since 0.1.0
+	 * @since   0.1.0
 	 *
-	 * @param array $links
+	 * @param   array $links
 	 *
-	 * @return array
+	 * @wp-hook plugin_action_links_cleverreach-extension/cleverreach-extension.php
+	 * @return  array
 	 */
 	public function add_action_links( $links ) {
 
@@ -206,7 +210,9 @@ class Cre_Admin {
 	/**
 	 * Add plugin options page.
 	 *
-	 * @since 0.1.0
+	 * @since   0.1.0
+	 *
+	 * @wp-hook admin_menu
 	 */
 	public function add_options_page() {
 
@@ -284,8 +290,10 @@ class Cre_Admin {
 	/**
 	 * Register settings via WordPress Settings Api
 	 *
-	 * @since 0.1.0
-	 * @see   https://codex.wordpress.org/Settings_API
+	 * @since   0.1.0
+	 * @see     https://codex.wordpress.org/Settings_API
+	 *
+	 * @wp-hook admin_init
 	 */
 	public function register_settings() {
 
