@@ -24,7 +24,7 @@ The CleverReach Extension for WordPress provides an easy way to embed your [Clev
 * Extremely lightweight plugin with many hooks for developers
 * Optional: Customize your form and error messages via filters
 
-Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for available filters and further information.
+Further documentation can be found on the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki).
 
 = Integrations =
 * [Contact Form 7](https://github.com/hofmannsven/cleverreach-extension/wiki/Contact-Form-7)
@@ -74,7 +74,7 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
-If you've found a security issue, please contact me directly via email.
+If discover a security issue, please contact me directly via email.
 My GPG fingerprint/key is available on [keybase](https://keybase.io/hofmannsven).
 
 
@@ -109,12 +109,12 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 == Changelog ==
 
 = 0.3.0 =
-* Support for multiple forms
-* Support for [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
-* [Integration test suite](https://github.com/hofmannsven/cleverreach-extension/blob/master/tests/README.md)
+* Supports multiple forms on one page
+* Supports [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
 * Contact Form 7 plugin integration
-* Even better admin interaction
-* Code cleanup and also even better [documentation](https://github.com/hofmannsven/cleverreach-extension/wiki)
+* Even better admin interaction and shortcode preview
+* [Integration test suite](https://github.com/hofmannsven/cleverreach-extension/blob/master/tests/README.md)
+* Code cleanup and even better [documentation](https://github.com/hofmannsven/cleverreach-extension/wiki)
 
 = 0.2.0 =
 * Reworked admin interaction

@@ -15,7 +15,7 @@ It's a simple interface for [CleverReach](https://www.cleverreach.com/) newslett
 * Extremely lightweight plugin with many hooks for developers
 * Optional: Customize your form and error messages via filters
 
-Check the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki) for available filters and further information.
+Further documentation can be found on the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki).
 
 ### Integrations
 * [Contact Form 7](https://github.com/hofmannsven/cleverreach-extension/wiki/Contact-Form-7)
@@ -71,7 +71,7 @@ Using the latest version of WordPress and PHP is highly recommended.
 
 Always feel free to [raise an issue](https://github.com/hofmannsven/cleverreach-extension/issues) on GitHub.
 
-If you've found a security issue, please contact me directly via email.
+If you discover a security issue, please contact me directly via email.
 My GPG fingerprint/key is available on [keybase](https://keybase.io/hofmannsven).
 
 

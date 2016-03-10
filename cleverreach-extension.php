@@ -63,11 +63,6 @@ function cleverreachextension_check_requirements() {
 }
 
 /**
- * TODO: Cleanup database during plugin deactivation.
- */
-// register_deactivation_hook( __FILE__, 'cleverreachextension_cleanup' );
-
-/**
  * Run plugin if everything is ready.
  *
  * @since 0.3.0
