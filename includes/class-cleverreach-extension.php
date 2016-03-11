@@ -207,9 +207,15 @@ class Cleverreach_Extension {
 
 		// Load if Contact Form 7 plugin is active.
 		if ( class_exists( 'WPCF7' ) ) {
+
 			$contact_form_7 = new Contact_Form_7();
-			$this->loader->add_action( 'wpcf7_editor_panels', $contact_form_7, 'extend_editor_panels' );
+			
+			$this->loader->add_action( 'admin_menu', $contact_form_7, 'add_submenu_page' );
+			$this->loader->add_filter( 'wpcf7_admin_init', $contact_form_7, 'extend_tag_generator' );
 			$this->loader->add_action( 'wpcf7_default_template', $contact_form_7, 'extend_default_template', 10, 2 );
+
+			$this->loader->add_filter( 'wpcf7_form_elements', $contact_form_7, 'filter_form_elements' );
+
 		}
 
 	}

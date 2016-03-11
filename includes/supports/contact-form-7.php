@@ -25,51 +25,105 @@ class Contact_Form_7 {
 	protected $wiki_url = 'https://github.com/hofmannsven/cleverreach-extension/wiki';
 
 	/**
-	 * Extends default `WPCF7_Editor` panels.
+	 * Add a submenu page to the Contact Form 7 admin menu.
 	 *
 	 * @since   0.3.0
-	 * @param   $panels array
 	 *
-	 * @wp-hook wpcf7_editor_panels
-	 * @return  mixed
+	 * @wp-hook admin_menu
 	 */
-	public function extend_editor_panels( $panels ) {
+	public function add_submenu_page() {
 
-		$panels['cleverreach-extension-forms'] = array(
-			'title'    => esc_html__( 'Templates', 'cleverreach-extension' ),
-			'callback' => array( $this, 'render_editor_panel_view' )
+		add_submenu_page(
+			'wpcf7',
+			esc_html__( 'Add New Signup Form', 'cleverreach-extension' ),
+			esc_html__( 'Add Signup Form', 'cleverreach-extension' ),
+			'wpcf7_edit_contact_forms',
+			'admin.php?page=wpcf7-new&template=cleverreach-signup'
 		);
 
-		return $panels;
-
 	}
 
 	/**
-	 * Renders the `WPCF7_Editor` panel view as HTML.
-	 *
-	 * @since 0.3.0
-	 */
-	public function render_editor_panel_view() {
-
-		echo '<h2>' . esc_html__( 'CleverReach Extension', 'cleverreach-extension' ) . '</h2>';
-		echo '<p>' . esc_html__( 'Create a new form based on one of the following templates:', 'cleverreach-extension' ) . '</p>';
-
-		echo '<ul style="list-style-type:disc;padding:0 20px;">';
-
-		$cf7_admin = admin_url( 'admin.php?page=wpcf7-new' );
-		$url = add_query_arg( 'custom_form', 'subscribe', $cf7_admin );
-		echo '<li><a href="' . esc_url( $url ) . '">' . esc_html__( 'Subscribe form template', 'cleverreach-extension' ) . '</a></li>';
-
-		echo '</ul>';
-
-		echo sprintf( esc_html__( 'Please check the %swiki%s on how to apply further customization.', 'cleverreach-extension' ), '<a href="' . $this->wiki_url . '">', '</a>' );
-
-	}
-
-	/**
-	 * Extends the default `WPCF7_ContactFormTemplate` setup.
+	 * Add `cleverreach_extension` tag to the Contact From 7 default tags.
+	 * Hooks into `WPCF7_TagGenerator`.
 	 *
 	 * @since   0.3.0
+	 *
+	 * @wp-hook wpcf7_admin_init
+	 */
+	public function extend_tag_generator() {
+
+		$tag_generator = \WPCF7_TagGenerator::get_instance();
+		$tag_generator->add(
+			'cleverreach_extension',
+			esc_html__( 'CleverReach', 'cleverreach-extension' ),
+			array( $this, 'render_tag_generator_cleverreach' )
+		);
+
+	}
+
+	/**
+	 * Render admin view for `cleverreach_extension` tag generator.
+	 *
+	 * @since        0.3.0
+	 *
+	 * @param        $contact_form
+	 * @param string $args
+	 */
+	public function render_tag_generator_cleverreach( $contact_form, $args = ''  ) {
+
+		$args = wp_parse_args( $args, array() );
+
+		?>
+		<div class="control-box">
+			<fieldset>
+				<table class="form-table">
+					<tbody>
+
+						<tr>
+							<th scope="row">
+								<label for="<?php echo esc_attr( $args['content'] . '-list' ); ?>"><?php echo esc_html__( 'List', 'cleverreach-extension' ); ?></label>
+							</th>
+							<td>
+								<input type="text" name="list_id" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" />
+							</td>
+						</tr>
+
+						<tr>
+							<th scope="row">
+								<label for="<?php echo esc_attr( $args['content'] . '-source' ); ?>"><?php echo esc_html__( 'Source', 'cleverreach-extension' ); ?></label>
+							</th>
+							<td>
+								<input type="text" name="source" class="oneline option" id="<?php echo esc_attr( $args['content'] . '-source' ); ?>" />
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</fieldset>
+		</div>
+
+		<div class="insert-box">
+			<input type="text" name="<?php echo esc_attr( $args['id'] ); ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
+
+			<div class="submitbox">
+				<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
+			</div>
+
+			<br class="clear" />
+
+			<p class="description <?php echo esc_attr( $args['id'] ); ?>-tag"><?php echo sprintf( esc_html__( 'Please check the %swiki%s on how to apply further customization.', 'cleverreach-extension' ), '<a href="' . $this->wiki_url . '">', '</a>' ); ?></p>
+		</div>
+		<?php
+
+	}
+
+	/**
+	 * Extends the default form template.
+	 * Hooks into `WPCF7_ContactFormTemplate`.
+	 *
+	 * @since   0.3.0
+	 *
 	 * @param   $template mixed Default template for Contact Form 7.
 	 * @param   $prop     string Current panel holding the template.
 	 *
@@ -78,9 +132,9 @@ class Contact_Form_7 {
 	 */
 	public function extend_default_template( $template, $prop ) {
 
-		$current = ( isset( $_GET['custom_form'] ) ) ? $_GET['custom_form'] : '';
+		$current = ( isset( $_GET['template'] ) ) ? $_GET['template'] : '';
 		if ( $prop === 'form' ) {
-			if ( 'subscribe' === $current ) {
+			if ( 'cleverreach-signup' === $current ) {
 
 				$template = '<label>Gender</label><br />' . "\n" .
 							'[select gender id:cre_gender "Female" "Male" "Other"]' . "\n\n" .
@@ -107,6 +161,27 @@ class Contact_Form_7 {
 		}
 
 		return $template;
+
+	}
+
+	/**
+	 * Filter Contact Form 7 form elements.
+	 *
+	 * @since   0.3.0
+	 *
+	 * @wp-hook wpcf7_form_elements
+	 */
+	public function filter_form_elements( $content ) {
+
+		/*
+		// @TODO 2016/03/11: Detect shortcode and map `form_id` to current form.
+		$content = str_replace( '[cleverreach_extension]', '', $content, $count );
+		if ( 1 <= $count ) {
+			// Wrap with custom selector
+		}
+		*/
+
+		return $content;
 
 	}
 
