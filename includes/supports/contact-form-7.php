@@ -173,13 +173,11 @@ class Contact_Form_7 {
 	 */
 	public function filter_form_elements( $content ) {
 
-		/*
-		// @TODO 2016/03/11: Detect shortcode and map `form_id` to current form.
-		$content = str_replace( '[cleverreach_extension]', '', $content, $count );
+		// Check for custom tag: `[cleverreach_extension]`
+		$content = preg_replace( '/\[cleverreach_extension(.*)\]/', '', $content, -1, $count );
 		if ( 1 <= $count ) {
-			// Wrap with custom selector
+			// @TODO 2016/03/12: Map shortcode to this form.
 		}
-		*/
 
 		return $content;
 
