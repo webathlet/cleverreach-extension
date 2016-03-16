@@ -169,16 +169,37 @@ class Contact_Form_7 {
 	 *
 	 * @since   0.3.0
 	 *
+	 * @param   $content
+	 *
 	 * @wp-hook wpcf7_form_elements
+	 * @return  mixed HTML
 	 */
 	public function filter_form_elements( $content ) {
 
-		// Check for custom tag: `[cleverreach_extension]`
+		// Check for plugin tag: `[cleverreach_extension]`
 		$content = preg_replace( '/\[cleverreach_extension(.*)\]/', '', $content, -1, $count );
 		if ( 1 <= $count ) {
-			// @TODO 2016/03/12: Map shortcode to this form.
+			add_filter( 'the_content', array( $this, 'filter_form_wrapper' ), 9, 1 );
 		}
 
+		return $content;
+
+	}
+
+	/**
+	 * Filter Contact Form 7 form wrapper.
+	 *
+	 * @since   0.3.0
+	 *
+	 * @param   $content
+	 *
+	 * @wp-hook the_content
+	 * @return  string HTML
+	 */
+	public function filter_form_wrapper( $content ) {
+
+		// Check for default Contact Form 7 form wrapper: `wpcf7`
+		$content = str_replace( 'class="wpcf7"', 'class="cr_form-container"', $content );
 		return $content;
 
 	}
