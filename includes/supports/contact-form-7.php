@@ -1,5 +1,8 @@
 <?php namespace CleverreachExtension\Core\Supports;
 
+use CleverreachExtension\Core\Api\Cleverreach;
+use CleverreachExtension\Core\Cre_Helper;
+
 /**
  * Contact From 7 plugin integration.
  *
@@ -23,6 +26,16 @@ class Contact_Form_7 {
 	 * @var    string
 	 */
 	protected $wiki_url = 'https://github.com/hofmannsven/cleverreach-extension/wiki';
+
+	/**
+	 * Contact Form 7 constructor.
+	 */
+	public function __construct() {
+
+		$this->client = new Cleverreach();
+		$this->helper = new Cre_Helper();
+
+	}
 
 	/**
 	 * Add a submenu page to the Contact Form 7 admin menu.
@@ -73,6 +86,7 @@ class Contact_Form_7 {
 	public function render_tag_generator_cleverreach( $contact_form, $args = ''  ) {
 
 		$args = wp_parse_args( $args, array() );
+		$defined_options = $this->helper->get_option_group();
 
 		?>
 		<div class="control-box">
@@ -85,7 +99,7 @@ class Contact_Form_7 {
 								<label for="<?php echo esc_attr( $args['content'] . '-list' ); ?>"><?php echo esc_html__( 'List', 'cleverreach-extension' ); ?></label>
 							</th>
 							<td>
-								<input type="text" name="list_id" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" />
+								<input type="text" name="list_id" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" value="<?php echo $defined_options['list_id']; ?>" />
 							</td>
 						</tr>
 
@@ -94,7 +108,7 @@ class Contact_Form_7 {
 								<label for="<?php echo esc_attr( $args['content'] . '-source' ); ?>"><?php echo esc_html__( 'Source', 'cleverreach-extension' ); ?></label>
 							</th>
 							<td>
-								<input type="text" name="source" class="oneline option" id="<?php echo esc_attr( $args['content'] . '-source' ); ?>" />
+								<input type="text" name="source" class="oneline option" id="<?php echo esc_attr( $args['content'] . '-source' ); ?>" value="<?php echo $defined_options['source']; ?>" />
 							</td>
 						</tr>
 
