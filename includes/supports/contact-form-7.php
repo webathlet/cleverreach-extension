@@ -96,10 +96,11 @@ class Contact_Form_7 {
 
 						<tr>
 							<th scope="row">
-								<label for="<?php echo esc_attr( $args['content'] . '-list' ); ?>"><?php echo esc_html__( 'List', 'cleverreach-extension' ); ?></label>
+								<label for="<?php echo esc_attr( $args['content'] . '-list' ); ?>"><?php echo esc_html__( 'List ID', 'cleverreach-extension' ); ?></label>
 							</th>
 							<td>
-								<input type="text" name="list_id" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" value="<?php echo $defined_options['list_id']; ?>" />
+								<input type="text" name="list_id" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" value="<?php echo esc_attr( $defined_options['list_id'] ); ?>" />
+								<p class="description"><?php echo sprintf( esc_html__( 'You can get another list ID from the %splugin settings%s.', 'cleverreach-extension' ), '<a href="' . admin_url( 'options-general.php?page=cleverreach-extension' ) . '">', '</a>' ); ?></p>
 							</td>
 						</tr>
 
@@ -108,7 +109,8 @@ class Contact_Form_7 {
 								<label for="<?php echo esc_attr( $args['content'] . '-source' ); ?>"><?php echo esc_html__( 'Source', 'cleverreach-extension' ); ?></label>
 							</th>
 							<td>
-								<input type="text" name="source" class="oneline option" id="<?php echo esc_attr( $args['content'] . '-source' ); ?>" value="<?php echo $defined_options['source']; ?>" />
+								<input type="text" name="source" class="oneline option" id="<?php echo esc_attr( $args['content'] . '-source' ); ?>" value="<?php echo esc_html( $defined_options['source'] ); ?>" />
+								<p class="description"><?php echo esc_html__( '(optional)', 'cleverreach-extension' ); ?></p>
 							</td>
 						</tr>
 
@@ -121,7 +123,7 @@ class Contact_Form_7 {
 			<input type="text" name="<?php echo esc_attr( $args['id'] ); ?>" class="tag code" readonly="readonly" onfocus="this.select()" />
 
 			<div class="submitbox">
-				<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
+				<input type="button" class="button button-primary insert-tag" value="<?php echo esc_html__( 'Insert Tag', 'contact-form-7' ); ?>" />
 			</div>
 
 			<br class="clear" />
@@ -150,19 +152,22 @@ class Contact_Form_7 {
 		if ( $prop === 'form' ) {
 			if ( 'cleverreach-signup' === $current ) {
 
-				$template = '<label>Gender</label><br />' . "\n" .
-							'[select gender id:cre_gender "Female" "Male" "Other"]' . "\n\n" .
+				$defined_options = $this->helper->get_option_group();
 
-							'<label>First Name</label><br />' . "\n" .
+				$template = '[cleverreach_extension list_id:' . esc_attr( $defined_options['list_id'] ) . ' source:' . esc_html( $defined_options['source'] ) . ']' . "\n\n" .
+							'<label>' . esc_html__( 'Gender', 'cleverreach-extension' ) . '</label><br />' . "\n" .
+							'[select gender id:cre_gender "' . esc_html__( 'Female', 'cleverreach-extension' ) . '" "' . esc_html__( 'Male', 'cleverreach-extension' ) . '" "' . esc_html__( 'Other', 'cleverreach-extension' ) . '"]' . "\n\n" .
+
+							'<label>' . esc_html__( 'First Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
 							'[text firstname id:cre_firstname]' . "\n\n" .
 
-							'<label>Last Name</label><br />' . "\n" .
+							'<label>' . esc_html__( 'Last Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
 							'[text lastname id:cre_lastname]' . "\n\n" .
 
-							'<label>Your Email (required)</label><br />' . "\n" .
+							'<label>' . esc_html__( 'Email', 'cleverreach-extension' ) . ' ' . esc_html__( '(required)', 'cleverreach-extension' ) . '</label><br />' . "\n" .
 							'[email* email id:cre_email]' . "\n\n" .
 
-							'[submit id:cre_submit "Submit"]';
+							'[submit id:cre_submit "' . esc_html__( 'Submit', 'cleverreach-extension' ) . '"]';
 
 			}
 		} else if ( $prop === 'mail' ) {
