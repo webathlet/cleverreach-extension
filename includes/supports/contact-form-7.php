@@ -28,6 +28,15 @@ class Contact_Form_7 {
 	protected $wiki_url = 'https://github.com/hofmannsven/cleverreach-extension/wiki';
 
 	/**
+	 * Pattern to detect plugin tag: `[cleverreach_extension]`
+	 *
+	 * @since  0.3.0
+	 * @access protected
+	 * @var    string
+	 */
+	protected $pattern = '/\[cleverreach_extension(.*)\]/';
+
+	/**
 	 * Contact Form 7 constructor.
 	 */
 	public function __construct() {
@@ -99,7 +108,7 @@ class Contact_Form_7 {
 								<label for="<?php echo esc_attr( $args['content'] . '-list' ); ?>"><?php echo esc_html__( 'List ID', 'cleverreach-extension' ); ?></label>
 							</th>
 							<td>
-								<input type="text" name="list_id" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" value="<?php echo esc_attr( $defined_options['list_id'] ); ?>" />
+								<input type="text" name="list" class="oneline option numeric" id="<?php echo esc_attr( $args['content'] . '-list' ); ?>" value="<?php echo esc_attr( $defined_options['list_id'] ); ?>" />
 								<p class="description"><?php echo sprintf( esc_html__( 'You can get another list ID from the %splugin settings%s.', 'cleverreach-extension' ), '<a href="' . admin_url( 'options-general.php?page=cleverreach-extension' ) . '">', '</a>' ); ?></p>
 							</td>
 						</tr>
@@ -154,7 +163,7 @@ class Contact_Form_7 {
 
 				$defined_options = $this->helper->get_option_group();
 
-				$template = '[cleverreach_extension list_id:' . esc_attr( $defined_options['list_id'] ) . ' source:' . esc_html( $defined_options['source'] ) . ']' . "\n\n" .
+				$template = '[cleverreach_extension list:' . esc_attr( $defined_options['list_id'] ) . ' source:' . esc_html( $defined_options['source'] ) . ']' . "\n\n" .
 							'<label>' . esc_html__( 'Gender', 'cleverreach-extension' ) . '</label><br />' . "\n" .
 							'[select gender id:cre_gender "' . esc_html__( 'Female', 'cleverreach-extension' ) . '" "' . esc_html__( 'Male', 'cleverreach-extension' ) . '" "' . esc_html__( 'Other', 'cleverreach-extension' ) . '"]' . "\n\n" .
 
@@ -195,10 +204,10 @@ class Contact_Form_7 {
 	 */
 	public function filter_form_elements( $content ) {
 
-		// Check for plugin tag: `[cleverreach_extension]`
-		$content = preg_replace( '/\[cleverreach_extension(.*)\]/', '', $content, -1, $count );
-		if ( 1 <= $count ) {
-			add_filter( 'the_content', array( $this, 'filter_form_wrapper' ), 9, 1 );
+		// Filter everything in `the_content` if `wpcf7_form_elements` contains the plugin tag.
+		$matches = preg_match( $this->pattern, $content );
+		if ( $matches ) {
+			add_filter( 'the_content', array( $this, 'filter_the_content' ), 9, 1 );
 		}
 
 		return $content;
@@ -206,7 +215,7 @@ class Contact_Form_7 {
 	}
 
 	/**
-	 * Filter Contact Form 7 form wrapper.
+	 * Filter `the_content` to update the form wrapper and elements.
 	 *
 	 * @since   0.3.0
 	 *
@@ -215,11 +224,76 @@ class Contact_Form_7 {
 	 * @wp-hook the_content
 	 * @return  string HTML
 	 */
-	public function filter_form_wrapper( $content ) {
+	public function filter_the_content( $content ) {
 
-		// Check for default Contact Form 7 form wrapper: `wpcf7`
-		$content = str_replace( 'class="wpcf7"', 'class="cr_form-container"', $content );
+		$content = $this->filter_form_wrapper( $content );
+		$content = $this->filter_form_element( $content );
+		$content = $this->filter_form_content( $content );
+
 		return $content;
+
+	}
+
+	/**
+	 * Filter Contact Form 7 form wrapper.
+	 * Update form wrapper to match CleverReach instead of Contact Form 7.
+	 *
+	 * @since   0.3.0
+	 *
+	 * @param   $content
+	 *
+	 * @return  string HTML
+	 */
+	private function filter_form_wrapper( $content ) {
+
+		return str_replace( 'class="wpcf7"', 'class="cr_form-container"', $content );
+
+	}
+
+	/**
+	 * Filter Contact Form 7 form element.
+	 * Add data attributes to form tag.
+	 *
+	 * @since   0.3.0
+	 *
+	 * @param   $content
+	 *
+	 * @return  string HTML
+	 */
+	private function filter_form_element( $content ) {
+
+		$data_attr = '';
+
+		// Re-parse raw attributes as HTML data attributes.
+		preg_match( $this->pattern, $content, $raw );
+		$attributes = explode( ' ', trim( $raw[ 1 ] ) );
+		foreach( $attributes as $attribute ) {
+
+			$attribute = str_replace( ':', '="', esc_attr( $attribute ) );
+			$data_attr .= ' data-' . $attribute . '"';
+
+		}
+
+		// Check for default Contact Form 7 form class name and append HTML data attributes.
+		$content = str_replace( 'class="wpcf7-form"', 'class="wpcf7-form"' . $data_attr, $content );
+
+		return $content;
+
+	}
+
+	/**
+	 * Filter Contact Form 7 form content.
+	 * Remove all plugin tags from HTML output.
+	 *
+	 * @since   0.3.0
+	 *
+	 * @param   $content
+	 *
+	 * @return  string HTML
+	 */
+	private function filter_form_content( $content ) {
+
+		return preg_replace( $this->pattern, '', $content, -1 );
 
 	}
 
