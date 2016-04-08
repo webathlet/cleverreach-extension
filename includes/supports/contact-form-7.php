@@ -165,7 +165,7 @@ class Contact_Form_7 {
 
 				$template = '[cleverreach_extension list:' . esc_attr( $defined_options['list_id'] ) . ' source:' . esc_html( $defined_options['source'] ) . ']' . "\n\n" .
 							'<label>' . esc_html__( 'Gender', 'cleverreach-extension' ) . '</label><br />' . "\n" .
-							'[select gender id:cre_gender "' . esc_html__( 'Female', 'cleverreach-extension' ) . '" "' . esc_html__( 'Male', 'cleverreach-extension' ) . '" "' . esc_html__( 'Other', 'cleverreach-extension' ) . '"]' . "\n\n" .
+							'[select gender id:cre_gender "' . esc_html__( 'Unknown', 'cleverreach-extension' ) . '" "' . esc_html__( 'Female', 'cleverreach-extension' ) . '" "' . esc_html__( 'Male', 'cleverreach-extension' ) . '"]' . "\n\n" .
 
 							'<label>' . esc_html__( 'First Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
 							'[text firstname id:cre_firstname]' . "\n\n" .
@@ -177,13 +177,6 @@ class Contact_Form_7 {
 							'[email* email id:cre_email]' . "\n\n" .
 
 							'[submit id:cre_submit "' . esc_html__( 'Submit', 'cleverreach-extension' ) . '"]';
-
-			}
-		} else if ( $prop === 'mail' ) {
-			if ( 'subscribe' === $current ) {
-
-				$template['subject'] = '';
-				$template['body'] = '';
 
 			}
 		}
@@ -262,20 +255,26 @@ class Contact_Form_7 {
 	 */
 	private function filter_form_element( $content ) {
 
-		$data_attr = '';
+		// Re-parse raw attributes as HTML data attributes for each form.
+		preg_match_all( $this->pattern, $content, $matches );
+		foreach ( $matches[1] as $match ) {
 
-		// Re-parse raw attributes as HTML data attributes.
-		preg_match( $this->pattern, $content, $raw );
-		$attributes = explode( ' ', trim( $raw[ 1 ] ) );
-		foreach( $attributes as $attribute ) {
+			$data_attr = '';
+			$attributes = explode( ' ', trim( $match ) );
+			foreach( $attributes as $attribute ) {
 
-			$attribute = str_replace( ':', '="', esc_attr( $attribute ) );
-			$data_attr .= ' data-' . $attribute . '"';
+				$attribute = str_replace( ':', '="', esc_attr( $attribute ) );
+				$data_attr .= ' data-' . $attribute . '"';
+
+			}
+
+			// Check for first plain default Contact Form 7 form class name and append HTML data attributes.
+			$pos = strpos( $content, 'class="wpcf7-form"');
+			if ( false !== $pos ) {
+				$content = substr_replace( $content, 'class="wpcrcf7-form wpcf7-form"' . $data_attr, $pos, strlen( 'class="wpcf7-form"' ) );
+			}
 
 		}
-
-		// Check for default Contact Form 7 form class name and append HTML data attributes.
-		$content = str_replace( 'class="wpcf7-form"', 'class="wpcf7-form"' . $data_attr, $content );
 
 		return $content;
 

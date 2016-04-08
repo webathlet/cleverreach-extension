@@ -45,6 +45,7 @@ class Cre_Models {
 			array(
 				'list_id' => $helper->get_option( 'list_id' ),
 				'form_id' => $helper->get_option( 'form_id' ),
+				'custom_form' => $helper->get_option( 'custom_form' ),
 				'source' => $helper->get_option( 'source' ),
 			), $params, 'cleverreach_extension'
 		);
@@ -52,7 +53,7 @@ class Cre_Models {
 		$html = '<div class="cr_form-container">';
 
 		// Build (custom) form according to shortcode attributes.
-		if ( 'custom' === $atts['form_id'] ) {
+		if ( 'custom' === $atts['form_id'] || $atts['custom_form'] ) {
 
 			// Get filtered custom form.
 			$html_form = apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );

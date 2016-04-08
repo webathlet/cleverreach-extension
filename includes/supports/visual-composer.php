@@ -100,6 +100,15 @@ class Visual_Composer {
 						)
 					),
 					array(
+						'type'        => 'checkbox',
+						'holder'      => 'div',
+						'class'       => 'cre_custom_form',
+						'heading'     => esc_html__( 'Enable custom form', 'cleverreach-extension' ),
+						'param_name'  => 'custom_form',
+						'value'       => '',
+						'std'         => 0
+					),
+					array(
 						'type'        => 'textfield',
 						'holder'      => 'div',
 						'class'       => 'cre_source',

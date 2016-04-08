@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CleverReach Extension 0.3.0\n"
 "Report-Msgid-Bugs-To: https://code64.de\n"
-"POT-Creation-Date: 2016-03-17 14:19+0100\n"
-"PO-Revision-Date: 2016-03-17 14:19+0100\n"
+"POT-Creation-Date: 2016-04-08 12:38+0100\n"
+"PO-Revision-Date: 2016-04-08 12:38+0100\n"
 "Last-Translator: Sven Hofmann <info@hofmannsven.com>\n"
 "Language-Team: Sven Hofmann <info@hofmannsven.com>\n"
 "Language: de_DE\n"
@@ -44,8 +44,8 @@ msgstr "Liste"
 msgid "Form"
 msgstr "Formular"
 
-#: admin/class-cre-admin.php:339 includes/supports/contact-form-7.php:109
-#: includes/supports/visual-composer.php:106
+#: admin/class-cre-admin.php:339 includes/supports/contact-form-7.php:118
+#: includes/supports/visual-composer.php:115
 msgid "Source"
 msgstr "Quelle"
 
@@ -53,8 +53,8 @@ msgstr "Quelle"
 msgid "Get your API Key: CleverReach Account » Extras » API"
 msgstr "Hol dir den API Key: CleverReach Account » Extras » API"
 
-#: admin/class-cre-admin.php:508 includes/supports/contact-form-7.php:113
-#: includes/supports/visual-composer.php:109
+#: admin/class-cre-admin.php:508 includes/supports/contact-form-7.php:122
+#: includes/supports/visual-composer.php:118
 msgid "(optional)"
 msgstr "(optional)"
 
@@ -104,7 +104,7 @@ msgstr ""
 "Füge die zusätzlichen Parameter zum Shortcode hinzu, wenn du mehrere "
 "Formulare auf einer Seite einbindest."
 
-#: admin/class-cre-admin.php:593 includes/supports/contact-form-7.php:131
+#: admin/class-cre-admin.php:593 includes/supports/contact-form-7.php:140
 #: includes/supports/visual-composer.php:97
 #, php-format
 msgid "Please check the %swiki%s on how to apply further customization."
@@ -130,72 +130,68 @@ msgstr "CleverReach Extension Plugin benötigt die PHP %s Extension."
 msgid "Your API key is invalid."
 msgstr "Dein API Key ist ungültig."
 
-#: includes/class-cre-helper.php:108
-msgid "Custom form"
-msgstr "Eigenes Formular"
-
-#: includes/class-cre-models.php:58
+#: includes/class-cre-models.php:59
 msgid "Please apply your own form within your plugin or theme."
 msgstr "Bitte hinterlege dein eigenes Formular in deinem Plugin oder Theme."
 
-#: includes/supports/contact-form-7.php:51
+#: includes/supports/contact-form-7.php:60
 msgid "Add New Signup Form"
 msgstr "Neues Anmeldeformular hinzufügen"
 
-#: includes/supports/contact-form-7.php:52
+#: includes/supports/contact-form-7.php:61
 msgid "Add Signup Form"
 msgstr "Anmeldeformular hinzufügen"
 
-#: includes/supports/contact-form-7.php:72
+#: includes/supports/contact-form-7.php:81
 msgid "CleverReach"
 msgstr "CleverReach"
 
-#: includes/supports/contact-form-7.php:99
+#: includes/supports/contact-form-7.php:108
 msgid "List ID"
 msgstr "Listen ID"
 
-#: includes/supports/contact-form-7.php:103
+#: includes/supports/contact-form-7.php:112
 #, php-format
 msgid "You can get another list ID from the %splugin settings%s."
 msgstr "Andere Listen IDs findest du in den  %sPlugin Einstellungen%s."
 
-#: includes/supports/contact-form-7.php:126
+#: includes/supports/contact-form-7.php:135
 msgid "Insert Tag"
 msgstr "Tag einfügen"
 
-#: includes/supports/contact-form-7.php:158
+#: includes/supports/contact-form-7.php:167
 msgid "Gender"
 msgstr "Anrede"
 
-#: includes/supports/contact-form-7.php:159
+#: includes/supports/contact-form-7.php:168
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: includes/supports/contact-form-7.php:168
 msgid "Female"
 msgstr "Frau"
 
-#: includes/supports/contact-form-7.php:159
+#: includes/supports/contact-form-7.php:168
 msgid "Male"
 msgstr "Herr"
 
-#: includes/supports/contact-form-7.php:159
-msgid "Other"
-msgstr "Anderes"
-
-#: includes/supports/contact-form-7.php:161
+#: includes/supports/contact-form-7.php:170
 msgid "First Name"
 msgstr "Vorname"
 
-#: includes/supports/contact-form-7.php:164
+#: includes/supports/contact-form-7.php:173
 msgid "Last Name"
 msgstr "Nachname"
 
-#: includes/supports/contact-form-7.php:167
+#: includes/supports/contact-form-7.php:176
 msgid "Email"
 msgstr "Email"
 
-#: includes/supports/contact-form-7.php:167
+#: includes/supports/contact-form-7.php:176
 msgid "(required)"
 msgstr "(erforderlich)"
 
-#: includes/supports/contact-form-7.php:170
+#: includes/supports/contact-form-7.php:179
 msgid "Submit"
 msgstr "Absenden"
 
@@ -210,6 +206,10 @@ msgstr "CleverReach Formular einbinden"
 #: includes/supports/visual-composer.php:73
 msgid "Content"
 msgstr "Inhalt"
+
+#: includes/supports/visual-composer.php:106
+msgid "Enable custom form"
+msgstr "Eigenes Formular nutzen"
 
 #: public/class-cre-public.php:86
 msgid "Saving..."
@@ -229,18 +229,21 @@ msgstr ""
 "Sorry, es gab ein Problem beim Speichern deiner Daten. Bitte probiere es "
 "später noch einmal oder kontaktiere einen Administrator."
 
-#: public/class-cre-public.php:186
+#: public/class-cre-public.php:187
 msgid "It seems like you're already subscribed to our list."
 msgstr "Du bist scheinbar bereits in unseren Verteiler eingetragen."
 
-#: public/class-cre-public.php:188
+#: public/class-cre-public.php:189
 msgid "Sorry, there seems to be a problem with your data."
 msgstr ""
 "Sorry, es gibt scheinbar ein Problem bei der Verarbeitung deiner Daten."
 
-#: public/class-cre-public.php:196
+#: public/class-cre-public.php:197
 msgid "Sorry, there seems to be a problem with your email address."
 msgstr "Sorry, es gibt scheinbar ein Problem mit deiner Email-Adresse."
+
+#~ msgid "Custom form"
+#~ msgstr "Eigenes Formular"
 
 #~ msgid "Custom"
 #~ msgstr "Individuell"

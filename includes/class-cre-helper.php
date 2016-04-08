@@ -100,7 +100,8 @@ class Cre_Helper {
 			);
 		}
 
-		// Support custom option.
+		// Coming soon: Support custom option.
+		/*
 		if ( $custom ) {
 			$selected  = ( 'custom' === $list_id ) ? true : false;
 			$options[] = array(
@@ -109,6 +110,7 @@ class Cre_Helper {
 				'selected' => $selected
 			);
 		}
+		*/
 
 		return $options;
 

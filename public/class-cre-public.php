@@ -143,10 +143,11 @@ class Cre_Public {
 
 			// Populate `$source` (string)
 			$helper = new Cre_Helper();
-			if ( $helper->has_option( 'source' ) ) {
+			$source = get_bloginfo( 'name' );
+			if ( isset( $_POST['source'] ) ) {
+				$source = $_POST['source'];
+			} elseif ( $helper->has_option( 'source' ) ) {
 				$source = $helper->get_option( 'source' );
-			} else {
-				$source = get_bloginfo( 'name' );
 			}
 
 			// Populate `$user` (array) according to CleverReach API defaults.
@@ -154,7 +155,7 @@ class Cre_Public {
 				'email'      => sanitize_email( $post['email'] ),
 				'registered' => time(),
 				// 'activated' => time(), // Force double opt-in.
-				'source'     => esc_html( $source ),
+				'source'     => esc_html( trim( $source ) ),
 				'attributes' => $post_attr
 			);
 

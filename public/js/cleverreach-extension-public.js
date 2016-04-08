@@ -14,6 +14,7 @@
 					action : 'cre_ajax_controller_interaction',
 					nonce  : cre.nonce,
 					list   : $( this ).data( 'list' ),
+					source : $( this ).data( 'source' ),
 					cr_form: $( this ).serialize()
 				},
 				beforeSend: function() {

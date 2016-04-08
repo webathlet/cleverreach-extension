@@ -45,7 +45,7 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 
 		$settings_page = 'settings_page_' . $this->plugin_slug;
 		$this->plugin->admin_enqueue_styles( $settings_page );
-		$this->assertTrue( wp_style_is( $this->plugin_name . '_admin' ) );
+		$this->assertTrue( wp_style_is( $this->plugin_slug . '-admin' ) );
 
 	}
 
@@ -59,7 +59,7 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 
 		$settings_page = 'settings_page_' . $this->plugin_slug;
 		$this->plugin->admin_enqueue_scripts( $settings_page );
-		$this->assertTrue( wp_script_is( $this->plugin_name . '_admin' ) );
+		$this->assertTrue( wp_script_is( $this->plugin_slug . '-admin' ) );
 
 	}
 

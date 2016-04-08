@@ -24,8 +24,8 @@ Further documentation can be found on the [Wiki](https://github.com/hofmannsven/
 ### Languages
 * English
 * German
-* Spanish
-* Russian
+* Spanish (incomplete)
+* Russian (incomplete)
 
 ### Looking ahead
 * Support for WordPress widgets

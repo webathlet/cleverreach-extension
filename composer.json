@@ -32,6 +32,6 @@
   "require-dev": {
     "inpsyde/wordpress-dev": "~4.4",
     "inpsyde/wp-tests-starter": "~1.0",
-    "codeclimate/php-test-reporter": "~0.2"
+    "codeclimate/php-test-reporter": "~0.3"
   }
 }

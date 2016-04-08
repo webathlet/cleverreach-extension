@@ -44,7 +44,7 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 	function testScriptsEnqueue() {
 
 		$this->plugin->enqueue_scripts();
-		$this->assertTrue( wp_script_is( $this->plugin_name ) );
+		$this->assertTrue( wp_script_is( $this->plugin_slug ) );
 
 	}
 
