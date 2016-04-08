@@ -158,30 +158,41 @@ class Contact_Form_7 {
 	public function extend_default_template( $template, $prop ) {
 
 		$current = ( isset( $_GET['template'] ) ) ? $_GET['template'] : '';
-		if ( $prop === 'form' ) {
-			if ( 'cleverreach-signup' === $current ) {
+		if ( 'form' === $prop && 'cleverreach-signup' === $current ) {
 
-				$defined_options = $this->helper->get_option_group();
+			$template = $this->get_form_template();
 
-				$template = '[cleverreach_extension list:' . esc_attr( $defined_options['list_id'] ) . ' source:' . esc_html( $defined_options['source'] ) . ']' . "\n\n" .
-							'<label>' . esc_html__( 'Gender', 'cleverreach-extension' ) . '</label><br />' . "\n" .
-							'[select gender id:cre_gender "' . esc_html__( 'Unknown', 'cleverreach-extension' ) . '" "' . esc_html__( 'Female', 'cleverreach-extension' ) . '" "' . esc_html__( 'Male', 'cleverreach-extension' ) . '"]' . "\n\n" .
-
-							'<label>' . esc_html__( 'First Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
-							'[text firstname id:cre_firstname]' . "\n\n" .
-
-							'<label>' . esc_html__( 'Last Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
-							'[text lastname id:cre_lastname]' . "\n\n" .
-
-							'<label>' . esc_html__( 'Email', 'cleverreach-extension' ) . ' ' . esc_html__( '(required)', 'cleverreach-extension' ) . '</label><br />' . "\n" .
-							'[email* email id:cre_email]' . "\n\n" .
-
-							'[submit id:cre_submit "' . esc_html__( 'Submit', 'cleverreach-extension' ) . '"]';
-
-			}
 		}
 
 		return $template;
+
+	}
+
+	/**
+	 * CleverReach from template for Contact From 7.
+	 *
+	 * @since   0.3.0
+	 *
+	 * @return string
+	 */
+	private function get_form_template() {
+
+		$defined_options = $this->helper->get_option_group();
+
+		return '[cleverreach_extension list:' . esc_attr( $defined_options['list_id'] ) . ' source:' . esc_html( $defined_options['source'] ) . ']' . "\n\n" .
+				'<label>' . esc_html__( 'Gender', 'cleverreach-extension' ) . '</label><br />' . "\n" .
+				'[select gender id:cre_gender "' . esc_html__( 'Unknown', 'cleverreach-extension' ) . '" "' . esc_html__( 'Female', 'cleverreach-extension' ) . '" "' . esc_html__( 'Male', 'cleverreach-extension' ) . '"]' . "\n\n" .
+
+				'<label>' . esc_html__( 'First Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
+				'[text firstname id:cre_firstname]' . "\n\n" .
+
+				'<label>' . esc_html__( 'Last Name', 'cleverreach-extension' ) . '</label><br />' . "\n" .
+				'[text lastname id:cre_lastname]' . "\n\n" .
+
+				'<label>' . esc_html__( 'Email', 'cleverreach-extension' ) . ' ' . esc_html__( '(required)', 'cleverreach-extension' ) . '</label><br />' . "\n" .
+				'[email* email id:cre_email]' . "\n\n" .
+
+				'[submit id:cre_submit "' . esc_html__( 'Submit', 'cleverreach-extension' ) . '"]';
 
 	}
 
