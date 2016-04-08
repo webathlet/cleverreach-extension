@@ -18,7 +18,7 @@ class SetupTest extends \PHPUnit_Framework_TestCase {
 	 * @since 0.3.0
 	 * @group setup
 	 */
-	function testSample() {
+	public function testSample() {
 
 		$this->assertTrue( TRUE );
 

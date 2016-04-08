@@ -36,6 +36,8 @@ class Cre_Models {
 	 */
 	public function parse_shortcode( $params ) {
 
+		wp_enqueue_script( 'cleverreach-extension' );
+
 		$helper = new Cre_Helper();
 		$client = new Api\Cleverreach();
 		$form   = new Api\Cleverreach_Form_Adapter( $client );

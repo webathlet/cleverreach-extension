@@ -41,11 +41,11 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 	 * @since 0.3.0
 	 * @group admin
 	 */
-	function testAdminStylesEnqueue() {
+	public function testAdminStylesEnqueue() {
 
 		$settings_page = 'settings_page_' . $this->plugin_slug;
 		$this->plugin->admin_enqueue_styles( $settings_page );
-		$this->assertTrue( wp_style_is( $this->plugin_slug . '-admin' ) );
+		$this->assertTrue( wp_style_is( 'cleverreach-extension-admin' ) );
 
 	}
 
@@ -55,11 +55,11 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
 	 * @since 0.3.0
 	 * @group admin
 	 */
-	function testAdminScriptsEnqueue() {
+	public function testAdminScriptsEnqueue() {
 
 		$settings_page = 'settings_page_' . $this->plugin_slug;
 		$this->plugin->admin_enqueue_scripts( $settings_page );
-		$this->assertTrue( wp_script_is( $this->plugin_slug . '-admin' ) );
+		$this->assertTrue( wp_script_is( 'cleverreach-extension-admin' ) );
 
 	}
 

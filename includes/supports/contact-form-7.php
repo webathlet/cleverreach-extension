@@ -200,7 +200,10 @@ class Contact_Form_7 {
 		// Filter everything in `the_content` if `wpcf7_form_elements` contains the plugin tag.
 		$matches = preg_match( $this->pattern, $content );
 		if ( $matches ) {
+
+			wp_enqueue_script( 'cleverreach-extension' );
 			add_filter( 'the_content', array( $this, 'filter_the_content' ), 9, 1 );
+
 		}
 
 		return $content;

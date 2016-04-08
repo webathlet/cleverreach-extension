@@ -36,15 +36,16 @@ class PublicTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test if frontend scripts are enqueued.
+	 * Test if frontend scripts are registered but not yet enqueued.
 	 *
 	 * @since 0.3.0
 	 * @group public
 	 */
-	function testScriptsEnqueue() {
+	public function testScriptsRegisteredNotEnqueued() {
 
 		$this->plugin->enqueue_scripts();
-		$this->assertTrue( wp_script_is( $this->plugin_slug ) );
+		$this->assertTrue( wp_script_is( 'cleverreach-extension', 'registered' ) );
+		$this->assertFalse( wp_script_is( 'cleverreach-extension', 'enqueued' ) );
 
 	}
 

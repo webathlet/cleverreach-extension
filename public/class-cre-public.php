@@ -96,8 +96,6 @@ class Cre_Public {
 			)
 		);
 
-		wp_enqueue_script( $this->plugin_slug );
-
 	}
 
 	/**

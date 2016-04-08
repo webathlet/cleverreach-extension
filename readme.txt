@@ -113,6 +113,7 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 * Supports [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
 * Contact Form 7 plugin integration
 * Even better admin interaction and shortcode preview
+* Load scripts only if needed
 * Code cleanup and even better [documentation](https://github.com/hofmannsven/cleverreach-extension/wiki)
 * [Integration test suite](https://github.com/hofmannsven/cleverreach-extension/blob/master/tests/README.md)
 
