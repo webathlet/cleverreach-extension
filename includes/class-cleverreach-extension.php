@@ -201,8 +201,10 @@ class Cleverreach_Extension {
 
 		// Load if Visual Composer plugin is active.
 		if ( function_exists( 'vc_map' ) ) {
-			$vc = new Visual_Composer();
-			$vc->init();
+
+			$visual_composer = new Visual_Composer();
+			$visual_composer->init();
+
 		}
 
 		// Load if Contact Form 7 plugin is active.

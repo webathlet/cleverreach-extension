@@ -20,9 +20,9 @@ The CleverReach Extension for WordPress provides an easy way to embed your [Clev
 = Features =
 * Embed your CleverReach sign-up form anywhere on your website
 * Double opt-in according to your CleverReach configuration
-* Smooth form submission using Ajax (no page reload)
-* Extremely lightweight plugin with many hooks for developers
-* Optional: Customize your form and error messages via filters
+* Extremely lightweight plugin
+* Many hooks for developers to customize selectors, response messages and even ajax requests
+* Optional: Custom forms with smooth form submission using Ajax (no page reload)
 
 Further documentation can be found on the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki).
 
@@ -85,8 +85,8 @@ Using the API will allow you to push and pull data from CleverReach.
 This allows things like smooth form submission via Ajax and custom error handling.
 
 = Is it secure? =
-No customer data is stored within your WordPress database. 
 We heavily rely on the security of CleverReach which is [tested and verified](https://www.cleverreach.com/security) according to German standards.
+No customer data is stored within your WordPress database.
 
 = Having problems with the PHP SOAP Extension? =
 Check the [PHP SOAP wiki page](https://github.com/hofmannsven/cleverreach-extension/wiki/PHP-SOAP-Extension) for further information.
