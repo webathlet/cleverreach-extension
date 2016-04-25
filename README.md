@@ -25,7 +25,7 @@ Further documentation can be found on the [Wiki](https://github.com/hofmannsven/
 * English
 * German
 * Spanish (incomplete)
-* Russian (incomplete)
+* Russian
 
 ### Looking ahead
 * Support for WordPress widgets
