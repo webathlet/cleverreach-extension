@@ -6,7 +6,7 @@
 ## Requirements
 
 Using the latest version of WordPress and PHP is highly recommended.
-PHPUnit 5.2 is supported on PHP 5.6 and PHP 7.
+PHPUnit 5.3 is supported on PHP 5.6 and PHP 7.
 
 
 ## Up and running
