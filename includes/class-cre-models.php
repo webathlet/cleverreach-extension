@@ -60,6 +60,12 @@ class Cre_Models {
 			// Get filtered custom form.
 			$html_form = apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );
 
+			if ( !empty($atts['form_id']) ) {
+				$html_form = str_replace(
+					'<form ', '<form data-form="' . $atts[ 'form_id' ] . '" ', $html_form
+				);
+			}
+
 			// Append custom `list_id`.
 			if ( $atts['list_id'] ) {
 				$html_form = str_replace(

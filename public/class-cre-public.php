@@ -148,6 +148,8 @@ class Cre_Public {
 				$source = $helper->get_option( 'source' );
 			}
 
+			$formId = (empty($_POST['form']) ? $helper->get_option( 'form_id' ) : (int)$_POST['form']);
+
 			// Populate `$user` (array) according to CleverReach API defaults.
 			$user = array(
 				'email'      => sanitize_email( $post['email'] ),
@@ -175,7 +177,7 @@ class Cre_Public {
 					'referer'    => esc_url( home_url() ),
 				);
 
-				$form->send_activation_mail( $helper->get_option( 'form_id' ), sanitize_email( $post['email'] ), $user_data );
+				$form->send_activation_mail( $formId, sanitize_email( $post['email'] ), $user_data );
 
 			} else {
 

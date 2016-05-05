@@ -13,6 +13,7 @@
 				data      : {
 					action : 'cre_ajax_controller_interaction',
 					nonce  : cre.nonce,
+					form   : $( this ).data( 'form' ),
 					list   : $( this ).data( 'list' ),
 					source : $( this ).data( 'source' ),
 					cr_form: $( this ).serialize()
