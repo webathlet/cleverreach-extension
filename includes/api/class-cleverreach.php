@@ -31,7 +31,7 @@ class Cleverreach {
 
 		try {
 
-			$this->client = new \SoapClient( 'http://api.cleverreach.com/soap/interface_v5.1.php?wsdl' );
+			$this->client = new \SoapClient( 'https://api.cleverreach.com/soap/interface_v5.1.php?wsdl' );
 
 			$helper = new Core\Cre_Helper();
 			$this->api_key = sanitize_key( trim( apply_filters( 'cleverreach_extension_api_key', $helper->get_option( 'api_key' ) ) ) );
