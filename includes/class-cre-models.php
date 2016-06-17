@@ -84,9 +84,14 @@ class Cre_Models {
 
 		} else {
 
-			// Get form code from CleverReach.
+			// Get form code or message from CleverReach.
 			$html_form = $form->get_embedded_code( $atts['form_id'] );
-			$html .= str_replace( 'http://', 'https://', $html_form->data );
+
+			if ( is_object( $html_form ) ) {
+				$html .= str_replace( 'http://', 'https://', $html_form->data );
+			} else {
+				$html .= $html_form;
+			}
 
 		}
 
