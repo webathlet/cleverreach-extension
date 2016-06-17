@@ -545,16 +545,15 @@ class Cre_Admin {
 
 		if ( ! $helper->has_option( 'api_key' ) ) {
 
+			$signup_url = 'https://www.cleverreach.com/land/account?rk=85097mbwkysub';
+			$banner_url = 'https://s3-eu-west-1.amazonaws.com/cloud-files.crsend.com/img/affiliate/en/468_60.png';
+
 			$result .= '<p>';
 			$result .= esc_html__( 'Still need a CleverReach account?', 'cleverreach-extension' ) . ' ';
-			$result .= '<a href="' . esc_url( 'http://www.cleverreach.com/frontend/account.php?rk=85097mbwkysub"' ) . '">';
-			$result .= esc_html__( 'Sign up for free!', 'cleverreach-extension' );
-			$result .= '</a>';
+			$result .= '<a href="' . esc_url( $signup_url ) . '">' . esc_html__( 'Sign up for free!', 'cleverreach-extension' ) . '</a>';
 			$result .= '</p>';
 
-			$result .= '<p><a href="' . esc_url( 'http://www.cleverreach.com/frontend/account.php?rk=85097mbwkysub"' ) . '">';
-			$result .= '<img src="http://s3-eu-west-1.amazonaws.com/cloud-files.crsend.com/img/affiliate/en/468_60.png" />';
-			$result .= '</a></p>';
+			$result .= '<p><a href="' . esc_url( $signup_url ) . '"><img src="' . esc_url( $banner_url ) . '" /></a></p>';
 
 		}
 
