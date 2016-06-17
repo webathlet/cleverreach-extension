@@ -88,7 +88,6 @@ class Cre_Public {
 				'error'              => sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg', esc_html__( 'Sorry, there was a problem saving your data. Please try later or contact the administrator.', 'cleverreach-extension' ) ) ),
 				'selector'           => esc_attr( '.' ), // Selector supports only classes, yet.
 				'container_selector' => sanitize_html_class( apply_filters( 'cleverreach_extension_container_selector', 'cr_form-container' ) ),
-				// TODO: Also apply filter on container class within models
 				'loading_selector'   => sanitize_html_class( apply_filters( 'cleverreach_extension_loading_selector', 'cr_loading' ) ),
 				'success_selector'   => sanitize_html_class( apply_filters( 'cleverreach_extension_success_selector', 'cr_success' ) ),
 				'response_selector'  => sanitize_html_class( apply_filters( 'cleverreach_extension_response_selector', 'cr_response' ) ),
@@ -148,8 +147,6 @@ class Cre_Public {
 				$source = $helper->get_option( 'source' );
 			}
 
-			$formId = (empty($_POST['form']) ? $helper->get_option( 'form_id' ) : (int)$_POST['form']);
-
 			// Populate `$user` (array) according to CleverReach API defaults.
 			$user = array(
 				'email'      => sanitize_email( $post['email'] ),
@@ -159,7 +156,7 @@ class Cre_Public {
 				'attributes' => $post_attr
 			);
 
-			$list_id = sanitize_key( absint( trim( $_POST['list'] ) ) );
+			$list_id = ( empty( $_POST[ 'list' ] ) ? $helper->get_option( 'list_id' ) : (int) $_POST[ 'list' ] );
 			$receiver_added = $receiver->add( $user, $list_id );
 
 			// Test returned data.
@@ -177,7 +174,8 @@ class Cre_Public {
 					'referer'    => esc_url( home_url() ),
 				);
 
-				$form->send_activation_mail( $formId, sanitize_email( $post['email'] ), $user_data );
+				$form_id = ( empty( $_POST[ 'form' ] ) ? $helper->get_option( 'form_id' ) : (int) $_POST[ 'form' ] );
+				$form->send_activation_mail( $form_id, sanitize_email( $post['email'] ), $user_data );
 
 			} else {
 

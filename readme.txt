@@ -112,6 +112,7 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 * Supports multiple forms on one page
 * Supports [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
 * Loads scripts only if needed
+* Cached API calls
 * Contact Form 7 plugin integration
 * Even better admin interaction and shortcode preview
 * Code cleanup and even better [documentation](https://github.com/hofmannsven/cleverreach-extension/wiki)

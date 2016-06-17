@@ -160,18 +160,24 @@ class Cre_Admin {
 			$group = new Api\Cleverreach_Group_Adapter( $client );
 			$form = new Api\Cleverreach_Form_Adapter( $client );
 
+			// Cleanup transients.
+			$client->delete_transients();
+
+			// Check API key.
+			$has_api_key = $client->has_valid_api_key();
+
 			// Build array with data and status.
 			$result = array(
 				'api' => array(
-					'status' => ( $client->has_valid_api_key() ) ? true : false
+					'status' => ( $has_api_key ) ? true : false
 				),
 				'list' => array(
-					'status' => ( $client->has_valid_api_key() && $defined_options['list_id'] ) ? true : false,
-					'options' => ( $client->has_valid_api_key() ) ? $helper->parse_list( $group->get_list(), 'list_id' ) : false
+					'status' => ( $has_api_key && $defined_options['list_id'] ) ? true : false,
+					'options' => ( $has_api_key ) ? $helper->parse_list( $group->get_list(), 'list_id' ) : false
 				),
 				'form' => array(
-					'status' => ( $client->has_valid_api_key() && $defined_options['form_id'] ) ? true : false,
-					'options' => ( $client->has_valid_api_key() ) ? $helper->parse_list( $form->get_list( $defined_options['list_id'] ), 'form_id', true ) : false
+					'status' => ( $has_api_key && $defined_options['form_id'] ) ? true : false,
+					'options' => ( $has_api_key ) ? $helper->parse_list( $form->get_list( $defined_options['list_id'] ), 'form_id', true ) : false
 				),
 				'source' => array(
 					'status' => ( $defined_options['source'] ) ? true : false

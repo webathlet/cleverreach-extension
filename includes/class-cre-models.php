@@ -45,59 +45,53 @@ class Cre_Models {
 		// Parse shortcode attributes with defaults.
 		$atts = shortcode_atts(
 			array(
-				'list_id' => $helper->get_option( 'list_id' ),
-				'form_id' => $helper->get_option( 'form_id' ),
+				'list_id'     => $helper->get_option( 'list_id' ),
+				'form_id'     => $helper->get_option( 'form_id' ),
 				'custom_form' => $helper->get_option( 'custom_form' ),
-				'source' => $helper->get_option( 'source' ),
+				'source'      => $helper->get_option( 'source' ),
 			), $params, 'cleverreach_extension'
 		);
 
 		$html = '<div class="cr_form-container">';
 
-		// Build (custom) form according to shortcode attributes.
+		// Render (custom/default) form.
 		if ( 'custom' === $atts['form_id'] || $atts['custom_form'] ) {
 
-			// Get filtered custom form.
-			$html_form = apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );
-
-			if ( !empty($atts['form_id']) ) {
-				$html_form = str_replace(
-					'<form ', '<form data-form="' . $atts[ 'form_id' ] . '" ', $html_form
-				);
-			}
-
-			// Append custom `list_id`.
-			if ( $atts['list_id'] ) {
-				$html_form = str_replace(
-					'<form ', '<form data-list="' . $atts[ 'list_id' ] . '" ', $html_form
-				);
-			}
-
-			// Append custom `source`.
-			if ( $atts['source'] ) {
-				$html_form = str_replace(
-					'<form ', '<form data-source="' . $atts[ 'source' ] . '" ', $html_form
-				);
-			}
-
-			$html .= $html_form;
+			$html .= apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );
 
 		} else {
 
 			// Get form code or message from CleverReach.
-			$html_form = $form->get_embedded_code( $atts['form_id'] );
+			$embedded_code = $form->get_embedded_code( $atts['form_id'] );
 
-			if ( is_object( $html_form ) ) {
-				$html .= str_replace( 'http://', 'https://', $html_form->data );
-			} else {
-				$html .= $html_form;
+			if ( is_object( $embedded_code ) ) {
+				// Force HTTPS everywhere.
+				$embedded_code = str_replace( 'http://', 'https://', $embedded_code->data );
+				// Remove default CleverReach scripts (including recaptcha widget).
+				$embedded_code = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $embedded_code );
 			}
+
+			$html .= $embedded_code;
 
 		}
 
-		$html .= '</div>'; // end of .cr_form-container
+		// Include custom `form_id`.
+		if ( ! empty( $atts['form_id'] ) ) {
+			$form_id = ( 'custom' === $atts[ 'form_id' ] ) ? $helper->get_option( 'form_id' ) : $atts[ 'form_id' ];
+			$html = str_replace( '<form ', '<form data-form="' . $form_id . '" ', $html );
+		}
 
-		return $html;
+		// Include custom `list_id`.
+		if ( ! empty( $atts['list_id'] ) ) {
+			$html = str_replace( '<form ', '<form data-list="' . $atts[ 'list_id' ] . '" ', $html );
+		}
+
+		// Include custom `source`.
+		if ( ! empty( $atts['source'] ) ) {
+			$html = str_replace( '<form ', '<form data-source="' . $atts[ 'source' ] . '" ', $html );
+		}
+
+		return $html  . '</div>'; // end of .cr_form-container
 
 	}
 
