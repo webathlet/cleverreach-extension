@@ -19,10 +19,10 @@ The CleverReach Extension for WordPress provides an easy way to embed your [Clev
 
 = Features =
 * Embed your CleverReach sign-up form anywhere on your website
+* Smooth form submission using ajax (no page reload required)
 * Double opt-in according to your CleverReach configuration
 * Extremely lightweight plugin
-* Many hooks for developers to customize selectors, response messages and ajax requests
-* Optional: Custom forms with smooth form submission using ajax (no page reload)
+* Many hooks for developers to customize forms, selectors, response messages and ajax requests
 
 Further documentation can be found on the [Wiki](https://github.com/hofmannsven/cleverreach-extension/wiki).
 
@@ -111,7 +111,6 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 = 0.3.0 =
 * Supports multiple forms on one page
 * Supports [custom ajax requests](https://github.com/hofmannsven/cleverreach-extension/wiki/Custom-ajax-requests)
-* Removes custom scripts for default forms
 * Loads scripts only if needed
 * Contact Form 7 plugin integration
 * Even better admin interaction and shortcode preview

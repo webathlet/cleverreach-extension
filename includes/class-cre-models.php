@@ -36,6 +36,8 @@ class Cre_Models {
 	 */
 	public function parse_shortcode( $params ) {
 
+		wp_enqueue_script( 'cleverreach-extension' );
+
 		$helper = new Cre_Helper();
 		$client = new Api\Cleverreach();
 		$form   = new Api\Cleverreach_Form_Adapter( $client );
@@ -54,8 +56,6 @@ class Cre_Models {
 
 		// Build (custom) form according to shortcode attributes.
 		if ( 'custom' === $atts['form_id'] || $atts['custom_form'] ) {
-
-			wp_enqueue_script( 'cleverreach-extension' );
 
 			// Get filtered custom form.
 			$html_form = apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );
