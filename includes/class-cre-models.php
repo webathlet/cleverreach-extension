@@ -86,7 +86,7 @@ class Cre_Models {
 
 			// Get form code from CleverReach.
 			$html_form = $form->get_embedded_code( $atts['form_id'] );
-			$html .= $html_form->data;
+			$html .= str_replace( 'http://', 'https://', $html_form->data );
 
 		}
 
