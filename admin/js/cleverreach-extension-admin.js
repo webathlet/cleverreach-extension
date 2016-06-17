@@ -72,7 +72,7 @@
 		} );
 
 		// Submit and render response.
-		$( cre_admin_container_selector + ' form' ).on( 'input submit', function() {
+		$( cre_admin_container_selector + ' form' ).on( 'input', function() {
 
 			clearTimeout( cre_admin_timeout );
 			cre_admin_timeout = setTimeout( function() {
