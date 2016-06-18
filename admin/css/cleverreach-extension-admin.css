@@ -38,9 +38,14 @@
 	float: left;
 }
 
+.cleverreach-extension-options-page .cre-input-container input[type="checkbox"] {
+	float: left;
+	margin: 5px 5px 5px 2px;
+}
+
 .cleverreach-extension-options-page .cre-info-message {
 	float: left;
-	padding: 4px 7px;
+	padding: 4px 7px 0 7px;
 }
 
 .cleverreach-extension-options-page .cre-info-message.invalid:before {

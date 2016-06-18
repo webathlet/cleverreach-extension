@@ -36,4 +36,26 @@ class Cleverreach_Group_Adapter implements Group_Adapter {
 
 	}
 
+	/**
+	 * Add attribute to group.
+	 *
+	 * @since 0.3.0
+	 *
+	 * @param $attribute
+	 * @param $list_id
+	 *
+	 * @return string
+	 */
+	public function attribute_add( $attribute, $list_id ) {
+
+		try {
+			$result = $this->cleverreach->api_post_to_list( 'groupAttributeAdd', $attribute, $list_id );
+		} catch ( \Exception $e ) {
+			$result = $e->getMessage();
+		}
+
+		return $result;
+
+	}
+
 }

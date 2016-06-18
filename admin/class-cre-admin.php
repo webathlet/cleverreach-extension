@@ -60,6 +60,7 @@ class Cre_Admin {
 		$this->list_id = $helper->get_option( 'list_id' );
 		$this->form_id = $helper->get_option( 'form_id' );
 		$this->source  = $helper->get_option( 'source' );
+		$this->ajax    = $helper->get_option( 'ajax' );
 
 	}
 
@@ -125,6 +126,7 @@ class Cre_Admin {
 				'list_selector'      => sanitize_html_class( 'cre-admin-select-list' ),
 				'form_selector'      => sanitize_html_class( 'cre-admin-select-form' ),
 				'source_selector'    => sanitize_html_class( 'cre-admin-input-source' ),
+				'ajax_selector'      => sanitize_html_class( 'cre-admin-input-ajax' ),
 				'list_empty'         => esc_html__( 'Please select a list', 'cleverreach-extension' ),
 				'form_empty'         => esc_html__( 'Please select a form', 'cleverreach-extension' )
 			)
@@ -181,6 +183,9 @@ class Cre_Admin {
 				),
 				'source' => array(
 					'status' => ( $defined_options['source'] ) ? true : false
+				),
+				'ajax' => array(
+					'status' => ( $defined_options['ajax'] ) ? true : false
 				)
 			);
 
@@ -348,6 +353,21 @@ class Cre_Admin {
 			'cleverreach_extension_setting'
 		);
 
+		add_settings_section(
+			'cleverreach_extension_default_forms',
+			esc_html__( 'Default forms', 'cleverreach-extension' ),
+			array( $this, 'render_default_form_section_info' ),
+			$this->plugin_slug
+		);
+
+		add_settings_field(
+			'ajax',
+			esc_html__( 'Enable Ajax', 'cleverreach-extension' ),
+			array( $this, 'render_ajax_field' ),
+			$this->plugin_slug,
+			'cleverreach_extension_default_forms'
+		);
+
 	}
 
 	/**
@@ -385,6 +405,10 @@ class Cre_Admin {
 			$new_input['source'] = sanitize_text_field( trim( $input['source'] ) );
 		}
 
+		if ( isset( $input['ajax'] ) ) {
+			$new_input['ajax'] = sanitize_key( trim( $input['ajax'] ) );
+		}
+
 		return $new_input;
 
 	}
@@ -407,7 +431,7 @@ class Cre_Admin {
 
 		echo '</div>'; // end of .input-container
 
-		echo '<p class="description">' . esc_html__( 'Get your API Key: CleverReach Account » Extras » API', 'cleverreach-extension' ) . '</p>';
+		echo '<p class="description">' . esc_html__( 'Get your API Key: CleverReach Account » Extras » SOAP API', 'cleverreach-extension' ) . '</p>';
 
 	}
 
@@ -516,7 +540,34 @@ class Cre_Admin {
 	}
 
 	/**
-	 * Render section into message.
+	 * Render ajax input field and description.
+	 *
+	 * @since 0.3.0
+	 */
+	public function render_ajax_field() {
+
+		echo '<div class="cre-input-container">';
+
+		$ajax = $this->ajax;
+
+		printf(
+			'<input type="checkbox" class="cre-admin-input-ajax" name="cleverreach_extension[ajax]" value="' . esc_attr( 'true' ) . '" %s />',
+			checked( $ajax, 'true', 0 )
+		);
+
+		printf(
+			'<div class="dashicons-before cre-info-message %s cre-js-response"></div>',
+			! empty( $ajax ) ? 'confirmed' : 'optional'
+		);
+
+		echo '</div>';
+
+		echo '<p class="description">' . esc_html__( 'Check to submit default forms without page reload.', 'cleverreach-extension' ) . '</p>';
+
+	}
+
+	/**
+	 * Render section intro message.
 	 *
 	 * @since 0.1.0
 	 */
@@ -532,6 +583,15 @@ class Cre_Admin {
 			esc_html_e( 'Could not load data from CleverReach.', 'cleverreach-extension' );
 			echo '<p>';
 		}
+
+	}
+
+	/**
+	 * Render section intro message.
+	 *
+	 * @since 0.3.0
+	 */
+	public function render_default_form_section_info() {
 
 	}
 

@@ -36,8 +36,6 @@ class Cre_Models {
 	 */
 	public function parse_shortcode( $params ) {
 
-		wp_enqueue_script( 'cleverreach-extension' );
-
 		$helper = new Cre_Helper();
 		$client = new Api\Cleverreach();
 		$form   = new Api\Cleverreach_Form_Adapter( $client );
@@ -57,9 +55,16 @@ class Cre_Models {
 		// Render (custom/default) form.
 		if ( 'custom' === $atts['form_id'] || $atts['custom_form'] ) {
 
+			wp_enqueue_script( 'cleverreach-extension' );
+
 			$html .= apply_filters( 'cleverreach_extension_subscribe_form', esc_html__( 'Please apply your own form within your plugin or theme.', 'cleverreach-extension' ) );
 
 		} else {
+
+			if ( 'true' === $helper->get_option( 'ajax' ) ) {
+				wp_enqueue_script( 'cleverreach-extension' );
+				wp_enqueue_script( 'cleverreach-extension-fallback' );
+			}
 
 			// Get form code or message from CleverReach.
 			$embedded_code = $form->get_embedded_code( $atts['form_id'] );
@@ -67,8 +72,12 @@ class Cre_Models {
 			if ( is_object( $embedded_code ) ) {
 				// Force HTTPS everywhere.
 				$embedded_code = str_replace( 'http://', 'https://', $embedded_code->data );
-				// Remove default CleverReach scripts (including recaptcha widget).
-				$embedded_code = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $embedded_code );
+
+				if ( 'true' === $helper->get_option( 'ajax' ) ) {
+					// Remove default CleverReach scripts (including recaptcha widget).
+					$embedded_code = preg_replace( '#<script(.*?)>(.*?)</script>#is', '', $embedded_code );
+				}
+
 			}
 
 			$html .= $embedded_code;

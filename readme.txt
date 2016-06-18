@@ -115,6 +115,7 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 * Cached API calls
 * Contact Form 7 plugin integration
 * Even better admin interaction and shortcode preview
+* Option to toggle ajax usage for default forms
 * Code cleanup and even better [documentation](https://github.com/hofmannsven/cleverreach-extension/wiki)
 * [Integration test suite](https://github.com/hofmannsven/cleverreach-extension/blob/master/tests/README.md)
 

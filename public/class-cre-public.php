@@ -77,6 +77,14 @@ class Cre_Public {
 			true
 		);
 
+		wp_register_script(
+			$this->plugin_slug . '-fallback',
+			plugin_dir_url( __FILE__ ) . 'js/cleverreach-extension-fallback' . $minified . '.js',
+			array( 'jquery', $this->plugin_slug ),
+			$this->plugin_version,
+			true
+		);
+
 		wp_localize_script(
 			$this->plugin_slug,
 			'cre',
@@ -119,22 +127,39 @@ class Cre_Public {
 		if ( is_email( $post['email'] ) ) :
 
 			// Prepare receiver adapter.
+			$helper   = new Cre_Helper();
 			$client   = new Api\Cleverreach();
 			$receiver = new Api\Cleverreach_Receiver_Adapter( $client );
+			$group    = new Api\Cleverreach_Group_Adapter( $client );
 
 			// Populate `$post_attr` (array) according to CleverReach API defaults.
 			foreach ( $post as $key => $value ) {
 
 				// Select first value if $value is an array.
 				if ( is_array( $value ) ) {
-					$value = $value[0];
+					$value = $value[ 0 ];
 				}
 
 				if ( 'email' != $key ) { // Skip 'email' as this is not needed as separate attribute.
+
+					// Create fields for default forms.
+					if ( 'true' === $helper->get_option( 'ajax' ) ) {
+
+						// Attribute `$key` may only contain lowercase a-z and 0-9. Everything else will be converted to `_`.
+						$key = strtolower( $key );
+						$key = str_replace( ' ', '_', $key );
+						$key = str_replace( '-', '_', $key );
+						$key = preg_replace( '/[^A-Za-z0-9\-]/', '_', $key );
+
+						if ( $value && $key[ 0 ] !== '_' ) { // Exclude (hidden) fields starting with an underscore.
+							$group->attribute_add( $key, 0 );
+						}
+
+					}
+
 					array_push(
 						$post_attr,
 						array(
-							// Attribute `$key` may only contain lowercase a-z and 0-9. Everything else will be converted to `_`.
 							'key'   => sanitize_html_class( $key ),
 					        'value' => sanitize_text_field( $value )
 						)
@@ -144,7 +169,6 @@ class Cre_Public {
 			}
 
 			// Populate `$source` (string)
-			$helper = new Cre_Helper();
 			$source = get_bloginfo( 'name' );
 			if ( isset( $_POST['source'] ) ) {
 				$source = $_POST['source'];

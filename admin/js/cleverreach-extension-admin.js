@@ -44,6 +44,7 @@
 			cre_admin_list_selector = cre_admin_selector + cre_admin.list_selector,
 			cre_admin_form_selector = cre_admin_selector + cre_admin.form_selector,
 			cre_admin_source_selector = cre_admin_selector + cre_admin.source_selector,
+			cre_admin_ajax_selector = cre_admin_selector + cre_admin.ajax_selector,
 			cre_admin_response_selector = cre_admin_selector + cre_admin.response_selector;
 
 		// Display as few rows as possible.
@@ -60,7 +61,7 @@
 		}
 
 		// Listen for changes.
-		$( cre_admin_key_selector + ',' + cre_admin_list_selector + ',' + cre_admin_form_selector + ',' + cre_admin_source_selector ).on( 'input', function() {
+		$( cre_admin_key_selector + ',' + cre_admin_list_selector + ',' + cre_admin_form_selector + ',' + cre_admin_source_selector + ',' + cre_admin_ajax_selector ).on( 'input change', function() {
 			var $response = $( this ).parent().find( cre_admin_response_selector );
 			$response.removeClass( 'confirmed invalid' ); // Cleanup status
 			$response.addClass( 'updating animate' ); // Loading
@@ -72,7 +73,7 @@
 		} );
 
 		// Submit and render response.
-		$( cre_admin_container_selector + ' form' ).on( 'input', function() {
+		$( cre_admin_container_selector + ' form' ).on( 'input change', function() {
 
 			clearTimeout( cre_admin_timeout );
 			cre_admin_timeout = setTimeout( function() {
@@ -81,7 +82,8 @@
 					api_key: $( cre_admin_key_selector ).val(),
 					list_id: $( cre_admin_list_selector ).val(),
 					form_id: $( cre_admin_form_selector ).val(),
-					source : $( cre_admin_source_selector ).val()
+					source: $( cre_admin_source_selector ).val(),
+					ajax: $( cre_admin_ajax_selector ).is( ':checked' )
 				};
 
 				$.ajax( {
@@ -93,7 +95,7 @@
 						nonce        : cre_admin.nonce,
 						cr_admin_form: cre_admin_form_data // User input
 					},
-					success : function( response ) {
+					success: function( response ) {
 
 						// Cleanup loading.
 						$( cre_admin_response_selector ).removeClass( 'updating animate' );
@@ -121,8 +123,10 @@
 						$( cre_admin_source_selector ).validateResponse( response.source.status );
 						$( cre_admin_source_selector + '-preview' ).text( $( cre_admin_source_selector ).val() );
 
+						$( cre_admin_ajax_selector ).validateResponse( response.ajax.status );
+
 					},
-					error   : function() {
+					error: function() {
 
 						$( cre_admin_response_selector ).removeClass( 'updating animate' ); // Cleanup loading
 						$( cre_admin_list_selector ).empty(); // Reset

@@ -12,4 +12,6 @@ interface Group_Adapter {
 
 	public function get_list();
 
+	public function attribute_add( $attribute, $list_id );
+
 }
