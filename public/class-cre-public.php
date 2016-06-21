@@ -135,9 +135,9 @@ class Cre_Public {
 			// Populate `$post_attr` (array) according to CleverReach API defaults.
 			foreach ( $post as $key => $value ) {
 
-				// Select first value if $value is an array.
+				// Join values if $value is an array.
 				if ( is_array( $value ) ) {
-					$value = $value[ 0 ];
+					$value = join( ', ', $value );
 				}
 
 				if ( 'email' != $key ) { // Skip 'email' as this is not needed as separate attribute.
