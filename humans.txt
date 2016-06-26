@@ -1,9 +1,4 @@
 /* TEAM */
-  Team: CODE64
-  Website: code64.de
-  Twitter: @code64
-  From: Munich, Germany
-
   Developer: Sven Hofmann
   Website: hofmannsven.com
   Twitter: @hofmannsven
