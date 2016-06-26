@@ -31,10 +31,11 @@ Further documentation can be found on the [Wiki](https://github.com/hofmannsven/
 * [Visual Composer](https://vc.wpbakery.com/)
 
 = Languages =
+* Dutch
 * English
 * German
-* Spanish (incomplete)
 * Russian
+* Spanish (incomplete)
 
 = Looking ahead =
 * Support for WordPress widgets
