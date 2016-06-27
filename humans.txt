@@ -4,10 +4,10 @@
   Twitter: @hofmannsven
   From: Munich, Germany
 
-  Localization: Sven Hofmann, Fabian Daiser, Anastasia Sevastyanova, Jan Vlastuin
+  Localization: Sven Hofmann, Fabian Daiser, Anastasia Sevastyanova, Jan Vlastuin, Alain Schlesser
 
 /* PLUGIN */
-  Languages: Dutch, English, German, Russian, Spanish
+  Languages: Dutch, English, German, Luxembourgish, Russian, Spanish
   Platform: WordPress, CleverReach
   Support: https://github.com/hofmannsven/cleverreach-extension/issues
   GitHub Download: https://github.com/hofmannsven/cleverreach-extension/

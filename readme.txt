@@ -34,6 +34,7 @@ Further documentation can be found on the [Wiki](https://github.com/hofmannsven/
 * Dutch
 * English
 * German
+* Luxembourgish
 * Russian
 * Spanish (incomplete)
 
