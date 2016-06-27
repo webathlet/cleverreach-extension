@@ -1,0 +1,298 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CleverReach Extension 0.3.0\n"
+"Report-Msgid-Bugs-To: https://code64.de\n"
+"POT-Creation-Date: 2016-06-18 17:07+0100\n"
+"PO-Revision-Date: 2016-06-26 15:08+0200\n"
+"Last-Translator: Sven Hofmann <info@hofmannsven.com>\n"
+"Language-Team: Alain Schlesser <alain.schlesser@gail.com>\n"
+"Language: lb_LU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
+"esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: tests\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: admin/class-cre-admin.php:130 admin/class-cre-admin.php:449
+msgid "Please select a list"
+msgstr "Wielt wannechgelift eng Lëscht"
+
+#: admin/class-cre-admin.php:131 admin/class-cre-admin.php:487
+msgid "Please select a form"
+msgstr "Wielt wannechgelift e Formular"
+
+#: admin/class-cre-admin.php:214 admin/class-cre-admin.php:319
+msgid "Settings"
+msgstr "Astellungen"
+
+#: admin/class-cre-admin.php:326
+msgid "API Key"
+msgstr "API Schlëssel"
+
+#: admin/class-cre-admin.php:334 includes/supports/visual-composer.php:83
+msgid "List"
+msgstr "Lëscht"
+
+#: admin/class-cre-admin.php:342 includes/supports/visual-composer.php:92
+msgid "Form"
+msgstr "Formular"
+
+#: admin/class-cre-admin.php:350 includes/supports/contact-form-7.php:118
+#: includes/supports/visual-composer.php:115
+msgid "Source"
+msgstr "Quell"
+
+#: admin/class-cre-admin.php:358
+msgid "Default forms"
+msgstr "Standardformularer"
+
+#: admin/class-cre-admin.php:365
+msgid "Enable Ajax"
+msgstr "Ajax aktivéieren"
+
+#: admin/class-cre-admin.php:434
+msgid "Get your API Key: CleverReach Account » Extras » SOAP API"
+msgstr ""
+"Géi der den API Schlëssel sichen: CleverReach Account » Extras » SOAP API"
+
+#: admin/class-cre-admin.php:538 includes/supports/contact-form-7.php:122
+#: includes/supports/visual-composer.php:118
+msgid "(optional)"
+msgstr "(optional)"
+
+#: admin/class-cre-admin.php:565
+msgid "Check to submit default forms without page reload."
+msgstr ""
+"Uklicken, vir Standardformularer ouni Neiluede vin der Säit ofzeschécken."
+
+#: admin/class-cre-admin.php:576
+msgid "Use the fields below to connect WordPress and CleverReach."
+msgstr ""
+"Benotz d'Felder hei ënnendrënner fir WordPress mat CleverReach ze verbannen."
+
+#: admin/class-cre-admin.php:582
+msgid "Error:"
+msgstr "Feeler:"
+
+#: admin/class-cre-admin.php:583
+msgid "Could not load data from CleverReach."
+msgstr "D'Date konnten net vu CleverReach geluede ginn."
+
+#: admin/class-cre-admin.php:618
+msgid "Still need a CleverReach account?"
+msgstr "Du hues nach kee CleverReach Konto?"
+
+#: admin/class-cre-admin.php:619
+msgid "Sign up for free!"
+msgstr "Mell dech fir näischt un!"
+
+#: admin/class-cre-admin.php:641
+msgid "Your Shortcode"
+msgstr "Däi Shortcode"
+
+#: admin/class-cre-admin.php:643
+msgid "Embed the shortcodes below anywhere on your site."
+msgstr "Du kanns d'Shortcodes iwwerall op dénger Säit abennen."
+
+#: admin/class-cre-admin.php:646
+msgid "Default usage:"
+msgstr "Standard:"
+
+#: admin/class-cre-admin.php:649
+msgid "Advanced usage:"
+msgstr "Erweidert:"
+
+#: admin/class-cre-admin.php:656
+msgid ""
+"Add the additional parameters to the shortcode, if you need to support "
+"multiple forms on one page."
+msgstr ""
+"Setz déi zousätzlech Paramtere bei de Shortcode bäi, wanns de wëlls méi wéi "
+"ee Formular op enger Säit notzen."
+
+#: admin/class-cre-admin.php:658 includes/supports/contact-form-7.php:140
+#: includes/supports/visual-composer.php:97
+#, php-format
+msgid "Please check the %swiki%s on how to apply further customization."
+msgstr ""
+"Kuck an de %sWiki%s, fir gewuer ze ginn, wéis de kanns weider Upassunge "
+"maachen."
+
+#: cleverreach-extension.php:45
+#, php-format
+msgid "CleverReach Extension plugin requires PHP %s or greater."
+msgstr "CleverReach Extension Plugin brauch PHP %s oder méi rezent."
+
+#: cleverreach-extension.php:46 cleverreach-extension.php:55
+msgid "Plugin Activation Error"
+msgstr "Feeler beim Aktivéiere vum Plugin"
+
+#: cleverreach-extension.php:54
+#, php-format
+msgid "CleverReach Extension plugin requires PHP %s extension."
+msgstr "CleverReach Extension Plugin brauch d'PHP %s Erweiderung."
+
+#: includes/api/class-cleverreach.php:143
+msgid "Your API key is invalid."
+msgstr "Däin API Schlëssel as ongülteg."
+
+#: includes/class-cre-models.php:60
+msgid "Please apply your own form within your plugin or theme."
+msgstr ""
+"Hannerlee wannechgelift däin eegene Formular an déngem Plugin oder Theme."
+
+#: includes/supports/contact-form-7.php:60
+msgid "Add New Signup Form"
+msgstr "Neien Umellungsformular bäisetzen"
+
+#: includes/supports/contact-form-7.php:61
+msgid "Add Signup Form"
+msgstr "Umellungsformular bäisetzen"
+
+#: includes/supports/contact-form-7.php:81
+msgid "CleverReach"
+msgstr "CleverReach"
+
+#: includes/supports/contact-form-7.php:108
+msgid "List ID"
+msgstr "Lëschten-ID"
+
+#: includes/supports/contact-form-7.php:112
+#, php-format
+msgid "You can get another list ID from the %splugin settings%s."
+msgstr "Aner Lëschten-IDe fënnst de an de %sPlugin Astellungen%s."
+
+#: includes/supports/contact-form-7.php:135
+msgid "Insert Tag"
+msgstr "Tag asetzen"
+
+#: includes/supports/contact-form-7.php:183
+msgid "Gender"
+msgstr "Uried"
+
+#: includes/supports/contact-form-7.php:184
+msgid "Unknown"
+msgstr "Onbekannt"
+
+#: includes/supports/contact-form-7.php:184
+msgid "Female"
+msgstr "Madame"
+
+#: includes/supports/contact-form-7.php:184
+msgid "Male"
+msgstr "Monsieur"
+
+#: includes/supports/contact-form-7.php:186
+msgid "First Name"
+msgstr "Virnumm"
+
+#: includes/supports/contact-form-7.php:189
+msgid "Last Name"
+msgstr "Familljennumm"
+
+#: includes/supports/contact-form-7.php:192
+msgid "Email"
+msgstr "Email"
+
+#: includes/supports/contact-form-7.php:192
+msgid "(required)"
+msgstr "(noutwenneg)"
+
+#: includes/supports/contact-form-7.php:195
+msgid "Submit"
+msgstr "Ofschécken"
+
+#: includes/supports/visual-composer.php:68
+msgid "CleverReach Form"
+msgstr "CleverReach Formular"
+
+#: includes/supports/visual-composer.php:69
+msgid "Place CleverReach Form"
+msgstr "CleverReach Formular abannen"
+
+#: includes/supports/visual-composer.php:73
+msgid "Content"
+msgstr "Inhalt"
+
+#: includes/supports/visual-composer.php:106
+msgid "Enable custom form"
+msgstr "Eegene Formular notzen"
+
+#: public/class-cre-public.php:94
+msgid "Saving..."
+msgstr "Späicheren..."
+
+#: public/class-cre-public.php:95
+msgid "Please check your email to confirm your subscription."
+msgstr "Kuck wannechgelifft an déng Emaile fir d'Umellung ze bestätegen."
+
+#: public/class-cre-public.php:96
+msgid ""
+"Sorry, there was a problem saving your data. Please try later or contact the "
+"administrator."
+msgstr ""
+"Et gouf leider e Problem beim Späichere vun déngen Daten. Probéier et méi "
+"spéit oder kontaktéier en Administrator."
+
+#: public/class-cre-public.php:214
+msgid "It seems like you're already subscribed to our list."
+msgstr "Du bass anscheinend schon an eisem Verdeeler agedroen."
+
+#: public/class-cre-public.php:216
+msgid "Sorry, there seems to be a problem with your data."
+msgstr "Sorry, et gët scheinbar e Problem mat deengen Daten."
+
+#: public/class-cre-public.php:224
+msgid "Sorry, there seems to be a problem with your email address."
+msgstr "Sorry, et gët scheinbar e Problem mat dénger Email."
+
+#~ msgid "Get your API Key: CleverReach Account » Extras » API"
+#~ msgstr "Hol dir den API Key: CleverReach Account » Extras » API"
+
+#~ msgid "Custom form"
+#~ msgstr "Eigenes Formular"
+
+#~ msgid "Custom"
+#~ msgstr "Individuell"
+
+#~ msgid "Check the wiki on how to customize your form."
+#~ msgstr ""
+#~ "Schau in das Wiki, um zu erfahren, wie du dein eigenes Formular einbinden "
+#~ "kannst."
+
+#~ msgid "CleverReach API Keys can be created within Account » Extras » API"
+#~ msgstr ""
+#~ "CleverReach API Keys können unter Account » Extras » API erstellt werden."
+
+#~ msgid "You can use the shortcode below everywhere on your page."
+#~ msgstr ""
+#~ "Du kannst den unten stehenden Shortcode überall auf der der Seite "
+#~ "einfügen."
+
+#~ msgid "CleverReach Extension"
+#~ msgstr "CleverReach Extension"
+
+#~ msgid "Please select a list."
+#~ msgstr "Bitte wähle eine Liste aus."
+
+#~ msgid "Please select a form."
+#~ msgstr "Bitte wähle ein Formular aus."
+
+#~ msgid "CleverReach Settings"
+#~ msgstr "CleverReach Einstellungen"
+
+#~ msgid "Please enter your CleverReach API Key."
+#~ msgstr "Bitte hinterlege deinen CleverReach API Key."
+
+#~ msgid "Interface"
+#~ msgstr "Schnittstelle"
+
+#~ msgid "CleverReach API Settings"
+#~ msgstr "CleverReach API Einstellungen"
