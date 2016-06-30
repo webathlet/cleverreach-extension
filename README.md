@@ -24,6 +24,7 @@ Further documentation can be found on the [Wiki](https://github.com/hofmannsven/
 ### Languages
 * Dutch
 * English
+* French
 * German
 * Luxembourgish
 * Russian
