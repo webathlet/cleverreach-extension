@@ -115,6 +115,7 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 * [Fork of https://github.com/hofmannsven/cleverreach-extension/) https://github.com/webathlet/cleverreach-extension
 * Added option to control whether list fields get created automatically
 * Improved integration with contact form 7 to use the validation capability of contact form 7 too
+* Added parsing the piped values of the form definition from contact form 7 
 
 = 0.3.0 =
 * Supports multiple forms on one page
