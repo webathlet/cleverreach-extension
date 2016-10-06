@@ -1,8 +1,18 @@
 (
 	function( $ ) {
 		'use strict';
-
+                
 		$( cre.selector + cre.container_selector + ' form' ).on( 'submit', function() {
+                        
+                        if( !$( this ).hasClass('wpcf7-form') ){
+                            
+                            $( this ).crFormSubmit();
+                            
+                            return false;
+                        }
+                });
+                
+                $.fn.crFormSubmit = function() {
 
 			var $cr_container = $( this ).closest( cre.selector + cre.container_selector );
 
@@ -36,7 +46,11 @@
 				}
 			} );
 
-		} );
+		} 
 
 	}
 )( jQuery );
+
+function callCrFormSubmit(){
+    jQuery( cre.selector + cre.container_selector + ' form' ).crFormSubmit();
+}

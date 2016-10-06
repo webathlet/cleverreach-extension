@@ -105,6 +105,21 @@ class Cre_Public {
 
 	}
 
+	private function validate_contact_form_fields($tags) {
+
+		require_once WPCF7_PLUGIN_DIR . '/includes/validation.php';
+		$result = new WPCF7_Validation();
+
+		foreach ( $tags as $tag ) {
+			$result = apply_filters( 'wpcf7_validate_' . $tag['type'],
+				$result, $tag );
+		}
+
+		$result = apply_filters( 'wpcf7_validate', $result, $tags );
+
+		return $result->is_valid();
+	}
+
 	/**
 	 * Parse form submission via ajax and return status response.
 	 *
@@ -137,7 +152,7 @@ class Cre_Public {
                 }
                 $result['type']   = 'error';  
                 
-		if ( is_email( $post['email'] ) ) :
+		if ($this->validate_contact_form_fields($wpcf7_contact_form_tags) && is_email( $post['email'] ) ) :
 
 			// Prepare receiver adapter.
 			$helper   = new Cre_Helper();
