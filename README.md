@@ -19,6 +19,7 @@ Further documentation can be found on the [Wiki](https://github.com/hofmannsven/
 
 ### Integrations
 * [Contact Form 7](https://github.com/hofmannsven/cleverreach-extension/wiki/Contact-Form-7)
+  by adding special entry to Additional Settings > on_sent_ok: "callCrFormSubmit();"
 * [Visual Composer](https://vc.wpbakery.com/)
 
 ### Languages
