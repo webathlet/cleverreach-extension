@@ -285,7 +285,8 @@ class Contact_Form_7 {
 			// Check for first plain default Contact Form 7 form class name and append HTML data attributes.
 			$pos = strpos( $content, 'class="wpcf7-form');
 			if ( false !== $pos ) {
-				$content = substr_replace( $content, $data_attr, $pos, strlen( 'class="wpcf7-form"' ) .'class="wpcrcf7-form');
+                            $content = str_replace('class="wpcf7-form', $data_attr.' class="wpcrcf7-form wpcf7-form',$content);
+//				$content = substr_replace( $content, 'class="wpcrcf7-form wpcf7-form"' . $data_attr, $pos, strlen( 'class="wpcf7-form"' ) );
 			}
 
 		}
