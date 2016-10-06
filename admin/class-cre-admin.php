@@ -58,6 +58,7 @@ class Cre_Admin {
 		$helper        = new Core\Cre_Helper();
 		$this->api_key = $helper->get_option( 'api_key' );
 		$this->list_id = $helper->get_option( 'list_id' );
+		$this->list_auto_fields    = $helper->get_option( 'list_auto_fields' );
 		$this->form_id = $helper->get_option( 'form_id' );
 		$this->source  = $helper->get_option( 'source' );
 		$this->ajax    = $helper->get_option( 'ajax' );
@@ -127,6 +128,7 @@ class Cre_Admin {
 				'form_selector'      => sanitize_html_class( 'cre-admin-select-form' ),
 				'source_selector'    => sanitize_html_class( 'cre-admin-input-source' ),
 				'ajax_selector'      => sanitize_html_class( 'cre-admin-input-ajax' ),
+				'list_auto_fields_selector'      => sanitize_html_class( 'cre-admin-input-list_auto_fields' ),
 				'list_empty'         => esc_html__( 'Please select a list', 'cleverreach-extension' ),
 				'form_empty'         => esc_html__( 'Please select a form', 'cleverreach-extension' )
 			)
@@ -186,6 +188,9 @@ class Cre_Admin {
 				),
 				'ajax' => array(
 					'status' => ( $defined_options['ajax'] ) ? true : false
+				),
+				'list_auto_fields' => array(
+					'status' => ( $defined_options['list_auto_fields'] ) ? true : false
 				)
 			);
 
@@ -368,6 +373,14 @@ class Cre_Admin {
 			'cleverreach_extension_default_forms'
 		);
 
+		add_settings_field(
+			'list_auto_fields',
+			esc_html__( 'Enable auto creating list fields', 'cleverreach-extension' ),
+			array( $this, 'render_list_auto_fields_field' ),
+			$this->plugin_slug,
+			'cleverreach_extension_default_forms'
+		);
+
 	}
 
 	/**
@@ -407,6 +420,10 @@ class Cre_Admin {
 
 		if ( isset( $input['ajax'] ) ) {
 			$new_input['ajax'] = sanitize_key( trim( $input['ajax'] ) );
+		}
+
+		if ( isset( $input['list_auto_fields'] ) ) {
+			$new_input['list_auto_fields'] = sanitize_key( trim( $input['list_auto_fields'] ) );
 		}
 
 		return $new_input;
@@ -563,6 +580,33 @@ class Cre_Admin {
 		echo '</div>';
 
 		echo '<p class="description">' . esc_html__( 'Check to submit default forms without page reload.', 'cleverreach-extension' ) . '</p>';
+
+	}
+
+	/**
+	 * Render list_auto_fields input field and description.
+	 *
+	 * @since 0.3.1
+	 */
+	public function render_list_auto_fields_field() {
+
+		echo '<div class="cre-input-container">';
+
+		$list_auto_fields = $this->list_auto_fields;
+
+		printf(
+			'<input type="checkbox" class="cre-admin-input-list_auto_fields" name="cleverreach_extension[list_auto_fields]" value="' . esc_attr( 'true' ) . '" %s />',
+			checked( $list_auto_fields, 'true', 0 )
+		);
+
+		printf(
+			'<div class="dashicons-before cre-info-message %s cre-js-response"></div>',
+			! empty( $list_auto_fields ) ? 'confirmed' : 'optional'
+		);
+
+		echo '</div>';
+
+		echo '<p class="description">' . esc_html__( 'Check to create form fields in chosen list automatically (only with activated ajax submission).', 'cleverreach-extension' ) . '</p>';
 
 	}
 

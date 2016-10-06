@@ -245,7 +245,7 @@ class Contact_Form_7 {
 	 * Filter Contact Form 7 form wrapper.
 	 * Update form wrapper to match CleverReach instead of Contact Form 7.
 	 *
-	 * @since   0.3.0
+	 * @since   0.3.1
 	 *
 	 * @param   $content
 	 *
@@ -253,7 +253,7 @@ class Contact_Form_7 {
 	 */
 	private function filter_form_wrapper( $content ) {
 
-		return str_replace( 'class="wpcf7"', 'class="cr_form-container"', $content );
+		return str_replace( 'class="wpcf7"', 'class="wpcf7 cr_form-container"', $content );
 
 	}
 

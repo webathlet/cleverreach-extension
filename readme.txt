@@ -5,7 +5,7 @@ Tags: cleverreach, email, newsletter, sign-up, opt-in, form, ajax
 
 Requires at least: 4.0
 Tested up to: 4.5
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -110,6 +110,11 @@ Follow [CleverReach Extension on GitHub](https://github.com/hofmannsven/cleverre
 
 
 == Changelog ==
+
+= 0.3.1 =
+* [Fork of https://github.com/hofmannsven/cleverreach-extension/) https://github.com/webathlet/cleverreach-extension
+* Added option to control whether list fields get created automatically
+* Improved integration with contact form 7 to use the validation capability of contact form 7 too
 
 = 0.3.0 =
 * Supports multiple forms on one page

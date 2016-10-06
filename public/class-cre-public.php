@@ -143,7 +143,7 @@ class Cre_Public {
 				if ( 'email' != $key ) { // Skip 'email' as this is not needed as separate attribute.
 
 					// Create fields for default forms.
-					if ( 'true' === $helper->get_option( 'ajax' ) ) {
+					if ( 'true' === $helper->get_option( 'ajax' ) && 'true' === $helper->get_option( 'list_auto_fields' )) {
 
 						// Attribute `$key` may only contain lowercase a-z and 0-9. Everything else will be converted to `_`.
 						$key = strtolower( $key );
