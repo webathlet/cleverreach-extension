@@ -5,13 +5,13 @@
  * @package     Cleverreach_Extension
  * @author      Sven Hofmann <info@hofmannsven.com>
  * @license     GPLv3
- * @link        https://github.com/hofmannsven/cleverreach-extension
+ * @link        https://github.com/webathlet/cleverreach-extension https://github.com/hofmannsven/cleverreach-extension
  *
  * @wordpress-plugin
  * Plugin Name: CleverReach Extension
- * Plugin URI:  https://github.com/hofmannsven/cleverreach-extension
+ * Plugin URI:  https://github.com/webathlet/cleverreach-extension https://github.com/hofmannsven/cleverreach-extension
  * Description: Simple interface for CleverReach newsletter software using the official CleverReach SOAP API.
- * Version:     0.3.0
+ * Version:     0.3.1
  * Author:      CODE64
  * Author URI:  https://code64.de
  * License:     GPLv3
