@@ -123,7 +123,20 @@ class Cre_Public {
 
 		// Parse serialized ajax post data as `$post` (array).
 		parse_str( $_POST['cr_form'], $post ); // @TODO: Get rid of `parse_str()`
+                
+                // Including Raw value pipes of contact formm 7
+                $wpcf7_contact_form = wpcf7_contact_form( $post['_wpcf7'] );
+                $wpcf7_contact_form_tags = $wpcf7_contact_form->form_scan_shortcode();
 
+                $wpcf7_tags = array();
+                foreach($wpcf7_contact_form_tags as $tag){
+                    if ( empty( $tag['name'] ) ) {
+                            continue;
+                    }
+                    $wpcf7_tags[$tag['name']] = $tag;
+                }
+                $result['type']   = 'error';  
+                
 		if ( is_email( $post['email'] ) ) :
 
 			// Prepare receiver adapter.
@@ -134,6 +147,30 @@ class Cre_Public {
 
 			// Populate `$post_attr` (array) according to CleverReach API defaults.
 			foreach ( $post as $key => $value ) {
+                            
+                                // merge piped values from CF7 of tag definition
+                                $pipes = $wpcf7_tags[$key]['pipes'];
+
+                                // @TODO: $pipes should be instanceof WPCF7_Pipes
+                                
+                                if ( WPCF7_USE_PIPE
+                                && is_object($pipes) // && $pipes instanceof WPCF7_Pipes
+                                && ! $pipes->zero() ) {
+                                    
+                                        
+                                        if ( is_array( $value) ) {
+                                                $new_value = array();
+                                                
+                                                foreach ( $value as $v ) {
+                                                        $new_value[] = $pipes->do_pipe( wp_unslash( $v ) );
+                                                }
+
+                                                $value = $new_value;
+                                        } else {
+                                                $value = $pipes->do_pipe( wp_unslash( $value ) );
+                                        }
+
+                                }
 
 				// Join values if $value is an array.
 				if ( is_array( $value ) ) {
@@ -215,14 +252,14 @@ class Cre_Public {
 				} else {
 					$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_common', esc_html__( 'Sorry, there seems to be a problem with your data.', 'cleverreach-extension' ) ) );
 				}
-
+                                
 			} // end of is_object() && 'SUCCESS'
 
 		else :
 
 			$result['type']   = 'error';
 			$result['status'] = sanitize_text_field( apply_filters( 'cleverreach_extension_error_msg_invalid_email', esc_html__( 'Sorry, there seems to be a problem with your email address.', 'cleverreach-extension' ) ) );
-
+                        
 		endif; // end of is_email()
 
 		// Finally return JSON result.
